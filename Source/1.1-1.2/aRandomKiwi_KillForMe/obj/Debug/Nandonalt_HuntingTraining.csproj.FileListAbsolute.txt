@@ -1,7 +1,0 @@
-D:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Nandonalt - Hunting Training\Assemblies\Nandonalt_HuntingTraining.dll
-D:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Nandonalt - Hunting Training\Source\Nandonalt_HuntingTraining\Nandonalt_HuntingTraining\obj\Debug\Nandonalt_HuntingTraining.dll
-C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Nandonalt - Hunting Training\Assemblies\Nandonalt_HuntingTraining.dll
-C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Nandonalt - Hunting Training\Source\Nandonalt_HuntingTraining\obj\Debug\Nandonalt_HuntingTraining.csproj.CoreCompileInputs.cache
-C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Nandonalt - Hunting Training\Source\Nandonalt_HuntingTraining\obj\Debug\Nandonalt_HuntingTraining.csproj.CopyComplete
-C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Nandonalt - Hunting Training\Source\Nandonalt_HuntingTraining\obj\Debug\Nandonalt_HuntingTraining.dll
-C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Nandonalt - Hunting Training\Source\Nandonalt_HuntingTraining\obj\Debug\Nandonalt_HuntingTraining.csprojAssemblyReference.cache

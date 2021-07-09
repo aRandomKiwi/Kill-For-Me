@@ -1,9 +1,0 @@
-C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Hunting Training\Assemblies\arandomKiwi_HuntingTraining.dll
-C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Hunting Training\Source\arandomKiwi_HuntingTraining\obj\Debug\arandomKiwi_HuntingTraining.csprojAssemblyReference.cache
-C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Hunting Training\Source\arandomKiwi_HuntingTraining\obj\Debug\arandomKiwi_HuntingTraining.csproj.CoreCompileInputs.cache
-C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Hunting Training\Source\arandomKiwi_HuntingTraining\obj\Debug\arandomKiwi_HuntingTraining.csproj.CopyComplete
-C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Hunting Training\Source\arandomKiwi_HuntingTraining\obj\Debug\arandomKiwi_HuntingTraining.dll
-C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Hunt For Me\Assemblies\aRandomKiwi_HuntForMe.dll
-C:\Users\kiwi\Desktop\Dev RMMods\Hunt For Me\aRandomKiwi_HuntingTraining\obj\Debug\aRandomKiwi_HuntingTraining.csproj.CoreCompileInputs.cache
-C:\Users\kiwi\Desktop\Dev RMMods\Hunt For Me\aRandomKiwi_HuntingTraining\obj\Debug\aRandomKiwi_HuntingTraining.csproj.CopyComplete
-C:\Users\kiwi\Desktop\Dev RMMods\Hunt For Me\aRandomKiwi_HuntingTraining\obj\Debug\aRandomKiwi_HuntForMe.dll
