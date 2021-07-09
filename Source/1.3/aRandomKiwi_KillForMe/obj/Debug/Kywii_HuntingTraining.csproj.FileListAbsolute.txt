@@ -1,0 +1,5 @@
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Hunting Training\Assemblies\Kywii_HuntingTraining.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Hunting Training\Source\Kywii_HuntingTraining\obj\Debug\Kywii_HuntingTraining.csproj.CoreCompileInputs.cache
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Hunting Training\Source\Kywii_HuntingTraining\obj\Debug\Kywii_HuntingTraining.csproj.CopyComplete
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Hunting Training\Source\Kywii_HuntingTraining\obj\Debug\Kywii_HuntingTraining.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Hunting Training\Source\Kywii_HuntingTraining\obj\Debug\Kywii_HuntingTraining.csprojAssemblyReference.cache

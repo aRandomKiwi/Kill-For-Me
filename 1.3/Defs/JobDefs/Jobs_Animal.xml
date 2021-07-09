@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <JobDef>
+		<defName>KFM_KillTarget</defName>
+		<driverClass>aRandomKiwi.KFM.JobDriver_EnemyKill</driverClass>
+		<reportString>kill TargetA (trained).</reportString>
+		<casualInterruptible>false</casualInterruptible>
+  </JobDef>
+  
+  <JobDef>
+		<defName>KFM_GroupToPoint</defName>
+		<driverClass>aRandomKiwi.KFM.JobDriver_GroupToPoint</driverClass>
+		<reportString>in group mode</reportString>
+		<casualInterruptible>false</casualInterruptible>
+  </JobDef>
+</Defs>
