@@ -11,7 +11,6 @@ namespace aRandomKiwi.KFM
 {
     public class Designator_GroupToPoint : Designator_Zone
     {
-        // Token: 0x06002E1E RID: 11806 RVA: 0x00157D28 File Offset: 0x00156128
         public Designator_GroupToPoint(string PID, Func<IntVec3, bool> onPointSelected)
         {
             this.PID = PID;
@@ -34,7 +33,7 @@ namespace aRandomKiwi.KFM
             }
             if (!sq.Walkable(Current.Game.CurrentMap))
                 return false;
-            //Check si tout les membres de la meute peuvent accéder au point
+            //Check if all pack members can access the point
             if (!Utils.GCKFM.canPackMembersReach(Current.Game.CurrentMap, PID, sq))
                 return false;
             return true;
@@ -71,10 +70,10 @@ namespace aRandomKiwi.KFM
         {
             base.FinalizeDesignationSucceeded();
 
-            //On appel le délégué en lui passant les coordonées
+            //We call the delegate by passing him the coordinates
             this.onPointSelected(pos);
 
-            //ANimation sonore et visuelle
+            //Sound and visual animation
             SoundDefOf.DraftOn.PlayOneShotOnCamera(null);
             FleckMaker.ThrowDustPuffThick(pos.ToVector3Shifted(), cmap, 4.0f, Color.red);
         }

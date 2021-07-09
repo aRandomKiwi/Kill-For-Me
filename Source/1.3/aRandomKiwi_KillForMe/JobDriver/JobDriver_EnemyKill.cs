@@ -67,10 +67,10 @@ namespace aRandomKiwi.KFM
 
 		public override bool TryMakePreToilReservations(bool errorOnFailed)
 		{
-            //Sauvegarde ID Unique de la map
+            //Unique ID save of the map
             mapUID = this.pawn.Map.uniqueID;
             localAllowRangedAttack = Settings.allowRangedAttack;
-            //Marquage unitée comme affectée pour killé 
+            //Unit marking as assigned for killé
             this.pawn.TryGetComp<Comp_Killing>().KFM_affected = true;
 
             return true;
@@ -88,19 +88,19 @@ namespace aRandomKiwi.KFM
 
             //pawn.jobs.debugLog = true;
 
-            //Ajout handler de fin de job
+            //Add end of job handler
             //globalFinishActions.Add(OnEndKillingTarget);
 
             this.job.playerForced = true;
 
-            //Restauration Map universellement
+            //Map restoration universally
             Map cmap = null;
             foreach (var x in Find.Maps)
             {
                 if (x.uniqueID == mapUID)
                 {
                     cmap = x;
-                    //Définition PMID
+                    //PMID definition
                     PMID = Utils.GCKFM.getPackMapID(cmap, pawn.TryGetComp<Comp_Killing>().KFM_PID);
                     break;
                 }
@@ -115,14 +115,14 @@ namespace aRandomKiwi.KFM
             Toil initToil = new Toil();
             initToil.AddFinishAction(delegate()
             {
-                //Restauration Map universellement
+                //Map restoration universally
                 Map cmap2 = null;
                 foreach (var x in Find.Maps)
                 {
                     if (x.uniqueID == mapUID)
                         cmap2 = x;
                 }
-                //Enregistrement du membre à ce moment car aussinon le job peut être queued et ne jamais executer de code de fin ( JID perpetuellement attribué )
+                //Member registration at this time because otherwise the job can be queued and never execute an end code (JID perpetually assigned)
                 Utils.GCKFM.incAffectedMember(cmap2, this.pawn.TryGetComp<Comp_Killing>().KFM_PID, this.job.loadID);
             });
             yield return initToil;
@@ -131,8 +131,8 @@ namespace aRandomKiwi.KFM
             {
                 base.Map.attackTargetsCache.UpdateTarget(this.pawn);
             });
-            
-            //Si le predateur est déjà sur le lieu de formation de la meute (selectedWaitingSite)
+
+            //If the predator is already at the place of formation of the pack (selectedWaitingSite)
             if (pawn.TryGetComp<Comp_Killing>().KFM_waitingPoint.x >= 0)
             {
                 if (pawn.Position.DistanceToSquared(pawn.TryGetComp<Comp_Killing>().KFM_waitingPoint) <= 4)
@@ -150,10 +150,10 @@ namespace aRandomKiwi.KFM
 				this.firstHit = false;
 			};
 
-            //le cas échéant Attente tant que tout les membres ne sont pas arrivés ( au point du leader )
+            //if applicable Waiting until all members have arrived (at the leader's point)
             if (!Utils.GCKFM.isPackArrivedToWaitingPoint(PMID))
             {
-                //Déplacement aux coordonnées
+                //Move to coordinates
                 Toil idle = new Toil();
                 Toil gotoWaitingPoint = Toils_Goto.
                     GotoCell(pawn.TryGetComp<Comp_Killing>().KFM_waitingPoint, PathEndMode.ClosestTouch).
@@ -162,19 +162,19 @@ namespace aRandomKiwi.KFM
                 yield return Toils_General.Wait(15);
                 yield return Toils_Goto.GotoCell(pawn.TryGetComp<Comp_Killing>().KFM_waitingPoint2, PathEndMode.ClosestTouch).
                     JumpIf((() => Find.TickManager.TicksGame % 60 == 0 && Utils.GCKFM.isPackArrivedToWaitingPoint(PMID)), idle);
-                //Attente des autres membres tant que pas proches 
+                //Waiting for other members as long as they are not close
                 yield return idle;
                 yield return Toils_Jump.JumpIf(gotoWaitingPoint, delegate
                 {
                     this.job.playerForced = true;
                     Comp_Killing ch = pawn.TryGetComp<Comp_Killing>();
-                    //On notifis que le pawn est arrivé au point de rendez-vous
+                    //We notify that the pawn has arrived at the meeting point
                     ch.KFM_arrivedToWaitingPoint = true;
-                    //Check si waitingPoint toujours définis (Tous les membres arrivés au point de destination)
+                    //Check if waitingPoint still defined (All members arrived at the destination point)
                     bool allArrived = Utils.GCKFM.isPackArrivedToWaitingPoint(PMID);
                     if (allArrived)
                     {
-                        //On reset le flag d'arrivé au point d'attente pour le prochain rassemblement
+                        //We reset the arrival flag at the waiting point for the next meeting
                         ch.KFM_arrivedToWaitingPoint = false;
                     }
 
@@ -183,7 +183,7 @@ namespace aRandomKiwi.KFM
             }
             else
             {
-                //si pas de meute on commence maintenant le forcing pour éviter que la créature flee en cas de menace
+                //if no pack we now start the forcing to prevent the creature flee in case of threat
                 //this.job.playerForced = true;
 
                 yield return new Toil();
@@ -194,8 +194,8 @@ namespace aRandomKiwi.KFM
             }
 
             Toil nothing = new Toil();
-            
-            //Cas des remote attaque via outil (? peut-etre via un mod) OU des remotes attaques en analysant les verbs en presence
+
+            //Case of remote attacks via tool (? Perhaps via a mod) OR remote attacks by analyzing the verbs in presence
             if (!Settings.ignoredRangedAttack.Contains(pawn.def.defName) && (localAllowRangedAttack || Settings.allowRangedAttack) && ((pawn.equipment != null && pawn.equipment.Primary != null && pawn.equipment.Primary.def.IsRangedWeapon)
                 || Utils.hasRemoteVerbAttack(pawn.verbTracker.AllVerbs, pawn)))
             {
@@ -210,7 +210,7 @@ namespace aRandomKiwi.KFM
                 Toil jumpIfCannotHit = Toils_Jump.JumpIfTargetNotHittable(TargetIndex.A, gotoCastPos);
                 yield return doNothing;
                 yield return jumpIfCannotHit;
-                //Attaque à distance, si en mode ne pas achevé target alors arrete l'attaque et saute à nothing
+                //Ranged attack, if in not completed target mode then stop the attack and jump to nothing
                 yield return Toils_Combat.CastVerb(TargetIndex.A, true).FailOn(OnFailAttack).JumpIf((() => !Settings.isAttackUntilDeathEnabled(pawn) && ( TargetPawn != null && TargetPawn.Downed) ), nothing);
                 //L'animal arrete d'attaquer si sa santé <= 50%
                 /*yield return Toils_Jump.JumpIf(nothing, delegate
@@ -229,7 +229,7 @@ namespace aRandomKiwi.KFM
                 //yield return new Toil();
 
                 ////Log.Message("MELEE ATTACK");
-                //Attaque de mélée et check si en mode safe vie de l'animal pas en danger ==> abandon mission
+                //Melee attack and check if in safe mode the animal not in danger ==> abandon mission
                 Toil toil = Toils_Combat.FollowAndMeleeAttack(TargetIndex.A, hitAction).FailOn(OnFailAttack);//.JumpIf(() => (this.pawn.TryGetComp<Comp_Killing>().KFM_safeMode && pawn.health.summaryHealth.SummaryHealthPercent < 0.5f), nothing);
                 yield return toil;
                 /*yield return Toils_Jump.JumpIf(nothing, delegate
@@ -237,13 +237,13 @@ namespace aRandomKiwi.KFM
                     return (this.pawn.TryGetComp<Comp_Killing>().KFM_safeMode && pawn.health.summaryHealth.SummaryHealthPercent < 0.5f);
                 });*/
             }
-            //L'animal arrete d'attaquer si sa santé <= 50%
+            //The animal stops attacking if its health <= 50%
             /*yield return Toils_Jump.JumpIf(nothing, delegate
             {
                 return !(this.pawn.TryGetComp<Comp_Killing>().KFM_safeMode && pawn.health.summaryHealth.SummaryHealthPercent < 0.5f);
             });*/
 
-            //Pawn se déplace au point de retraite avec le mode Safe activé
+            //Pawn moves to the retreat point with Safe Mode enabled
             yield return nothing;
 
             yield break;
@@ -268,15 +268,15 @@ namespace aRandomKiwi.KFM
 
 
         /*
-         *  Action invoquée lorsque la cible est morte ou que la toil se termine de maniere abrupte
+         *  Action summoned when the target is dead or the canvas abruptly ends
          */
         private void OnEndKillingTarget()
         {
             ////Log.Message("Arret du JOB KILL "+this.job.GetUniqueLoadID());
             Comp_Killing ch = pawn.TryGetComp<Comp_Killing>();
-            //Démobilisation de l'animal
+            //Animal demobilization
             ch.KFM_affected = false;
-            //Décrémentation nb de membre participant à l'attaque pour la meute donné (PID) sur la map donnée
+            //Decrement number of members participating in the attack for the given pack (PID) on the given map
             Utils.GCKFM.decAffectedMember(pawn.Map, ch.KFM_PID, this.job.loadID);
         }
 

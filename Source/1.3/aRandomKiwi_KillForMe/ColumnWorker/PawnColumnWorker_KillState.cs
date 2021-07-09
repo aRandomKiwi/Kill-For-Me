@@ -27,12 +27,12 @@ namespace aRandomKiwi.KFM
             if (pawn.GetComp<Comp_Killing>() == null)
                 return;
 
-            //Si désactivation alors on arrete les jobs relié au kill For Me auxquelle l'animal pourrait etre lié
-            if(value == false)
+            //If deactivation then we stop the jobs linked to the kill For Me to which the animal could be linked
+            if (value == false)
             {
-                //Si animal actuellement mobilisé (via sa meute) on le fait arreter son travail
+                //If an animal is currently mobilized (via its pack), it is made to stop its work
                 Utils.GCKFM.cancelCurrentPackMemberJob(pawn);
-                //Si animal actuellement en mode regroupement on le fait arreter son travail 
+                //If the animal is currently in grouping mode, it is made to stop its work
                 Utils.GCKFM.cancelCurrentPackMemberGroupJob(pawn);
             }
             pawn.GetComp<Comp_Killing>().KFM_killState = value;

@@ -19,7 +19,7 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         * Check si le kill est autorisé pour l'animal
+         * Check if the kill is allowed for the animal
          */
         public bool killEnabled()
         {
@@ -48,12 +48,12 @@ namespace aRandomKiwi.KFM
 
             Material packAvatar;
 
-            //Si kill activé et masquage icone de meute pas désactivé
+            //If kill enabled and pack icon masking not disabled
             if (killEnabled() && !Settings.hidePackIcon)
             {
                 Vector3 vector;
 
-                //Guerrier de meute
+                //Pack warrior
                 if (KFM_isWarrior && Settings.allowPackAttackBonus)
                 {
                     vector = this.parent.TrueCenter();
@@ -115,7 +115,7 @@ namespace aRandomKiwi.KFM
             {
                 if(KFM_PID != null && KFM_PID != "")
                 {
-                    //Check si creature bien present dans sa meute au contrario on l'ajoute
+                    //Check if creature is present in its pack, on the contrary, we add it
                     Utils.GCKFM.addPackMember(KFM_PID, (Pawn)parent);
                 }
             }
@@ -126,13 +126,13 @@ namespace aRandomKiwi.KFM
             base.CompInspectStringExtra();
 
             StringBuilder ret = new StringBuilder();
-            
-            //Si map non définie ou pawn hote n'a pas appris à chasser on quitte
+
+            //If map not defined or pawn host has not learned to hunt, we quit
             if (parent.Map == null || !Utils.hasLearnedKilling((Pawn)parent))
                 return "";
 
             string PMID = Utils.GCKFM.getPackMapID(parent.Map, KFM_PID);
-            //Affichage point attaque bonus le cas echeant
+            //Display bonus attack point if applicable
             if (Settings.allowPackAttackBonus)
             {
                 float bonusAttack=0.0f;
@@ -148,7 +148,7 @@ namespace aRandomKiwi.KFM
                         ret.Append("KFM_PackBonusAttackInspectString".Translate((int)(bonus * 100), Utils.TranslateTicksToTextIRLSeconds(diff)));
                 }
 
-                //Affichage total le cas échéant (points du rois)
+                //Total display if applicable (kings points)
                 if (Utils.GCKFM.packHasKing(KFM_PID))
                 {
                     bonusAttack = Utils.GCKFM.getPackKingBonusAttack(KFM_PID);
@@ -157,7 +157,7 @@ namespace aRandomKiwi.KFM
                     ret.Append("KFM_PackKingBonusAttackInspectString".Translate((int)(bonusAttack * 100)).CapitalizeFirst());
                 }
 
-                //Si membre possede un rois OU c'est un rois OU c'est un guerrier on affiche le total des points
+                //If member has a kings OR it is a kings OR it is a warrior we display the total of the points
                 if (KFM_isKing || KFM_isWarrior || Utils.GCKFM.packHasKing(KFM_PID)) {
                     if (KFM_isKing)
                     {
@@ -172,22 +172,22 @@ namespace aRandomKiwi.KFM
                     ret.Append("KFM_PackBonusAttackTotalInspectString".Translate((int)((bonusAttack + bonus) * 100)).CapitalizeFirst());
                 }
 
-                //Si rois affichage nombre ennemis à tuer avant niveau suivant
+                //If kings display number of enemies to kill before next level
                 if (KFM_isKing)
                 {
                     ret.Append("\n");
                     ret.Append("KFM_PackKingBonusAttackEnemyToKillBeforeNextReward".Translate( Utils.GCKFM.getPackKingNbEnemyToKillBeforeNextReward(KFM_PID) ).CapitalizeFirst());
                 }
 
-                //Si rois ou guerrier affichage compteur nb ennemis tués 
-                if(KFM_isWarrior || KFM_isKing)
+                //If kings or warrior display counter number of enemies killed
+                if (KFM_isWarrior || KFM_isKing)
                 {
                     ret.Append("\n");
                     ret.Append("KFM_PackBonusAttackNbKilledEnemiesInspectString".Translate( KFM_nbKilled ).CapitalizeFirst());
                 }
             }
 
-            //Si icone de meute masqué affichage dans le texte
+            //If pack icon hidden display in text
             if (Settings.hidePackIcon)
             {
                 if (KFM_isKing)
@@ -204,18 +204,18 @@ namespace aRandomKiwi.KFM
                 }
             }
 
-            //SI animal affecté et n'est pas en mode regroupement
+            //IF animal affected and not in grouping mode
             if (KFM_affected && !Utils.GCKFM.isPackInGroupMode(parent.Map,KFM_PID))
             {
                 bool arrived = Utils.GCKFM.isPackArrivedToWaitingPoint(PMID);
-                //SI coordonée d'attente définie ET untingArrivedToWaitingPoint == false ==> en cours de rejointe de la meute
+                //IF waiting coordinate defined AND untingArrivedToWaitingPoint == false ==> in the process of joining the pack
                 if (!arrived && !KFM_arrivedToWaitingPoint)
                 {
                     if (ret.Length > 0)
                         ret.Append("\n");
                     ret.Append("KFM_JoiningPackToKill".Translate());
                 }
-                //SI coordonée d'attente définie ET untingArrivedToWaitingPoint == true ==> arrivé au point de formation ==> attente des autres membres
+                //IF waiting coordinate defined AND untingArrivedToWaitingPoint == true ==> arrived at the training point ==> waiting for other members
                 if (!arrived && KFM_arrivedToWaitingPoint)
                 {
                     if (ret.Length > 0)
@@ -229,12 +229,12 @@ namespace aRandomKiwi.KFM
 
 
         /*
-         * Incrémentation nb ennemis tué par le parent
+         * Increment number of enemies killed by the parent
          */
         public void incNbKilledEnemy()
         {
             KFM_nbKilled++;
-            //Check si l'animal peut devenir un warrior
+            //Check if the animal can become a warrior
             if (!KFM_isWarrior)
             {
                 if(KFM_nbKilled >= Settings.warriorNbToKill)

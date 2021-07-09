@@ -86,7 +86,7 @@ namespace aRandomKiwi.KFM
         protected override void FinalizeDesignationSucceeded()
         {
             base.FinalizeDesignationSucceeded();
-            //On force l'appel du prochain checkEnemy
+            //We force the call of the next checkEnemy
             Utils.GCKFM.forceNextCheckEnemy = true;
 
             /*foreach (PawnKindDef kind in (from p in this.justDesignated

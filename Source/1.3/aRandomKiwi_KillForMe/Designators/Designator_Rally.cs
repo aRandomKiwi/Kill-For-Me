@@ -26,7 +26,7 @@ namespace aRandomKiwi.KFM
             base.SelectedUpdate();
             this.drawCircle(UI.MouseCell());
 
-            //Si définis dessin de la zone actuelle
+            //If defined drawing of the current zone
             IntVec3 cur = Utils.GCKFM.getRallyPoint(Find.CurrentMap.GetUniqueLoadID());
             if(cur.x >= 0 )
                 this.drawCircle(cur);
@@ -80,7 +80,7 @@ namespace aRandomKiwi.KFM
             base.FinalizeDesignationSucceeded();
 
             Utils.GCKFM.setRallyPoint(Find.CurrentMap.GetUniqueLoadID(), pos);
-            //On efface le rect en cache
+            //We delete the cached rect
             Utils.cachedRallyRect = new CellRect(-1,-1,0,0);
         }
 

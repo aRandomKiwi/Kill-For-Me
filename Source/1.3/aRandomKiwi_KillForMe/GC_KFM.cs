@@ -18,7 +18,7 @@ namespace aRandomKiwi.KFM
             this.game = game;
             Utils.GCKFM = this;
 
-            //Constiution liste des pointeurs de meutes
+            //Constitution list of pack pointers
             resetPacks();
         }
 
@@ -44,30 +44,30 @@ namespace aRandomKiwi.KFM
             Scribe_Collections.Look<Pawn>(ref this.packWhite, "packWhite", LookMode.Reference, new object[0]);
             Scribe_Collections.Look<Pawn>(ref this.packYellow, "packYellow", LookMode.Reference, new object[0]);
 
-            //Points de ralliment par map
+            //Rally points per map
             Scribe_Collections.Look(ref this.rallyPoint, "rallyPoint", LookMode.Value);
-            //Etat du mode de regroupement d'une meute
+            //State of the regrouping mode of a pack
             Scribe_Collections.Look(ref this.packGroupMode, "packGroupMode", LookMode.Value);
             Scribe_Collections.Look(ref this.packGroupPoint, "packGroupPoint", LookMode.Value);
             Scribe_Collections.Look(ref this.packGroupModeGT, "packGroupModeGT", LookMode.Value);
 
             Scribe_Collections.Look(ref this.packFilterByEnemy, "packFilterByEnemy", LookMode.Value);
-            
 
-            //Stockage pour chaque rois de meute du nombre d'ennemis tués
+
+            //Storage for each pack kings of the number of enemies killed
             Scribe_Collections.Look(ref this.kingNbKilledEnemy, "kingNbKilledEnemy", LookMode.Value);
             Scribe_Collections.Look(ref this.kingAttackBonus, "kingAttackBonus", LookMode.Value);
             Scribe_Collections.Look(ref this.kingNbEnemyToKill, "kingNbEnemyToKill", LookMode.Value);
 
 
-            //Bonus d'attaque par meute 
+            //Attack bonus per pack
             Scribe_Collections.Look(ref this.packAttackBonus, "packAttackBonus", LookMode.Value);
-            //GT end des bonus d'attaque des meutes
+            //GT end packs attack bonuses
             Scribe_Collections.Look(ref this.packAttackBonusGTE, "packAttackBonusGTE", LookMode.Value);
-            //Affectation par MID(Map)-pack des ennemies
+            //Assignment by MID (Map) -pack of enemies
             Scribe_Collections.Look<string, Thing>(ref this.packAffectedEnemy, "packAffectedEnemy",  LookMode.Value, LookMode.Reference, ref packAffectedEnemyKeys, ref packAffectedEnemyValues);
-            //Forcing d'affectation de pawn avec des meutes
-            if(Scribe.mode == LoadSaveMode.Saving)
+            //Pawn assignment forcing with packs
+            if (Scribe.mode == LoadSaveMode.Saving)
             {
                 if (packForcedAffectionEnemyValues == null)
                 {
@@ -76,17 +76,17 @@ namespace aRandomKiwi.KFM
                 }
             }
             Scribe_Collections.Look<string, Thing>(ref this.packForcedAffectionEnemy, "packForcedAffectionEnemy", LookMode.Value, LookMode.Reference, ref packForcedAffectionEnemyKeys, ref packForcedAffectionEnemyValues);
-            //Stocke les GT de fin de la derniere mission des meutes par map  afin d'éviter de reformer une meute au point de ralliement
+            //Store the GTs at the end of the last pack mission per map in order to avoid reforming a pack at the rally point
             Scribe_Collections.Look(ref this.lastAffectedEndedGT, "lastAffectedEndedGT", LookMode.Value);
-            //Définition si meute arrivé au point d'attente
+            //Definition if a pack has arrived at the waiting point
             Scribe_Collections.Look(ref this.packAffectedArrivedToWaitingPoint, "packAffectedArrivedToWaitingPoint",LookMode.Value);
-            //Nb unitées affectées sur l'ennemie
+            //Number of units affected on the enemy
             if (Scribe.mode == LoadSaveMode.Saving)
             {
                 //Serialisation
                 foreach (KeyValuePair<string, List<int>> entry in packNbAffected)
                 {
-                    //Serialisation des ID de job
+                    //Serialization of job IDs
                     packNbAffectedSerialized.Add( entry.Key+","+string.Join(",", entry.Value.Select(x => x.ToString()).ToArray()) );
                 }
             }
@@ -95,7 +95,7 @@ namespace aRandomKiwi.KFM
             {
                 if (packNbAffectedSerialized != null)
                 {
-                    //DeSerialisation
+                    //DeSerialization
                     string[] res;
                     int[] res2;
                     string key = "";
@@ -114,7 +114,7 @@ namespace aRandomKiwi.KFM
                                 }
                                 else
                                 {
-                                    //Conversion tableau de string en int
+                                    //Convert array from string to int
                                     res2 = Array.ConvertAll(res, s => int.Parse(s));
                                     packNbAffected[key] = new List<int>(res2);
                                 }
@@ -124,10 +124,10 @@ namespace aRandomKiwi.KFM
                 }
             }
 
-            //Constiution liste des pointeurs de meutes
+            //Constitution list of pack pointers
             resetPacks();
 
-            //Suppression des références null ( membres de meute dead  etc...)
+            //Removal of null references (dead pack members etc ...)
             if (Scribe.mode == LoadSaveMode.LoadingVars)
             {
                 foreach(var entry in packs)
@@ -136,7 +136,7 @@ namespace aRandomKiwi.KFM
                 }
             }
 
-            //Initialisation des champs null le cas echeant Et si param ok suppresion des relations de bonding existantes
+            //Initialization of null fields if applicable And if param ok deletion of existing bonding relations
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 initNull();
@@ -146,7 +146,7 @@ namespace aRandomKiwi.KFM
                     entry.Value.RemoveAll(item => item == null);
                 }
 
-                //Check de la validitées des membres de meute
+                //Check the validity of pack members
                 foreach (var entry in packs)
                 {
                     foreach (var member in entry.Value.ToList())
@@ -174,11 +174,11 @@ namespace aRandomKiwi.KFM
                     }
                 }
 
-                //Reset des références aux maps inexistantes (PMID), pas censé servir  (géré dans le patch de MapDeiniter normalement) mais on s'est jamais...
-                //On se base sur rallyPoint
+                //Reset references to non-existent maps (PMID), not supposed to be used (normally managed in the MapDeiniter patch) but we never ...
+                //We are based on rallyPoint
                 foreach (var entry in rallyPoint.ToList())
                 {
-                    //SI Map existe pas on lance la procédure pour la supprimée
+                    //IF Map does not exist, we launch the procedure to delete it
                     if (Find.Maps.Where(x => x.GetUniqueLoadID() == entry.Key).Count() == 0)
                     {
                         purgeMapReference(entry.Key);
@@ -192,33 +192,33 @@ namespace aRandomKiwi.KFM
         {
             int GT = Find.TickManager.TicksGame;
 
-            //Check des elections de rois de meute
+            //Check of the kings of the pack elections
             if (GT % 2500 == 0)
             {
                 checkKings();
             }
             if (GT % 500 == 0)
             {
-                //Check des bonus de meute à reseter
+                //Check pack bonuses to reset
                 checkPackBonusAttackToReset();
-                //Check des meutes en mode group à libérer
+                //Check packs in group mode to be released
                 checkTimeoutPackInGroupMode();
             }
-            //Check s'il y a une menace pour le player sur chacune des maps existantes
+            //Check if there is a threat to the player on each of the existing maps
             if (GT % 180 == 0 || forceNextCheckEnemy)
             {
                 packsCanReCheckNearestTarget = true;
                 forceNextCheckEnemy = false;
-                //Check validitée des ennemis assignés de maniere forcée pour éviter qu'une meute arrete de prendre en charge les nouveaux ennemis en essayant de tuer un ennemis partis 
+                //Check validated enemies forcibly assigned to prevent a pack from stopping taking over new enemies while trying to kill a departed enemies 
                 checkForcedAffectedEnemies();
                 checkAffectedEnemies();
-                //Check arrivé au waitingPoint de tout les membres d'un pack (pour lancer l'assault)
+                //Check arrived at the waitingPoint of all the members of a pack (to launch the assault)
                 checkArrivedToWaitingPointPacks();
 
-                //Check des membres à réintégrer dans des meutes en mode regroupement
+                //Check of members to be reintegrated into packs in regroup mode
                 checkFreeMembersToIntegrateInPackGrouping();
 
-                //Check enemies à travers les maps
+                //Check enemies through the maps
                 checkEnemies();
             }
         }
@@ -237,7 +237,7 @@ namespace aRandomKiwi.KFM
 
 
         /*
-         * Suppression des structures internes au composant des références (PMID a la map spécifiée)
+         * Removal of the component's internal structures from references (PMID to the specified map)
          */
         public void purgeMapReference(string MID)
         {
@@ -279,7 +279,7 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         * Obtention de la liste des membres d'une pack à partir de son packID
+         * Obtaining the list of members of a pack from its packID
          */
         public List<Pawn> getPack(string PID)
         {
@@ -310,18 +310,18 @@ namespace aRandomKiwi.KFM
 
 
         /*
-         * Ajout d'un membre d'une meute 
+         * Adding a pack member
          */
         public void addPackMember(string PID, Pawn member)
         {
-            //Obtention pack en question
+            //Obtaining the pack in question
             List<Pawn> pack = getPack(PID);
 
             if (pack == null)
                 return;
 
-            //Recherche si pawn pas déjà référencé dans la pack
-            foreach(var p in pack.ToList())
+            //Search if pawn not already referenced in the pack
+            foreach (var p in pack.ToList())
             {
                 if (p == member)
                     return;
@@ -330,17 +330,17 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         * Retrait d'un membre d'une meute 
+         * Removal of a member from a pack
          */
         public void removePackMember(string PID, Pawn member)
         {
-            //Obtention pack en question
+            //Obtaining the pack in question
             List<Pawn> pack = getPack(PID);
 
             if (pack == null)
                 return;
 
-            //Recherche si pawn pas déjà référencé dans la pack
+            //RSearch if pawn not already referenced in the pack
             foreach (var p in pack.ToList())
             {
                 if (p == member)
@@ -388,7 +388,7 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         * Définition de la lastAffectedEndedGT pour la PMID définie
+         * Setting the lastAffectedEndedGT for the defined PMID
          */
         public void setLastAffectedEndedGT(string PMID, int val)
         {
@@ -397,9 +397,9 @@ namespace aRandomKiwi.KFM
 
 
         /*
-         * Incrémente le nombre de membre affectés à tuer un ennemie
+         * Increments the number of limbs assigned to kill an enemy
          */
-         public void incAffectedMember(Map map, string PID, int JID)
+        public void incAffectedMember(Map map, string PID, int JID)
         {
             string PMID = getPackMapID(map, PID);
             if (!packNbAffected.ContainsKey(PMID))
@@ -412,26 +412,26 @@ namespace aRandomKiwi.KFM
 
 
         /*
-         * Décrémentation du nombre de membre affecté à tuer un ennemie (downed, killé, réussir a tuer la proie, ....)
+         * Decrease in the number of members affected to kill an enemy (downed, killed, succeed in killing the prey, ....)
          */
         public void decAffectedMember(Map map, string PID, int JID)
         {
             //Log.Message("==>DEC d'une unitée de pack=" + PID+" JID="+JID);
             string PMID = getPackMapID(map, PID);
             if (packNbAffected.ContainsKey(PMID)) {
-                //Check si packNbAffected contient le job ID
-                foreach(var jid in packNbAffected[PMID].ToList())
+                //Check if packNbAffected contains the job ID
+                foreach (var jid in packNbAffected[PMID].ToList())
                 {
                     if (jid == JID)
                     {
                         packNbAffected[PMID].Remove(jid);
-                        //Si pour la meute donnée plus de membres affectés ==> suppression entrée pour éviter les entrées vides pouvant faire bugger le parser dans ExposeData
+                        //If for the given pack more affected members ==> delete entry to avoid empty entries that could bug the parser in ExposeData
                         if (packNbAffected.Count == 0)
                             packNbAffected.Remove(PMID);
                     }
                 }
                 //Log.Message("==>New packNbAffected == "+ packNbAffected[PMID].Count);
-                //Si == 0 alors on reset la cible pour la meute ==> fin de la tache de tuer la cible
+                //f == 0 then we reset the target for the pack ==> end of the task of killing the target
                 resetAffectedEnemy(PMID, map);
             }
         }
@@ -443,9 +443,9 @@ namespace aRandomKiwi.KFM
                 //Log.Message("==> FIN AFFECTATION PACK " + PMID);
                 if(packAffectedEnemy.ContainsKey(PMID))
                     packAffectedEnemy.Remove(PMID);
-                //On définis le lastAffectedEndedGT afin d'éviter les réorganisation de meute au point de ralliment si remobilisés immédiatemment
+                //We define the lastAffectedEndedGT in order to avoid reorganization of the pack at the rallying point if immediately remobilized
                 lastAffectedEndedGT[PMID] = Find.TickManager.TicksGame;
-                //On force invocation checkEnemies si il y a des ennemis dispos
+                //We force invocation checkEnemies if there are enemies available
                 if (activeThreatNearRallyPoint(map))
                     forceNextCheckEnemy = true;
             }
@@ -453,14 +453,14 @@ namespace aRandomKiwi.KFM
 
 
         /*
-         * Ajouter à une meute un bonus d'attaque
+         * Adding an attack bonus to a pack
          */
         public void packIncAttackBonus(string PMID)
         {
             string PID;
             string MID;
 
-            //Obtention PID
+            //Obtain PID
             PID = getPIDFromPMID(PMID);
             MID = getMIDFromPMID(PMID);
 
@@ -470,20 +470,20 @@ namespace aRandomKiwi.KFM
                 packAttackBonusGTE[PMID] = 0;
             }
 
-            //Si plafond atteint on ne fait rien 
+            //If the ceiling is reached we do nothing
             if (packAttackBonus[PMID] < 1.0f)
             {
-                //On repousse la date de fin de bonus 
+                //We postpone the bonus end date
                 packAttackBonusGTE[PMID] = Find.TickManager.TicksGame + Settings.bonusAttackDurationHour * 2500;
                 packAttackBonus[PMID] += Settings.bonusAttackByEnemyKilled;
 
-                //Plafonnement du bonus
+                //Bonus cap
                 if (packAttackBonus[PMID] > 1.0f)
                 {
                     packAttackBonus[PMID] = 1.0f;
                 }
 
-                //Affichage sur tout les membres de la meute de la map de l'avantage
+                //Display on all the members of the pack of the map of the advantage
                 if (packs.ContainsKey(PID))
                 {
                     foreach (var member in packs[PID])
@@ -501,14 +501,14 @@ namespace aRandomKiwi.KFM
                 }
             }
 
-            //Check du bonus royal le cas echeant
-            if( packHasKing(PID) && kingAttackBonus.ContainsKey(PID) && kingAttackBonus[PID] < 1.0f)
+            //Check the royal bonus if applicable
+            if ( packHasKing(PID) && kingAttackBonus.ContainsKey(PID) && kingAttackBonus[PID] < 1.0f)
             {
                 kingNbKilledEnemy[PID]++;
-                //Si meute à atteint le niveau d'obtention de nouveaux points bonus de kill
-                if(kingNbKilledEnemy[PID] >= kingNbEnemyToKill[PID])
+                //If pack has reached the level of obtaining new bonus kill points
+                if (kingNbKilledEnemy[PID] >= kingNbEnemyToKill[PID])
                 {
-                    //On notifis à l'écran 
+                    //We notify on the screen
                     Pawn king = getPackKing(PID);
                     Messages.Message("KFM_MessagePackKingBonusAttackInc".Translate( ("KFM_PackColor"+PID).Translate(), kingNbEnemyToKill[PID]), MessageTypeDefOf.PositiveEvent, false);
 
@@ -521,7 +521,7 @@ namespace aRandomKiwi.KFM
 
 
         /*
-         * Obtention du bonus d'attaque pour une pack en question sur une map
+         * Obtaining the attack bonus for a pack in question on a map
          */
         public float getPackAttackBonus(Map map, string PID, Pawn attacker, bool tempOnly=false)
         {
@@ -539,14 +539,14 @@ namespace aRandomKiwi.KFM
             else
                 ret = packAttackBonus[PMID];
 
-            //Le cas echeant rajout bonus chef de meute
+            //If applicable, additional pack leader bonus
             if (!tempOnly && kingAttackBonus.ContainsKey(PID))
             {
                 ret += kingAttackBonus[PID];
             }
 
-            //SI attacker chef ou warrior rajout aussit
-            if(ck != null)
+            //IF attacker leader or warrior add immediately
+            if (ck != null)
             {
                 if (ck.KFM_isKing)
                 {
@@ -578,14 +578,14 @@ namespace aRandomKiwi.KFM
             if (ck == null)
                 return;
 
-            //Si animal actuellement mobilisé (via sa meute) on le fait arreter son travail
+            //If an animal is currently mobilized (via its pack), it is made to stop its work
             cancelCurrentPackMemberJob(king);
-            //Si animal actuellement en mode regroupement on le fait arreter son travail 
+            //If the animal is currently in grouping mode, it is made to stop its work
             cancelCurrentPackMemberGroupJob(king);
 
-            //On enleve le pawn de son actuel pack
+            //We remove the pawn from its current pack
             removePackMember(ck.KFM_PID, king);
-            //Ajout a la nouvelle
+            //Addition to the news
             addPackMember(DPID, king);
             ck.KFM_PID = DPID;
 
@@ -599,7 +599,7 @@ namespace aRandomKiwi.KFM
                 dck.KFM_PID = SPID;
             }
 
-            // INIT des donnée pour éviter de sans arret checker l'existance de champs dans le code suivant
+            // INIT data to avoid continuously checking the existence of fields in the following code
             if (!kingNbKilledEnemy.ContainsKey(DPID))
                 kingNbKilledEnemy[DPID] = 0;
             if (!kingNbKilledEnemy.ContainsKey(SPID))
@@ -627,8 +627,8 @@ namespace aRandomKiwi.KFM
             kingAttackBonus[DPID] = prevKingAttackBonus;
             kingNbEnemyToKill[DPID] = prevKingNbEnemyToKill;
 
-            //Si pas de swapping suppression des données de la SOURCE PACK car plus de roi
-            if(dck == null)
+            //If no swapping, delete data from the SOURCE PACK because no more king
+            if (dck == null)
             {
                 kingNbKilledEnemy.Remove(SPID);
                 kingAttackBonus.Remove(SPID);
@@ -637,7 +637,7 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         * Traitement a opéré quand un roi d'une meute meurt
+         * Treatment operated when a king of a pack dies
          */
         public void kingPackDeath(Pawn king)
         {
@@ -646,16 +646,16 @@ namespace aRandomKiwi.KFM
             if (kck == null)
                 return;
 
-            //Définition GT avec pénalité pour les nouvelles élections
+            //GT definition with penalty for new elections
             Utils.GCKFM.unsetPackKing(kck.KFM_PID);
             Utils.GCKFM.setPackKingElectionGT(kck.KFM_PID, (Settings.kingElectionHourPenalityCausedByKingDeath * 2500) + Utils.GCKFM.getKingNextElectionGT(Find.TickManager.TicksGame));
             Find.LetterStack.ReceiveLetter("KFM_PackKingDeadLabel".Translate(), "KFM_PackKingDeadDesc".Translate(king.LabelCap, ("KFM_PackColor" + kck.KFM_PID).Translate(), (int)(Utils.GCKFM.getPackKingBonusAttack(kck.KFM_PID) * 100)), LetterDefOf.NegativeEvent, king, null, null);
         }
 
         /*
-         * Reset d'un membre d'une meute au niveau de son comp_killing
+         * Reset of a pack member to his comp_killing level
          */
-         public void resetCompKilling(Comp_Killing ck)
+        public void resetCompKilling(Comp_Killing ck)
         {
             ck.KFM_PID = "";
             ck.KFM_affected = false;
@@ -664,7 +664,7 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         * Obtention du GTE d'expiration du bonus
+         * Obtaining the bonus expiry GTE
          */
         public int getPackAttackBonusGTE(Map map, string PID)
         {
@@ -680,7 +680,7 @@ namespace aRandomKiwi.KFM
 
 
         /*
-         * Check si tout les membres d'une pack arrivé au point de raliement
+         * Check if all the members of a pack have arrived at the point of completion
          */
         public bool isPackArrivedToWaitingPoint(string PMID)
         {
@@ -691,7 +691,7 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         * Annuler une attaque de meute en court sur une map
+         * Cancel a current pack attack on a map
          */
         public void cancelCurrentPack(Map map, string PID)
         {
@@ -707,7 +707,7 @@ namespace aRandomKiwi.KFM
                     &&  member.CurJob != null && member.CurJob.def.defName == Utils.killJob)
                 {
                     //Log.Message(">> FORCING CANCEL JOB KILLING de " + member.LabelCap);
-                    //Annulation du job
+                    //Job cancellation
                     if (member.jobs != null)
                     {
                         try
@@ -726,7 +726,7 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         * Annuler une attaque d'un membre d'une meute en cours
+         * Cancel an attack by a member of a current pack
          */
         public void cancelCurrentPackMemberJob(Pawn member)
         {
@@ -737,7 +737,7 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         * Annuler l'affectation d'un membre à un regroupement
+         * Unassign a member to a collection
          */
         public void cancelCurrentPackMemberGroupJob(Pawn member)
         {
@@ -748,7 +748,7 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-        * Ordonner aux animaux en cours de ralliement de directement attaquer (envoit signal comme quoi tout est ok)
+        * Order the rallying animals to attack directly (sends a signal that everything is ok)
         */
         public void launchCurrentFormingPack(Map map, string PID)
         {
@@ -766,7 +766,7 @@ namespace aRandomKiwi.KFM
 
 
         /*
-         * Forcer une attaque manuel sur un ennemie par le joueur pour la meute de la maps selectionnée
+         * Force a manual attack on an enemy by the player for the selected map pack
          */
         public void forcePackAttack(Map map, string PID, Pawn target, bool noWait=false, bool interactive=false)
         {
@@ -775,10 +775,10 @@ namespace aRandomKiwi.KFM
             float packScore;
             packScore = getPackScore(map, PID, ref members, target);
 
-            //S'il n'y à pas de membres on quitte forcing impossible
+            //If there are no members we quit forcing impossible
             if (members.Count() <= 0)
             {
-                //Affichage message erreur si interactif appel
+                //Display error message if interactive call
                 if (interactive)
                 {
 
@@ -786,12 +786,12 @@ namespace aRandomKiwi.KFM
                 return;
             }
 
-            //On envoit les animaux
+            //We send the animals
             setPackTarget(ref members, map, PID, target, false, noWait);
         }
 
         /*
-         * Obtention de l'ennemis targeted par un PMID définis
+         * Obtain enemies targeted by a defined PMID
          */
         public Thing getAffectedEnemy(Map map, string PID)
         {
@@ -804,21 +804,21 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         * Check si la thing passé en parametre est référencé dans les targets des meutes, si oui et que meute en mode supervisée, alors on cancel le job 
+         * Check if the thing passed in parameter is referenced in the targets of the packs, if so and that the pack in supervised mode, then we cancel the job
          */
         public void unselectThingToKill(Thing thing)
         {
             string PID;
-            //Recherche si la target est référencée dans la liste des cibles actuel
+            //Finds whether the target is referenced in the current target list
             foreach (var entry in packAffectedEnemy)
             {
-                //Il sagit d'une cible
-                if(entry.Value == thing)
+                //This is a target
+                if (entry.Value == thing)
                 {
-                    //Obtention PID à partir PMID (clée )
+                    //Obtaining PID from PMID (key)
                     PID = getPIDFromPMID(entry.Key);
-                    //Si meute en mode supervisé
-                    if(Settings.isSupModeEnabled(PID))
+                    //If pack in supervised mode
+                    if (Settings.isSupModeEnabled(PID))
                         cancelCurrentPack(thing.Map, PID);
                     break;
                 }
@@ -840,7 +840,7 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         * Retourne le point d'attente en cours pour la meute donné
+         * Returns the current hold point for the given pack
          */
         public IntVec3 getGroupPoint(string PMID)
         {
@@ -852,7 +852,7 @@ namespace aRandomKiwi.KFM
 
 
         /*
-         * Retourne le point d'attente en cours pour la meute donné
+         * Returns the current hold point for the given pack
          */
         public IntVec3 getGroupPoint(Map map, string PID)
         {
@@ -861,13 +861,13 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         * Activation du mode de regoupement pour la meute désignée 
+         * Enabling grouping mode for the designated pack
          */
         public void enablePackGroupMode(string PID, Map map, IntVec3 pos)
         {
             string PMID = getPackMapID(map, PID);
             //Log.Message("Regroupement de la meute " + PMID);
-            //Obtention liste des membres valides
+            //Obtaining a list of valid members
             if (!packs.ContainsKey(PID) || pos.x < 0)
                 return;
 
@@ -883,41 +883,41 @@ namespace aRandomKiwi.KFM
                 }
             }
 
-            //Si pas de membres affectable on quitte
+            //If no affectable members we leave
             if (selected.Count == 0)
                 return;
 
             packGroupPoint[PMID] = pos;
 
-            //Notif mode groupe GT de départ du mode (Pour auto libérer les animaux en cas d'oublis du joeur) OU si déjà activé actualisation du GT
+            //GT group mode notification of the start of the mode (To automatically release the animals in the event of the player forgetting) OR if already activated, updating the GT
             packGroupModeGT[PMID] = Find.TickManager.TicksGame;
 
 
-            //Mode déjà activé on quitte
+            //Mode already activated we quit
             if (packGroupMode.ContainsKey(PMID) && packGroupMode[PMID])
             {
                 return;
             }
 
-            //Notif mode groupe activé pour la meute
+            //Group mode notification activated for the pack
             packGroupMode[PMID] = true;
 
-            //Attribution des jobs de GroupToPoint
+            //Assigning GroupToPoint jobs
             setPackGroupMode(ref selected, map, PID);
         }
 
 
         /*
-         * Désactivation du mode de regroupement pour la meute désignée
+         * Disable grouping mode for the designated pack
          */
         public void disableGroupMode(string PID, Map map)
         {
             string PMID = getPackMapID(map, PID);
-            //Mode déjà désactivé on return
+            //Mode already deactivated on return
             if (packGroupMode.ContainsKey(PID) && !packGroupMode[PMID])
                 return;
 
-            //Notif mode groupe désactivé pour la meute
+            //Group mode deactivated notification for the pack
 
             packGroupMode[PMID] = false;
 
@@ -929,7 +929,7 @@ namespace aRandomKiwi.KFM
                     && member.CurJob != null && member.CurJob.def.defName == "KFM_GroupToPoint")
                 {
                     //Log.Message(">> FORCING CANCEL JOB GROUP2POINT de " + member.LabelCap);
-                    //Annulation du job
+                    //Job cancellation
                     if (member.jobs != null)
                         member.jobs.EndCurrentJob(JobCondition.InterruptForced, false);
                 }
@@ -940,9 +940,9 @@ namespace aRandomKiwi.KFM
 
 
         /*
-         * Check si tout les membres d'une meute peuvent accéder à une coordonnée 
+         * Check if all the members of a pack can access a coordinate
          */
-         public bool canPackMembersReach(Map map, string PID, IntVec3 pos)
+        public bool canPackMembersReach(Map map, string PID, IntVec3 pos)
         {
             if (!packs.ContainsKey(PID))
                 return false;
@@ -965,9 +965,9 @@ namespace aRandomKiwi.KFM
 
 
         /*
-         * Check si au moin 50% des membres (prévisionnel) d'une meute sur une map donnée sont proches les uns des autres
+         * Check if at least 50% of the members (forecast) of a pack on a given map are close to each other
          */
-         public bool isHalfOfPackNearEachOther(Map map, string PID)
+        public bool isHalfOfPackNearEachOther(Map map, string PID)
          {
             bool ret = false;
             if (!packs.ContainsKey(PID))
@@ -977,10 +977,10 @@ namespace aRandomKiwi.KFM
             int half = 0;
             int nb = 0;
             int nbm = 0;
-            //Déduction de ce que 50% veux dire pour la meute en question
+            //Deduction of what 50% means for the pack in question
             half = (int)(getPackNbAffectableMembers(map, PID) * Settings.percentageMemberNearToAvoidRallyPoint);
 
-            //Déduction nb de membres de la meute dont "half" nombres d'autres membres sont proches
+            //Deduction number of pack members with "half" numbers of other members close
             foreach (var member in members)
             {
                 if (member != null && member.Map == map && isValidPackMember(member, member.TryGetComp<Comp_Killing>()))
@@ -997,14 +997,14 @@ namespace aRandomKiwi.KFM
                             }
                         }
                     }
-                    //Si le membre est proche de 50% ou plus de sa meute alors on incremente le compteur general
+                    //If the member is close to 50% or more of his pack then we increment the general counter
                     if (nbm >= half)
                         nb++;
                 }
             }
 
             //Log.Message("Near members : "+nb+", half requirement : "+half);
-            //Si le nombre de membre proche les uns des autres est supérieur ou égal a 50% on en conclus que 50% des membres de la meutes sont déjà packés
+            //If the number of members close to each other is greater than or equal to 50%, we conclude that 50% of the members of the pack are already packed
             if (nb >= half)
                 ret = true;
 
@@ -1013,14 +1013,14 @@ namespace aRandomKiwi.KFM
 
 
         /*
-         * Calcul nb de membres affectés dans une meute
+         * Calculation of the number of members affected in a pack
          */
         public int getPackNbAffectedMembers(Map map, string PID)
         {
             List<Pawn> members = packs[PID];
             int nb = 0;
 
-            //Déduction nb de membres de la meute dont "half" nombres d'autres membres sont proches
+            //Deduction number of pack members with "half" numbers of other members close
             foreach (var member in members)
             {
                 if (member != null && member.Map == map && member.TryGetComp<Comp_Killing>() != null  && member.TryGetComp<Comp_Killing>().KFM_affected)
@@ -1031,7 +1031,7 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         * Calcul nb de membres affectable dans une meute
+         * Calculation of assignable members in a pack
          */
         public int getPackNbAffectableMembers(Map map, string PID)
         {
@@ -1041,7 +1041,7 @@ namespace aRandomKiwi.KFM
             List<Pawn> members = packs[PID];
             int nb = 0;
 
-            //Déduction nb de membres de la meute dont "half" nombres d'autres membres sont proches
+            //Deduction number of pack members with "half" numbers of other members close
             foreach (var member in members)
             {
                 if (member != null && member.Map == map && isValidPackMember(member, member.TryGetComp<Comp_Killing>()))
@@ -1052,7 +1052,7 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         * Démarrage des jobs de GroupToPoint
+         * Starting GroupToPoint jobs
          */
         private void setPackGroupMode(ref List<Pawn> members, Map map, string PID)
         {
@@ -1079,7 +1079,7 @@ namespace aRandomKiwi.KFM
             }
 
 
-            //Démarrage des jobs le cas échéant
+            //Start of jobs if necessary
             for (int i = 0; i != members.Count(); i++)
             {
                 if (jobs[i] != null)
@@ -1089,8 +1089,8 @@ namespace aRandomKiwi.KFM
                 }
             }
 
-            //S'il n'y à aucuns membres on annule le mode group pour la meute
-            if(nbReal == 0)
+            //If there are no members, we cancel the group mode for the pack
+            if (nbReal == 0)
             {
                 packGroupModeGT[PMID] = 0;
                 packGroupMode[PMID] = false;
@@ -1099,7 +1099,7 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         * Attribution d'une tache d'aller attendre à un point donné
+         * Assignment of a task to go and wait at a given point
          */
         private bool setPackMemberGroupMode(Pawn member, ref List<Verse.AI.Job> jobs)
         {
@@ -1121,7 +1121,7 @@ namespace aRandomKiwi.KFM
 
 
         /*
-         * Affichage menu permettant d'envoyer une meute tuer l'ennemie
+         * Menu display allowing to send a pack to kill the enemy
          */
         public void showFloatMenuForceKill(Thing target)
         {
@@ -1135,18 +1135,18 @@ namespace aRandomKiwi.KFM
             bool affected = false;
             bool regroup = false;
 
-            //Liste des meutes affectées à la cible
+            //List of packs assigned to the target
             List<string> affectedPacks = getPawnPackTargetedPID(target);
 
-            //Listing des colons sauf ceux présents dans la liste d'exception (exp)
+            //Listing of the colonists except those present in the exception list (exp)
             foreach (KeyValuePair<string, List<Pawn>> pack in packs)
             {
                 affected = false;
                 regroup = false;
                 PMID = getPackMapID(target.Map, pack.Key);
                 nbDispo = 0;
-                //Calcul nb membres disponibles 
-                foreach(var member in packs[pack.Key])
+                //Calculation of available members
+                foreach (var member in packs[pack.Key])
                 {
                     if (member != null && member.Spawned && !member.Dead && isValidPackMember(member, member.TryGetComp<Comp_Killing>())
                         && member.Map == target.Map)
@@ -1154,17 +1154,17 @@ namespace aRandomKiwi.KFM
                         nbDispo++;
                     }
                 }
-                //Check si meite courante en mode regroupement
+                //Check if current pack in grouping mode
                 if (isPackInGroupMode(target.Map, pack.Key))
                     regroup = true;
                 else
                 {
-                    //Check si meute courante affectée
+                    //Check if current pack affected
                     if (affectedPacks != null)
                     {
                         foreach (var cpack in affectedPacks)
                         {
-                            //Meute courante affectée
+                            //Common pack affected
                             if (cpack == pack.Key)
                             {
                                 affected = true;
@@ -1174,7 +1174,7 @@ namespace aRandomKiwi.KFM
                     }
                 }
 
-                //Affichage possibilité controle meute que si nbDipo > 0 (membres) et si mode pas supervisé OU mode supervisé et target posséde le selecteur de kill
+                //Display possibility of pack control only if nbDipo> 0 (members) and if unsupervised mode OR supervised mode and target has the kill selector
                 if (nbDispo > 0 
                     && (!Settings.isSupModeEnabled(pack.Key) ||
                     (Settings.isSupModeEnabled(pack.Key)
@@ -1188,15 +1188,14 @@ namespace aRandomKiwi.KFM
                         {
                             string optText2 = ("KFM_PackColor" + pack.Key).Translate();
 
-                            //On check si au moins 50% des membres de la meute sont proches les uns des autres
+                            //We check if at least 50% of the members of the pack are close to each other
                             if (isHalfOfPackNearEachOther(target.Map, pack.Key))
                             {
-                                //Le cas échéant on force le non retour au point de ralliement des membres pour gagner du temps
+                                //If necessary, we force non-return to the rallying point of the members to save time
                                 lastAffectedEndedGT[PMID] = Find.TickManager.TicksGame;
                             }
 
-                            //Forcing kill de la target par la meute selectionnée
-                            //Log.Message("Désattribuer Meute " + pack.Key);
+                            //Forcing kill of the target by the selected pack
                             cancelCurrentPack(target.Map, pack.Key);
 
                             Messages.Message("KFM_ForceDeallocateOK".Translate(optText2.CapitalizeFirst(), target.LabelCap), MessageTypeDefOf.NeutralEvent, false);
@@ -1213,10 +1212,10 @@ namespace aRandomKiwi.KFM
 
                         opts.Add(new FloatMenuOption(btnTitle.Translate(optText, nbDispo), delegate
                         {
-                            //On check si au moins 50% des membres de la meute sont proches les uns des autres
+                            //We check if at least 50% of the members of the pack are close to each other
                             if (isHalfOfPackNearEachOther(target.Map, pack.Key))
                             {
-                                //Le cas échéant on force le non retour au point de ralliement des membres pour gagner du temps
+                                //If necessary, we force non-return to the rallying point of the members to save time
                                 lastAffectedEndedGT[PMID] = Find.TickManager.TicksGame;
                             }
 
@@ -1226,7 +1225,7 @@ namespace aRandomKiwi.KFM
                     }
                 }
             }
-            //SI pas choix affichage de la raison 
+            //IF not choice display of the reason
             if (opts.Count == 0)
             {
                 optText = "KFM_FloatMenuForceKillNoAvailablePack".Translate();
@@ -1239,18 +1238,18 @@ namespace aRandomKiwi.KFM
 
 
         /*
-         * Tentative d'allocation manuelle d'une meute donnée (PID) à une cible (target)
+         * Attempt to manually allocate a given pack (PID) to a target
          */
         public void manualAllocatePack(string PID, Thing target, bool verbose=true, int sourceMode = 1)
         {
             string PMID = getPackMapID(target.Map, PID);
 
-            //Ordre non prioritaire
+            //Non-priority order
             if (packOrderSource.ContainsKey(PMID) && (packOrderSource[PMID] > sourceMode))
                 return;
 
             string optText2 = ("KFM_PackColor" + PID).Translate();
-            //Check si target killable par la meute (mode supervisé)
+            //Check if target killable by the pack (supervised mode)
             if (Settings.isSupModeEnabled(PID)
                             && (target.Map.designationManager.DesignationOn(target) == null || target.Map.designationManager.DesignationOn(target).def.defName != Utils.killDesignation))
             {
@@ -1259,10 +1258,10 @@ namespace aRandomKiwi.KFM
                 return;
             }
 
-            //Forcing kill de la target par la meute selectionnée
+            //Forcing kill of the target by the selected pack
             //Log.Message("Attribuer Meute " + PID);
 
-            //Si parametre active check force de la meute et de la cible
+            //If parameter active check strength of the pack and of the target
             if (!Settings.isAllowAttackStrongerTargetEnabled(PID))
             {
                 List<Pawn> list = new List<Pawn>();
@@ -1285,37 +1284,37 @@ namespace aRandomKiwi.KFM
 
             PMID = getPackMapID(target.Map, PID);
 
-            //Si meute en mode regroupement on stop le regouppement
+            //If the pack is in regrouping mode, we stop the regouppement
             if (isPackInGroupMode(target.Map, PID))
             {
-                //On force l'affectation de la meute à la target à la prochaine itération de checkEnemy qui va arriver juste aprés
+                //We force the assignment of the pack to the target at the next iteration of checkEnemy which will happen just after
                 forceNextCheckEnemy = true;
                 packForcedAffectionEnemy[PMID] = target;
                 //Log.Message("Annulation mode regoupement meute puis définition cible de kill  (meute=" + PMID + ", target=" + target.GetUniqueLoadID() + ")");
-                //Stop mode regroupement
+                //Stop grouping mode
                 disableGroupMode(PID, target.Map);
 
                 if (verbose)
                     Messages.Message("KFM_ForceAllocateAfterDeallocateRegroupOK".Translate(optText2.CapitalizeFirst(), target.LabelCap), MessageTypeDefOf.NeutralEvent, false);
             }
-            //Si meute déjà affecté on stop son affectation ET si mode toogle activé
+            //If the pack is already assigned, we stop its assignment AND if toogle mode is activated
             else if (packAffectedEnemy.ContainsKey(PMID) && packAffectedEnemy[PMID] != null)
             {
-                //Si meute cible déjà la cible demandé
-                if(packAffectedEnemy[PMID] == target)
+                //If pack already targets the requested target
+                if (packAffectedEnemy[PMID] == target)
                 {
                     if (verbose)
                         Messages.Message("KFM_ForceAllocateAfterDeallocateFAILED".Translate(optText2.CapitalizeFirst(), target.LabelCap), MessageTypeDefOf.NeutralEvent, false);
                     return;
                 }
 
-                //Obtention cible actuelle
+                //Getting current target
                 Thing ctarget = packAffectedEnemy[PMID];
-                //On force l'affectation de la meute à la target à la prochaine itération de checkEnemy
+                //We force the assignment of the pack to the target at the next iteration of checkEnemy
                 forceNextCheckEnemy = true;
                 packForcedAffectionEnemy[PMID] = target;
                 //Log.Message("packForcedAffectionEnemy forced " + PMID + " = " + target.GetUniqueLoadID());
-                //Stop affectation actuelle
+                //Stop current assignment
                 cancelCurrentPack(target.Map, PID);
 
                 if (verbose)
@@ -1323,7 +1322,7 @@ namespace aRandomKiwi.KFM
             }
             else
             {
-                //On force l'affectation de la meute à la target à la prochaine itération de checkEnemy
+                //We force the assignment of the pack to the target at the next iteration of checkEnemy
                 packForcedAffectionEnemy[PMID] = target;
                 if (verbose)
                     Messages.Message("KFM_ForceAllocateOK".Translate(optText2.CapitalizeFirst(), target.LabelCap), MessageTypeDefOf.NeutralEvent, false);
@@ -1334,7 +1333,7 @@ namespace aRandomKiwi.KFM
 
 
         /*
-         * Définition du GT de prochaine execution des elections du chef de meute
+         * Definition of the next execution WG of the leader of the pack elections
          */
         public void setPackKingElectionGT(string PID, int gt)
         {
@@ -1351,9 +1350,9 @@ namespace aRandomKiwi.KFM
 
 
         /*
-         * Obtention de la cible forcée d'une meute donnée sur une map donnée
+         * Obtaining the forced target of a given pack on a given map
          */
-         public Thing getPackForcedAffectionEnemy(string PMID)
+        public Thing getPackForcedAffectionEnemy(string PMID)
         {
             if(!packForcedAffectionEnemy.ContainsKey(PMID))
                 return null;
@@ -1362,7 +1361,7 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         * Check s'il y a une menace proche de la zone de ralliement
+         * Check if there is a threat near the rally area
          */
         private bool activeThreatNearRallyPoint(Map map)
         {
@@ -1371,7 +1370,7 @@ namespace aRandomKiwi.KFM
             HashSet<IAttackTarget> hashSet = map.attackTargetsCache.TargetsHostileToFaction(Faction.OfPlayer);
             foreach (IAttackTarget target in hashSet)
             {
-                //Si position menace comprise dans la zone du point de raliement alors menace présente !!
+                //If the threat position is within the zone of the fulfillment point, then there is a threat !!
                 if (GenHostility.IsActiveThreatTo(target, Faction.OfPlayer) && area.Contains(target.Thing.Position))
                 {
                     activeThreat = true;
@@ -1383,9 +1382,9 @@ namespace aRandomKiwi.KFM
 
 
         /*
-         * Check de la validitée des ennemies actuellement affectés aux packs
+         * Check the validity of enemies currently assigned to packs
          */
-         private void checkCurrentEnnemiesValidity()
+        private void checkCurrentEnnemiesValidity()
         {
             foreach(var entry in packAffectedEnemy)
             {
@@ -1394,23 +1393,23 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         * Check s'il y a une menace proche de la zone de ralliement si oui annule les meutes en cours de ralliement ==> donne ordre attaquer directement
+         * Check if there is a threat near the rallying area if yes cancels the packs being rallied ==> gives order to attack directly
          */
         private void checkThreatNearRallyPoint(Map map)
         {
             if (activeThreatNearRallyPoint(map) )
             {
-                //Log.Message("!!!!!! Menace détectée prêt du point de ralliement forcing attaque des meutes en cours de ralliement !!!!!!!");
+                //Log.Message("!!!!!! Threat detected near the rallying point forcing attack of the rallying packs !!!!!!!");
                 string PMID;
-                //Annulation des meutes en cours de formation (lord of the poules)
+                //Cancellation of packs in training (lord of the hens)
                 foreach (KeyValuePair<string, List<Pawn>> pack in packs)
                 {
                     PMID = getPackMapID(map, pack.Key);
-                    //si meute en cours de formation et pas arrivé au point de formation
-                    if( packAffectedEnemy.ContainsKey(PMID) && packAffectedEnemy[PMID] != null
+                    //if pack being formed and not arrived at the point of formation
+                    if ( packAffectedEnemy.ContainsKey(PMID) && packAffectedEnemy[PMID] != null
                         && !packAffectedArrivedToWaitingPoint[PMID])
                     {
-                        //Assult direct
+                        //Direct assault
                         launchCurrentFormingPack(map, pack.Key);
                         packAffectedArrivedToWaitingPoint[PMID] = true;
                     }
@@ -1421,7 +1420,7 @@ namespace aRandomKiwi.KFM
 
 
         /*
-         * Checker si tout les membres d'un PMID sont arrivé au point d'attente pour lancer l'assault
+         * Check if all the members of a PMID have arrived at the waiting point to launch the assault
          */
         private void checkArrivedToWaitingPointPacks()
         {
@@ -1434,7 +1433,7 @@ namespace aRandomKiwi.KFM
             {
                 curJobs.Clear();
 
-                //SI arrivé au point d'attente ou pas de pawn ( définition à null)
+                //IF arrived at the waiting point or no pawn (definition to null)
                 if ((packAffectedArrivedToWaitingPoint.ContainsKey(pack.Key) && packAffectedArrivedToWaitingPoint[pack.Key]) || pack.Value == null)
                     continue;
 
@@ -1443,10 +1442,10 @@ namespace aRandomKiwi.KFM
                 nbArrived = 0;
                 if (packs.ContainsKey(PID))
                 {
-                    //Calcul nb membre de la meute pour la map donnée ont le flag arrivedToWaitingPoint si cette valeur est égal ou sup au nb affected Member ==> on lance l'assault
+                    //Calculation of the number of members of the pack for the given map have the flag arrivedToWaitingPoint if this value is equal to or greater than the number of affected Member ==> we launch the assault
                     foreach (var member in packs[PID].ToList())
                     {
-                        //On ne s'occupe que de la partie de la meute sur la map spécifiée
+                        //We only deal with the part of the pack on the specified map
                         if (member != null && member.Spawned && !member.Dead && member.Map.GetUniqueLoadID() == MID
                             && member.TryGetComp<Comp_Killing>() != null
                             && member.TryGetComp<Comp_Killing>().KFM_arrivedToWaitingPoint)
@@ -1457,7 +1456,7 @@ namespace aRandomKiwi.KFM
                             curJobs.Add(member.CurJob.loadID);
                     }
 
-                    //Suppression de la liste des packNbAffected des entrée de jobID n'existant plus
+                    //Deletion of the list of packNbAffected of jobID entries that no longer exist
                     bool ok = false;
                     List<int> toDel = null;
                     if (packNbAffected.ContainsKey(pack.Key))
@@ -1473,7 +1472,7 @@ namespace aRandomKiwi.KFM
                                     break;
                                 }
                             }
-                            //Si pas present on supprime de packNbAffected le loadJobIDqui pour une raison ou une autre est obsolete
+                            //If not present we remove from packNbAffected the loadJobID which for one reason or another is obsolete
                             if (!ok)
                             {
                                 if (toDel == null)
@@ -1502,8 +1501,8 @@ namespace aRandomKiwi.KFM
                 }
 
                 int nbAffected = 0;
-                if (packNbAffected.ContainsKey(pack.Key)) { 
-                    //Plafonnement de nbAffected basé sur le nb de membre valide dans la pack
+                if (packNbAffected.ContainsKey(pack.Key)) {
+                    //Cap of nbAffected based on the number of members valid in the package
                     nbAffected = packNbAffected[pack.Key].Count();
                 }
                 /*Map map = Utils.getMapFromMUID(MID);
@@ -1518,18 +1517,18 @@ namespace aRandomKiwi.KFM
 
 
 
-                //Tout les animaux sont arrivés on envoit le signal aux animaux qui attendent (  waitingPoint.x à -1 ) 
+                //All the animals have arrived, we send the signal to the waiting animals (waitingPoint.x at -1)
                 if (packAffectedArrivedToWaitingPoint.ContainsKey(pack.Key) && nbArrived >= nbAffected)
                 {
                     //Log.Message(nbArrived + " " + nbAffected);
-                    //On définis la meute comme étant arrivé au point d'attente OK ==> plus de traitemtn par la suite
+                    //We define the pack as having arrived at the waiting point OK ==> no more processing thereafter
                     packAffectedArrivedToWaitingPoint[pack.Key] = true;
                 }
             }
         }
 
         /*
-         * Check des membres libres à réintégrer dans des meutes en mode regroupement
+         * Check of free members to be reintegrated into packs in regroup mode
          */
         private void checkFreeMembersToIntegrateInPackGrouping()
         {
@@ -1546,7 +1545,7 @@ namespace aRandomKiwi.KFM
 
                             if (member != null && member.Spawned && member.Map != null && member.Faction == Faction.OfPlayer && ck != null && !ck.KFM_affected)
                             {
-                                //Intégration aux regroupements des éléments libres 
+                                //Integration into groupings of free elements
                                 if (isPackInGroupMode(map, cpack.Key))
                                 {
                                     integrateFreeMemberToGroup(member);
@@ -1561,9 +1560,9 @@ namespace aRandomKiwi.KFM
 
 
         /*
-         * Check des bonus de meute à reseter
+         * Check pack bonuses to reset
          */
-         private void checkPackBonusAttackToReset()
+        private void checkPackBonusAttackToReset()
         {
             int cgt = Find.TickManager.TicksGame;
             string PID;
@@ -1578,7 +1577,7 @@ namespace aRandomKiwi.KFM
 
                     PID = getPIDFromPMID(entry.Key);
                     MID = getMIDFromPMID(entry.Key);
-                    //Affichage sur la meute de la fin du bonus d'attaque
+                    //Display on the pack of the end of the attack bonus
                     foreach (var member in packs[PID].ToList())
                     {
                         if (member != null && member.Map != null && member.TryGetComp<Comp_Killing>() != null && member.TryGetComp<Comp_Killing>().KFM_PID == PID && member.Map.GetUniqueLoadID() == MID)
@@ -1592,7 +1591,7 @@ namespace aRandomKiwi.KFM
 
 
         /*
-         * Check des meutes en mode regroupement ou le timeout d'affectation est arrivé (libération des animaux pour éviter qu'ils meurts de faim)
+         * Check packs in regrouping mode where the assignment timeout has arrived (release of animals to prevent them from starving)
          */
         private void checkTimeoutPackInGroupMode()
         {
@@ -1619,7 +1618,7 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         * Dispatcher d'attaque d'ennemies
+         * Dispatcher from enemy attack
          */
         private void checkEnemies()
         {
@@ -1627,20 +1626,20 @@ namespace aRandomKiwi.KFM
 
             foreach (var map in Find.Maps)
             {
-                //Si pas de rallyPoint on ignore la map
+                //If no rallyPoint we ignore the map
                 if (getRallyPoint(map.GetUniqueLoadID()).x == -1)
                     continue;
 
-                //Menace sur la map check activation de packs d'animaux
+                //Threat on the map check activation of animal packs
                 if (activeThreatOrDesignatedEnemies(map))
                 {
-                    //Log.Message("Menace ou ennemies désignés sur la map détecté !!!");
+                    //Log.Message("Threat or enemies designated on the map detected !!!");
 
-                    //Check menance pret du point de ralliement, le cas écheant annulation des meutes en cours de création et recréation pour attaquer cible directement
+                    //Check threat near the rally point, if necessary cancellation of packs being created and recreated to attack target directly
                     checkThreatNearRallyPoint(map);
 
 
-                    //Integration des membres libres
+                    //Integration of free members
                     foreach (var cpack in packs)
                     {
                         foreach (var member in cpack.Value.ToList())
@@ -1649,7 +1648,7 @@ namespace aRandomKiwi.KFM
 
                             if (member != null && member.Faction == Faction.OfPlayer && ck != null && !ck.KFM_affected)
                             {
-                                //Intégration aux meutes mobilisées des éléments libres ( animaux battant en retraite, animaux soignés et opérationnels)
+                                //Integration into mobilized packs of free elements (retreating animals, treated and operational animals)
                                 if (member.Spawned && member.Map != null)
                                     integrateFreeMember(member, ck);
                             }
@@ -1658,27 +1657,27 @@ namespace aRandomKiwi.KFM
 
                     List<Thing> targets = new List<Thing>();
 
-                    //Check les ennemis naturellements hostiles 
+                    //Check naturally hostile enemies
                     foreach (IAttackTarget target in map.attackTargetsCache.TargetsHostileToColony)
                     {
                         targets.Add(target.Thing);
-                        //Log.Message("==>Menace identifiée : " + target.Thing.LabelCap);
+                        //Log.Message("==>Threat identified : " + target.Thing.LabelCap);
                         //processEnemy(map, target.Thing);
                     }
 
-                    //Check des ennemis downed
-                    foreach(var target in map.mapPawns.SpawnedDownedPawns)
+                    //Check downed enemies
+                    foreach (var target in map.mapPawns.SpawnedDownedPawns)
                     {
                         if (target.HostileTo(Faction.OfPlayer))
                             targets.Add(target);
                     }
 
-                    //Check les ennemis désignés
+                    //Check designated enemies
                     foreach (var des in map.designationManager.SpawnedDesignationsOfDef(Utils.killDesignationDef))
                     {
                         if(!targets.Contains(des.target.Thing))
                             targets.Add(des.target.Thing);
-                        //Log.Message("==>Menace désignée identifiée : " + des.target.Thing.LabelCap);
+                        //Log.Message("==>Designated threat identified : " + des.target.Thing.LabelCap);
                         //processEnemy(map, des.target.Thing);
                     }
 
@@ -1690,7 +1689,7 @@ namespace aRandomKiwi.KFM
                         //processEnemy(map, enemy.Value);
                     }
 
-                    //Calcul des positions moyenne des packs en vigueur
+                    //Calculation of the average positions of the packs in force
                     Dictionary<string, IntVec3> packsCoordinates = new Dictionary<string, IntVec3>();
                     foreach (var cpack in packs)
                     {
@@ -1698,7 +1697,7 @@ namespace aRandomKiwi.KFM
                         if (members.Count == 0)
                             continue;
 
-                        //On calcul la moyenne de coordonée du groupe
+                        //We calculate the coordinate mean of the group
                         List<IntVec3> coordinates = new List<IntVec3>();
                         foreach (var m in members)
                         {
@@ -1710,14 +1709,14 @@ namespace aRandomKiwi.KFM
                         packsCoordinates[cpack.Key] = Utils.GetMeanVector(coordinates);
                     }
 
-                    //Carte des affectation durant la passe
-                    foreach(var cp in packs)
+                    //Map of assignments during the pass
+                    foreach (var cp in packs)
                     {
                         checkEnemiesCurrentAffected[cp.Key] = null;
                     }
-                    
 
-                    //Analyse par meute de l'enemmis le plus proche
+
+                    //Closest Enemy Pack Analysis
                     foreach (var cpack in packs)
                     {
                         List<Pawn> members = cpack.Value;
@@ -1733,13 +1732,13 @@ namespace aRandomKiwi.KFM
                                 continue;
                         }
 
-                        //Si il n'y a pas de membres OU pack sur map déjà affecté ET ( pas en mode rde recheck menance la plus proche OU si cible définis par Operateur humain) on passe a la meute suivante
+                        //If there are no OR pack members on a map already assigned AND (not in closest rde recheck menance mode OR if target defined by Human Operator) we move on to the next pack
                         if (members.Count == 0 
                             || isPackInGroupMode(map, cpack.Key) 
                             || (packAffectedEnemy.ContainsKey(PMID) && (!packsCanReCheckNearestTarget || (packOrderSource.ContainsKey(PMID) && packOrderSource[PMID] == 1))))
                             continue;
 
-                        //On calcul la moyenne de coordonée du groupe
+                        //We calculate the coordinate mean of the group
                         /*List<IntVec3> coordinates = new List<IntVec3>();
                         foreach(var m in members)
                         {
@@ -1757,7 +1756,7 @@ namespace aRandomKiwi.KFM
                             if (checkEnemiesCurrentAffected.ContainsValue(t))
                                 continue;
 
-                            //Check si ennemy affecté a une pack, le cas echeant check si affectation en prioritaure (1) si oui annulation ordre
+                            //Check if enemy assigned to a pack, if applicable check if priority assignment (1) if yes order cancellation
                             if (packAffectedEnemy.ContainsValue(t))
                             {
                                 var key = packAffectedEnemy.FirstOrDefault(x => x.Value == t).Key;
@@ -1784,7 +1783,7 @@ namespace aRandomKiwi.KFM
                             string nearestPack = null;
                             float cdist = t.Position.DistanceTo(packsCoordinates[cpack.Key]);
 
-                            //Déduction meute la plus proche de l'ennemis
+                            //Deduction of the pack closest to the enemy
                             float dist2 = -1;
                             float cdist2;
                             foreach(var el in packsCoordinates)
@@ -1798,9 +1797,9 @@ namespace aRandomKiwi.KFM
                                 if (checkEnemiesCurrentAffected.ContainsKey(el.Key) && checkEnemiesCurrentAffected[el.Key] != null)
                                     continue;
 
-                                //Calcul distance de la pack en cours
+                                //Distance calculation of the current pack
                                 cdist2 = t.Position.DistanceTo(packsCoordinates[el.Key]);
-                                //Pack doit etre non affectée et non en mode regroupement
+                                //Pack must be unassigned and not in grouping mode
                                 if ((dist2 == -1 || dist2 > cdist2) 
                                     && (!packOrderSource.ContainsKey(CPMID) || packOrderSource[CPMID] != 1) 
                                     && (!(cpMembers.Count == 0
@@ -1811,8 +1810,8 @@ namespace aRandomKiwi.KFM
                                     nearestPack = el.Key;
                                 }
                             }
-                            
-                            //SI pack en cours la plus proche et ennemis plus proche que le precedent analysé
+
+                            //IF pack in progress closest and enemies closer than the previous one analyzed
                             if ( ((dist == -1 || dist > cdist) ) && nearestPack != null)//&& (!packAffectedEnemy.ContainsValue(t) || (packAffectedEnemy.ContainsKey(PMID) && packAffectedEnemy[PMID] == t))))
                             {
                                 dist = cdist;
@@ -1823,7 +1822,7 @@ namespace aRandomKiwi.KFM
 
                         if (selEnemy != null)
                         {
-                            //OBtention pack affecté le cas écheant
+                            //Obtaining affected pack, if applicable
                             if (packAffectedEnemy.ContainsValue(selEnemy))
                             {
                                 var key = packAffectedEnemy.FirstOrDefault(x => x.Value == selEnemy).Key;
@@ -1832,19 +1831,19 @@ namespace aRandomKiwi.KFM
                                     string MID = getMIDFromPMID(key);
                                     string PID = getPIDFromPMID(key);
 
-                                    //Si meute a laquelle est affectée actuellement l'ennemis est differente de la meute a laquelle il faut affecter l'ennemis 
+                                    //If the pack to which the enemy is currently assigned is different from the pack to which the enemies must be assigned
                                     if (PID != selPID)
                                     {
-                                        //Stop affectation courante d'une pack sur l'ennemie
+                                        //Stop the current assignment of a pack to the enemy
                                         cancelCurrentPack(Utils.getMapFromMUID(MID), PID);
                                     }
                                 }
                             }
                             //Log.Message("Manually affected pack " + selPID + " on " + selEnemy.LabelCap);
                             checkEnemiesCurrentAffected[selPID] = selEnemy;
-                            //Log.Message(selPID + " doit cibler " + selEnemy.LabelCap);
-                            //Lancement de la meute a l'assault de l'ennemis
-                            
+                            //Log.Message(selPID + " need target " + selEnemy.LabelCap);
+                            //Launch of the pack to assault the enemies
+
                             manualAllocatePack(selPID, selEnemy, false, 0);
                             processEnemy(map, selEnemy);
                         }
@@ -1855,7 +1854,7 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         * Traitement d'un ennemis 
+         * Treatment of an enemy
          */
         private void processEnemy(Map map, Thing thing)
         {
@@ -1868,16 +1867,16 @@ namespace aRandomKiwi.KFM
                 pawn = (Pawn)thing;
             else
                 pawn = null;
-            
-            //target possede une affectation forced pending OU Pawn hostile au player et pas déjà ciblée par une meute et fait pas partit de la liste des cible à ne pas attaquer  
-            //Et si mode attaquer jusqua mort pas activé PAS DOWN
-            //ET si enemie ne posséde pas de designation de DontKILL !!!
+
+            // target has a forced pending OR Pawn assignment hostile to the player and not already targeted by a pack and is not part of the list of targets not to attack
+            // And if attack until death mode not activated NOT DOWN
+            // AND if enemie does not have a DontKILL designation !!!
             if (Utils.isValidEnemy(thing)
                 && (hasForcedAffectedPack(thing)
                 || (!Settings.ignoredTargets.Contains(thing.def.defName)
                 && thingNotAlreadyTargetedByPack(thing))))
             {
-                //On essait de le faire ciblé par une meute disponible ayant un score >= au pawn
+                // We try to make it targeted by an available pack with a score> = at the pawn
                 float enemyScore;
                 if (pawn != null)
                     enemyScore = processScore(pawn);
@@ -1890,25 +1889,25 @@ namespace aRandomKiwi.KFM
                     thing = forcedThing;
 
                 //Log.Message(PID+" Targeting " + thing.LabelCap);
-                //On a obtenue une meute pouvant affronter le pawn hostile
+                // We have obtained a pack that can face the hostile pawn
                 if (PID != null)
                 {
-                    //Si il y à des menaces pret de la zone de ralliement ==> formation meute avec attaque directe 
+                    //If there are threats near the rallying area ==> pack formation with direct attack
                     if (activeThreatNearRallyPoint(map))
                     {
-                        //Log.Message("==>Mobilisation de la pack " + PID + " pour directement (menace proche point de ralliement) défoncer " + thing.LabelCap);
+                        //Log.Message("==>Mobilization of the "+ PID +" pack to directly (threat near rally point) smash "+ thing.LabelCap);
                         setPackTarget(ref members, map, PID, thing, false, true);
                     }
                     else
                     {
-                        //Si au moin 50% des membres sont proches on attaque directement l'ennemis
+                        //If at least 50% of the members are close, we directly attack the enemies
                         if (Utils.GCKFM.isHalfOfPackNearEachOther(map, PID))
                         {
-                            //Le cas échéant on force le non retour au point de ralliement des membres pour gagner du temps
+                            //If necessary, we force non-return to the rallying point of the members to save time
                             Utils.GCKFM.setLastAffectedEndedGT(Utils.GCKFM.getPackMapID(map, PID), Find.TickManager.TicksGame);
                         }
 
-                        //Log.Message("==>Mobilisation de la pack " + PID + " pour défoncer " + thing.LabelCap);
+                        //Log.Message ("==> Mobilization of the" + PID + "pack to smash" + thing.LabelCap);
                         setPackTarget(ref members, map, PID, thing);
                     }
                 }
@@ -1916,7 +1915,7 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         * Check s'il existe pour la map donné une menance active (ou des ennemis désigné à tuer)
+         * Check if there is for the given map an active threat (or enemies designated to kill)
          */
         private bool activeThreatOrDesignatedEnemies(Map map)
         {
@@ -1940,41 +1939,41 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         * Routine chargée de délire un nouveau rois si le délais d'attente atteint 
+         * Routine laden with delirium a new kings if the waiting time reaches
          */
         private void checkKings()
         {
-            //Si systeme de bonus désactivé OU rois définis en manuel dans les param on sort
+            //If the bonus system is deactivated OR kings defined manually in the param ons out
             if (!Settings.allowPackAttackBonus || Settings.allowManualKingSet)
                 return;
 
             int gt = Find.TickManager.TicksGame;
             foreach (var cpack in packs)
             {
-                //si meute n'a pas de rois
+                //if pack has no kings
                 if (!kingNbKilledEnemy.ContainsKey(cpack.Key))
                 {
-                    //Si pas de décompte d'election, mise en place si conditions de réunies (meute ayant 4 et plus de membres)
+                    //If no election count, set up if conditions met (pack with 4 and more members)
                     if (cpack.Value.Count >= Settings.kingElectionMinMembers && !kingNextElections.ContainsKey(cpack.Key))
                     {
                         kingNextElections[cpack.Key] = getKingNextElectionGT(gt);
                     }
-                    //SI compte a rebours d'élection atteint 
+                    //IF election countdown reached
                     if (kingNextElections.ContainsKey(cpack.Key) && kingNextElections[cpack.Key] <= gt)
                     {
                         kingNextElections.Remove(cpack.Key);
-                        //Compte a rebours atteint et conditions de la meute ok
+                        //Countdown reached and pack conditions ok
                         if (cpack.Value.Count >= Settings.kingElectionMinMembers)
                         {
                             Pawn king = cpack.Value.RandomElement();
-                            //Initialisation des données royales
+                            //Royal data initialization
                             setPackKing(cpack.Key, king);
 
                             Find.LetterStack.ReceiveLetter("KFM_KingElectionNewKingLabel".Translate(), "KFM_KingElectionNewKingDesc".Translate(king.LabelCap, ("KFM_PackColor" + cpack.Key).Translate() ), LetterDefOf.PositiveEvent, new TargetInfo(king), null, null);
                         }
                         else
                         {
-                            //Relancement du compte à rebours
+                            //Relaunching the countdown
                             kingNextElections[cpack.Key] = getKingNextElectionGT(gt);
                         }
                     }
@@ -1983,7 +1982,7 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         * Check validitée des forcedAffectedTarget
+         * Check validity of forcedAffectedTarget
          */
         public void checkForcedAffectedEnemies()
         {
@@ -1992,7 +1991,7 @@ namespace aRandomKiwi.KFM
 
             foreach (KeyValuePair<string, Thing> entry in packForcedAffectionEnemy.ToList())
             {
-                //Si cible devenue invalide on la retire
+                //If the target becomes invalid, we remove it
                 if ( entry.Value == null || entry.Value.DestroyedOrNull() || entry.Value.Map == null)
                 {
                     //Log.Message("REMOVE AFFECTED");
@@ -2002,7 +2001,7 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         * Check validitée des affected enemy
+         * Check validity of affected enemy
          */
         public void checkAffectedEnemies()
         {
@@ -2021,7 +2020,7 @@ namespace aRandomKiwi.KFM
 
                 bool supMode = Settings.isSupModeEnabled(PID);
                 bool supModeOk = entry.Value != null && map.designationManager.DesignationOn(entry.Value) != null && map.designationManager.DesignationOn(entry.Value).def.defName == Utils.killDesignation;
-                //Si cible devenue invalide on la retire
+                //If the target becomes invalid, we remove it
 
                 if (entry.Value == null || entry.Value.DestroyedOrNull() || entry.Value.Map == null || !Utils.isValidEnemy(entry.Value,PID) ||  ( supMode && !supModeOk ) )
                 {
@@ -2040,7 +2039,7 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         * Création d'un nouveau rois pour la meute donnée
+         * Creation of a new kings for the given pack
          */
         public void setPackKing(string PID, Pawn king)
         {
@@ -2062,9 +2061,9 @@ namespace aRandomKiwi.KFM
 
 
         /*
-         * Suppression d'un rois pour la meute donnée
+         * Removed a kings for the given pack
          */
-         public void unsetPackKing(string PID)
+        public void unsetPackKing(string PID)
         {
             Comp_Killing ck = new Comp_Killing();
             Pawn king = getPackKing(PID);
@@ -2088,9 +2087,9 @@ namespace aRandomKiwi.KFM
 
 
         /*
-         * Reset d'un warrior
+         * Reset a warrior
          */
-         public void unsetPackWarrior(Pawn pet)
+        public void unsetPackWarrior(Pawn pet)
         {
             Comp_Killing ck = pet.TryGetComp<Comp_Killing>();
             if (ck != null)
@@ -2102,15 +2101,15 @@ namespace aRandomKiwi.KFM
 
 
         /*
-         * Check si meute posséde un rois
+         * Check if a pack has a kings
          */
-         public bool packHasKing(string PID)
+        public bool packHasKing(string PID)
         {
             return kingAttackBonus.ContainsKey(PID);
         }
 
         /*
-         * Obtention du rois d'une meute
+         * Obtaining the kings of a pack
          */
         public Pawn getPackKing(string PID)
         {
@@ -2130,7 +2129,7 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         * Obtention du bonus d'attaque royale d'une meute
+         * Obtaining the royal attack bonus of a pack
          */
         public float getPackKingBonusAttack(string PID)
         {
@@ -2141,9 +2140,9 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         * Obtention pour une meute donnée du nombre d'ennemis à tuer avant le prochain niveau
+         * Obtaining for a given pack the number of enemies to kill before the next level
          */
-         public int getPackKingNbEnemyToKillBeforeNextReward(string PID)
+        public int getPackKingNbEnemyToKillBeforeNextReward(string PID)
         {
             if (kingNbEnemyToKill.ContainsKey(PID) && kingNbKilledEnemy.ContainsKey(PID))
             {
@@ -2156,7 +2155,7 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         * Check si la cible à une affectation forcée 
+         * Check if the target has a forced assignment 
          */
         private bool hasForcedAffectedPack(Thing target)
         {
@@ -2170,7 +2169,7 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         * Intégration aux meutes en regroupement des éléments libres
+         * Integration into packs by grouping free elements
          */
         private void integrateFreeMemberToGroup(Pawn member)
         {
@@ -2179,11 +2178,11 @@ namespace aRandomKiwi.KFM
                 return;
             string PMID = getPackMapID(member.Map, ck.KFM_PID);
             //Log.Message(">>>"+member.LabelCap);
-            //Check si invalide 
+            //Check if invalid
             if (!isPackInGroupMode(member.Map, ck.KFM_PID) || !isValidPackMember(member, ck))
                 return;
 
-            //Log.Message("=>Mobilisation d'une recrue libre dans sa meute " + ck.KFM_PID);
+            //Log.Message ("=> Mobilization of a free recruit in his pack" + ck.KFM_PID);
             List<Pawn> members = new List<Pawn>();
             members.Add(member);
 
@@ -2191,52 +2190,52 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         * Intégration aux meutes mobilisées des éléments libres ( animaux battant en retraite, animaux soignés et opérationnels)
+         * Integration into mobilized packs of free elements (retreating animals, treated and operational animals)
          */
         private void integrateFreeMember(Pawn member, Comp_Killing ck)
         {
-            //Si la meute de l'élément n'est pas mobilisé ou ce n'est pas un membre valide pour entrer dans la meute on quitte
+            //If the element's pack is not mobilized or it is not a valid member to enter the pack, we leave
             string PMID = getPackMapID( member.Map, ck.KFM_PID);
             bool noWait = false;
             if (!( (packAffectedEnemy.ContainsKey(PMID) && packAffectedEnemy[PMID] != null ) &&  isValidPackMember(member, ck)))
                 return;
-            //On peut intégrer l'élément
-            //Log.Message("=>Mobilisation d'une recrue libre dans sa meute "+ck.KFM_PID);
+            // We can integrate the element
+            //Log.Message("=>Mobilization of a free recruit in his pack "+ ck.KFM_PID);
             List<Pawn> members = new List<Pawn>();
             members.Add(member);
 
-            //Obtention target à partir de son UID
+            // Obtain target from its UID
             Thing target = packAffectedEnemy[PMID];
             Pawn targetPawn = null;
             if (target is Pawn)
                 targetPawn = (Pawn)target;
 
 
-            //On check si la meute de l'animal mobilisé est déjà arrivé au point de raliement
+            // We check if the pack of the mobilized animal has already arrived at the point of realization
             if (packAffectedArrivedToWaitingPoint.ContainsKey(PMID) && packAffectedArrivedToWaitingPoint[PMID])
                 noWait = true;
 
-            //On check si la cible n'est pas morte et que la cible est atteignable par l'animal avant d'attribuer le job
+            // We check if the target is not dead and that the target is reachable by the animal before assigning the job
             if (target != null && ( (targetPawn != null && !targetPawn.Dead) || !target.IsBrokenDown())
                 && member.CanReach(target, PathEndMode.Touch, Danger.Deadly)) {
-                //Log.Message("=>Affectation de la recrue libre pour tuer " + target.LabelCap);
+                ///Log.Message("=> Assignment of the free recruit to kill "+ target.LabelCap);
                 setPackTarget(ref members, member.Map, ck.KFM_PID, target, noWait);
             }
             else
             {
-                //Log.Message("=>Affectation impossible de la recrue car la cible n'est plus valide !");
+                //Log.Message("=> Unable to assign the recruit because the target is no longer valid! ");
             }
         }
 
 
         /*
-         * Faire prendre une meute d'une map donné pour cible la la creature selectionnée
-         * @members : liste des membres auxuquel affecté le job de kill
-         * @map : la map de survenance du job
-         * @PID : la pack impliquée
-         * @target : la cible de la meute
-         * @freeIntegratedUnit : Rajout d'un retardataire à la meute (objet de l'appel courant)
-         * @noWait : Forcer à ne pas former de meute au point de ralliement (alone forcé)
+         * Have a pack of a given map target the selected creature
+         * @members: list of members assigned the kill job
+         * @map: the job occurrence map
+         * @PID: the pack involved
+         * @target: the target of the pack
+         * @freeIntegratedUnit: Addition of a latecomer to the pack(object of the current call)
+         * @noWait: Force not to form a pack at the rally point(forced alone)
          */
         private void setPackTarget(ref List<Pawn> members, Map map, string PID, Thing target, bool freeIntegratedUnit=false, bool noWait=false)
         {
@@ -2247,20 +2246,20 @@ namespace aRandomKiwi.KFM
                 alone = true;
 
             PMID = getPackMapID(map, PID);
-            //Si membre libre à intégrer pas besoin de s'occuper de cela, sa à déjà été effectué chztte
+            //If free member to integrate no need to take care of this, it has already been done
             if (!freeIntegratedUnit)
             {
-                //Si seul pas besoin d'attendre d'autres membres
+                //If only no need to wait for other members
                 if (alone)
                     packAffectedArrivedToWaitingPoint[PMID] = true;
                 else
                 {
-                    //Si lastAffectedEndedGT <= gtBeforeReturnToRallyPoint --> pas de reformation de meute, les éléments sont assez proches pour réattaquer
+                    //If lastAffectedEndedGT <= gtBeforeReturnToRallyPoint -> no pack reformation, the elements are close enough to attack again
                     if (lastAffectedEndedGT.ContainsKey(PMID) && (Find.TickManager.TicksGame - lastAffectedEndedGT[PMID]) <= Utils.gtBeforeReturnToRallyPoint)
                     {
                         //Log.Message("GT - lastAffectedEndedGT ( "+ (Find.TickManager.TicksGame - lastAffectedEndedGT[PMID]) + " ) < gtBeforeReturnToRallyPoint");
                         packAffectedArrivedToWaitingPoint[PMID] = true;
-                        //On force le fait de ne pas atteindre le point de ralliement en défissant le en mode solo
+                        //We force the fact of not reaching the rallying point by defeating it in single player mode
                         alone = true;
                     }
                     else
@@ -2268,14 +2267,14 @@ namespace aRandomKiwi.KFM
                 }
             }
 
-            //Envois des membres de la meute présents sur la map au combat => JobGiver
+            //Sending of the members of the pack present on the map in combat => JobGiver
             foreach (var member in members.ToList())
             {
                 if(member != null)
                     setPackMember(member, target, alone, ref jobs);
             }
 
-            //Si unitée libre on ajuste le packNbAffecred (incrémentation)
+            //If free unit we adjust the packNbAffecred (incrementation)
             if (freeIntegratedUnit)
             {
                 //if(jobs.Count > 0)
@@ -2283,12 +2282,12 @@ namespace aRandomKiwi.KFM
             }
             else
             {
-                // On définis le contingent de la meute sur la map comme étant affecté à ce pawn
+                // We define the contingent of the pack on the map as being assigned to this pawn
                 packAffectedEnemy[PMID] = target;
             }
 
-            //Démarrage des jobs le cas échéant
-            for(int i = 0; i != members.Count(); i++)
+            //Start of jobs if necessary
+            for (int i = 0; i != members.Count(); i++)
             {
                 if(jobs[i] != null)
                 {
@@ -2298,7 +2297,7 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         * Check si pawn pas déjà targété par une pack
+         * Check if pawn is not already supplied by a pack
          */
         private bool thingNotAlreadyTargetedByPack(Thing thing)
         {
@@ -2311,7 +2310,7 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         * Obtention du PID de la meute ayant pris pour target pawn
+         * Obtaining the PID of the pack having taken as target pawn
          */
         public List<string> getPawnPackTargetedPID(Thing pawn)
         {
@@ -2330,7 +2329,7 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         * Check si dans la meute spécifiée il y au moins un membre valide
+         * Check if in the specified pack there is at least one valid member
          */
         private bool AnyAvailableMemberInPack(string PID)
         {
@@ -2371,7 +2370,7 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         * Obtention score de combat des membres d'une meute présents sur la map spécifiée
+         * Obtain combat score from members of a pack present on the specified map
          */
         public float getPackScore(Map map, string PID, ref List<Pawn> packMembers, Thing target)
         {
@@ -2386,7 +2385,7 @@ namespace aRandomKiwi.KFM
                         continue;
                     ////Log.Message(")))"+member.LabelCap);
                     ck = member.TryGetComp<Comp_Killing>();
-                    //Inclusion membre de pack que si kill mode activé et pas mort et pas downed et (safeMode pas actif ou safeMode actif et santé >= 50%)
+                    //Include pack member only if kill mode enabled and not dead and not downed and (safeMode not active or safeMode active and health> = 50%)
                     if (ck != null && isValidPackMember(member, ck)
                         && member.Map == map)
                     {
@@ -2399,7 +2398,7 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         * Check si l'animal passé en paramétre est valide pour rentrer dans une meute
+         * Check if the animal passed in parameter is valid to enter a pack
          */
         public bool isValidPackMember(Pawn member, Comp_Killing ck)
         {
@@ -2408,7 +2407,7 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         * Obtention de l'identifiant d'une meute disponible
+         * Obtaining the identifier of an available pack
          */
         private string getFreePID(Map map, float enemyScore, out float packScore, ref List<Pawn> members, out Thing forcedThing, Thing target)
         {
@@ -2418,7 +2417,7 @@ namespace aRandomKiwi.KFM
             string requiredPID = null;
             bool okSup = true;
 
-            //Le cas échéant recherche du required PMID dans le cas d'un forced pack planifié
+            //If applicable, search for the required PMID in the case of a planned forced pack
             if (packForcedAffectionEnemy.Count() > 0)
             { 
                 foreach (KeyValuePair<string, Thing> entry in packForcedAffectionEnemy.ToList())
@@ -2429,8 +2428,8 @@ namespace aRandomKiwi.KFM
                         requiredPMID = entry.Key;
                         requiredPID = getPIDFromPMID(requiredPMID);
 
-                        //Si affectation a une pack ne devant pas killer un enemis downed un enemis downed justement on le supprime de l'affectation manuelle
-                        if( target != null && ( target is Pawn && ((Pawn)target).Downed && !Settings.isAttackUntilDeathEnabled(null, requiredPID)))
+                        //If assignment has a pack that should not kill a downed enemy, a downed enemy is removed from the manual assignment
+                        if ( target != null && ( target is Pawn && ((Pawn)target).Downed && !Settings.isAttackUntilDeathEnabled(null, requiredPID)))
                         {
                             packForcedAffectionEnemy.Remove(entry.Key);
                             requiredPMID = null;
@@ -2446,8 +2445,8 @@ namespace aRandomKiwi.KFM
             foreach (KeyValuePair<string, List<Pawn>> pack in packs.ToList())
             {
                 okSup = true;
-                //Si meute affecté à un regroupement OU si meute déjà affecté on passe a la suivante OU si meute réservée et son PMID et différente du requiredPMID (pour éviter exclure aussi le vrai bénificiaire)
-                // Ou si la meute est en mode manuel et le requiredPMID est == null
+                // If the pack is assigned to a group OR if the pack is already assigned, we go to the next one OR if the pack is reserved and its PMID and different from the requiredPMID (to avoid also excluding the real beneficiary)
+                // Or if the pack is in manual mode and the requiredPMID is == null
                 PMID = getPackMapID(map, pack.Key);
                 if (isPackInGroupMode(map, pack.Key)
                     || (packAffectedEnemy.ContainsKey(PMID) && ( packAffectedEnemy[PMID] != null && requiredPMID == null))
@@ -2458,15 +2457,15 @@ namespace aRandomKiwi.KFM
                     continue;
                 }
                 packScore = getPackScore(map, pack.Key, ref members,target);
-                //si meute en mode supervisé check si target marqué comme cible de tueur
+                //if pack in supervised mode check if target marked as killer target
                 if (Settings.isSupModeEnabled(pack.Key)
                     && (map.designationManager.DesignationOn(target) == null || map.designationManager.DesignationOn(target).def.defName != Utils.killDesignation) )
                     okSup = false;
 
-                //La meute posséde des membres et il y elle posséde un score non null et supérieur ou égal au score de l'ennemy OU parametres autorise les attaques pour la meute de creatures plus fortes
+                //The pack has members and there is a non-null score greater than or equal to the enemy's score OR parameters allow attacks for the pack of stronger creatures
                 if (pack.Value.Count() >= 0 && packScore > 0f && ( enemyScore <= packScore || Settings.isAllowAttackStrongerTargetEnabled(pack.Key)) && (requiredPMID == null || requiredPMID == PMID) && okSup)
                 {
-                    //Check si pas de pawn forcé à être targeted avec cette meute sur cette lao (PMID)
+                    //Check if no pawn is forced to be targeted with this pack on this lao (PMID)
                     if (requiredPMID != null && packForcedAffectionEnemy.ContainsKey(PMID))
                     {
                         forcedThing = packForcedAffectionEnemy[PMID];
@@ -2481,14 +2480,14 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         * Check si une meute est réservée dans la liste des forced affection ennemy
+         * Check if a pack is reserved in the enemy forced affection list
          */
         private bool packIsReserved(string PID)
         {
             string entryPID;
             foreach (KeyValuePair<string, Thing> entry in packForcedAffectionEnemy.ToList())
             {
-                //Obtention PID de l'entrée
+                //Obtain PID of the input
                 entryPID = getPIDFromPMID(entry.Key);
                 //Same PID
                 if (entryPID == PID)
@@ -2500,7 +2499,7 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         * Obtention du point de ralliement d'une map, si pas déjà le cas mise en cache
+         * Obtaining the rally point of a map, if not already cached
          */
         private CellRect getRallyAreaRect(Map map)
         {
@@ -2513,7 +2512,7 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         * Obtention du point de ralliement agrandie d'une map
+         * Getting the enlarged rally point of a map
          */
         private CellRect getExtendedRallyAreaRect(Map map)
         {
@@ -2526,19 +2525,19 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         * Attribution d'un tache d'aller tuer un ennemie à un animal
+         * Assigning a task to go kill an enemy to an animal
          */
         private bool setPackMember(Pawn member, Thing enemy, bool alone, ref List<Verse.AI.Job> jobs)
         {
             JobGiver_EnemyKill jgk = new JobGiver_EnemyKill();
             jgk.alone = alone;
 
-            //Déduction coordonnées du waiting point dans la zone autorisée (rallyPoint)
-            //Si pas caché mise en cache
+            // Deduction coordinates of the waiting point in the authorized zone (rallyPoint)
+            // If not hidden caching
             CellRect rallyArea = getRallyAreaRect(enemy.Map);
             jgk.selectedWaitingPoint = CellFinder.RandomSpawnCellForPawnNear(rallyArea.RandomCell, member.Map, 10);
             jgk.selectedWaitingPoint2 = CellFinder.RandomSpawnCellForPawnNear(rallyArea.RandomCell, member.Map, 10);
-            //Définition de la cible
+            //Target definition
             jgk.target = enemy;
 
             JobIssueParams jb = new JobIssueParams();
@@ -2685,11 +2684,11 @@ namespace aRandomKiwi.KFM
         private Dictionary<string,List<Pawn>> packs = new Dictionary<string, List<Pawn>>();
 
         private Dictionary<string, int> kingNextElections = new Dictionary<string, int>();
-        //Nombre d'ennemis tués par la meute depuis le dernier point bonus ajouté
+        //Number of enemies killed by the pack since the last bonus point added
         private Dictionary<string, int> kingNbKilledEnemy = new Dictionary<string, int>();
-        //Nombre d'ennemis que doit tuer la meute pour incrémenter les points bonus du rois
+        //Number of enemies the pack must kill to increase the kings bonus points
         private Dictionary<string, int> kingNbEnemyToKill = new Dictionary<string, int>();
-        //Point bonus du rois de meute
+        //King of the Pack Bonus Point
         private Dictionary<string, float> kingAttackBonus = new Dictionary<string, float>();
         private Dictionary<string, bool> packGroupMode = new Dictionary<string, bool>();
         private Dictionary<string, IntVec3> packGroupPoint = new Dictionary<string, IntVec3>();
@@ -2705,9 +2704,9 @@ namespace aRandomKiwi.KFM
         private Dictionary<string, string> packFilterByEnemy = new Dictionary<string, string>();
         private readonly IntVec3 noCoord = new IntVec3(-1, -1, -1);
 
-        //Stock le type d'ordre en cours de la PMID (0 = auto, 1 =override humain pas de possibilité de le changer)
+        //Store the current order type of the PMID (0 = auto, 1 = human override no possibility to change it)
         private Dictionary<string, int> packOrderSource = new Dictionary<string, int>();
-        //Permet de stocker si on peut recheker target des meutes 
+        //Allows to store if we can search target packs 
         private bool packsCanReCheckNearestTarget = false;
 
         private Dictionary<string, Thing> checkEnemiesCurrentAffected = new Dictionary<string, Thing>();

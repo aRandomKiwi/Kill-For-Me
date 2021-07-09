@@ -25,7 +25,7 @@ namespace aRandomKiwi.KFM
                 if (__instance.pawn.HostileTo(Faction.OfPlayer) && !__instance.pawn.Downed)
                 {
                     ret = new List<Gizmo>();
-                    //Bouton ajouter sur les ennemies permettant de choisir via un floatMenu la meute à affecter de manière forcée
+                    //Add button on enemies allowing to choose via a floatMenu the pack to forcefully affect
                     cur = new Command_Action
                     {
                         icon = Utils.texForceKill,
@@ -40,17 +40,17 @@ namespace aRandomKiwi.KFM
                     __result = __result.Concat(ret);
                 }
 
-                //Boutons suivants réservés aux animaux tueurs
+                //Following buttons reserved for killer animals
                 if (__instance.pawn.TryGetComp<Comp_Killing>() == null || !__instance.pawn.TryGetComp<Comp_Killing>().killEnabled())
                     return;
 
-                //Ajout boutton d'annulation d'un ordre d'une meute en cours (target)
+                //Add button to cancel an order from a current pack (target)
                 if (Utils.hasLearnedKilling(__instance.pawn)){
                     ret = new List<Gizmo>();
                     Comp_Killing ck = __instance.pawn.TryGetComp<Comp_Killing>();
 
 
-                    //Ajout bouton permetant de changer la meute si pas un king
+                    //Add button allowing to change the pack if not a king
                     if (ck.KFM_PID != null && ck.KFM_PID != "" && !ck.KFM_isKing)
                      {
                         Material iconMat = Utils.getPackTexture(ck.KFM_PID);
@@ -94,26 +94,26 @@ namespace aRandomKiwi.KFM
                                                 if (ck == null || !cpawn.Faction.IsPlayer || !ck.killEnabled() || !Utils.hasLearnedKilling(cpawn))
                                                     continue;
 
-                                                //Si warrior on enleve le status
+                                                //If warrior we remove the status
                                                 if (ck.KFM_isWarrior)
                                                 {
                                                     Utils.GCKFM.unsetPackWarrior(cpawn);
                                                 }
-                                                //Si king on desactive la modif
+                                                //If king we deactivate the modification
                                                 if (ck.KFM_isKing)
                                                 {
                                                     Messages.Message("KFM_cannotChangeKingPack".Translate(cpawn.LabelCap), MessageTypeDefOf.NeutralEvent);
                                                     continue;
                                                 }
 
-                                                //Si animal actuellement mobilisé (via sa meute) on le fait arreter son travail
+                                                //If an animal is currently mobilized (via its pack), it is made to stop its work
                                                 Utils.GCKFM.cancelCurrentPackMemberJob(cpawn);
-                                                //Si animal actuellement en mode regroupement on le fait arreter son travail 
+                                                //If the animal is currently in grouping mode, it is made to stop its work
                                                 Utils.GCKFM.cancelCurrentPackMemberGroupJob(cpawn);
 
-                                                //On enleve le pawn de son actuel pack
+                                                //We remove the pawn from its current pack
                                                 Utils.GCKFM.removePackMember(ck.KFM_PID, cpawn);
-                                                //Ajout a la nouvelle
+                                                //Addition to the news
                                                 Utils.GCKFM.addPackMember(PID, cpawn);
                                                 ck.KFM_PID = PID;
                                             }
@@ -130,10 +130,10 @@ namespace aRandomKiwi.KFM
                         ret.Add(cur);
                     }
 
-                    //Si parametres le permette permet de définir en tant réel le rois d'une meute
+                    //If parameters allow it, it is possible to define as real the kings of a pack
                     if (Settings.allowManualKingSet)
                     {
-                        //Si le pawn en cours n'est pas déjà rois
+                        //If the current pawn is not already kings
                         if (!ck.KFM_isKing)
                         {
                             cur = new Command_Action
@@ -167,7 +167,7 @@ namespace aRandomKiwi.KFM
                                     var PID = Utils.PACKS[i];
                                     List<Pawn> cpack = Utils.GCKFM.getPack(PID);
 
-                                    //Logique on veut pas la meute courante ET que des meutes ayant des membres
+                                    //Logic, we don't want the current pack AND only packs with members
                                     if (cpack == null || PID == ck.KFM_PID || cpack.Count <= 1)
                                         continue;
 
@@ -186,14 +186,14 @@ namespace aRandomKiwi.KFM
                         ret.Add(cur);
                     }
 
-                    //Ajout boutton permettant a la meute de désigner une cible
+                    //Added button allowing the pack to designate a target
                     ret.Add( new Designator_TargetToKill(ck.KFM_PID));
 
 
                     Thing affectedEnemy = Utils.GCKFM.getAffectedEnemy(__instance.pawn.Map, ck.KFM_PID);
                     if (affectedEnemy != null)
                     {
-                        //Annulation mobilisation en cours
+                        //Cancellation of mobilization in progress
                         cur = new Command_Action
                         {
                             icon = Utils.texCancelKill,
@@ -208,7 +208,7 @@ namespace aRandomKiwi.KFM
                                     {
                                         if (Utils.GCKFM.isHalfOfPackNearEachOther(ck2.parent.Map, ck2.KFM_PID))
                                         {
-                                            //Le cas échéant on force le non retour au point de ralliement des membres pour gagner du temps
+                                            //If necessary, we force non-return to the rallying point of the members to save time
                                             Utils.GCKFM.setLastAffectedEndedGT(Utils.GCKFM.getPackMapID(ck2.parent.Map, ck2.KFM_PID), Find.TickManager.TicksGame);
                                         }
 
@@ -222,13 +222,13 @@ namespace aRandomKiwi.KFM
                         ret.Add(cur);
                         __result = __result.Concat(ret);
                     }
-                   
 
-                    //Si parametres le permette
+
+                    //If parameters allow it
                     if (!Settings.disallowPackGroupMode && (!Settings.allowPackGroupModeOnlyIfKing
                         || Utils.GCKFM.packHasKing(ck.KFM_PID)))
                     {
-                        //Ajout bouton de regroupement des meutes
+                        //Added pack grouping button
                         Designator draft = new Designator_GroupToPoint(ck.KFM_PID, delegate (IntVec3 pos)
                         {
                             Utils.GCKFM.enablePackGroupMode(ck.KFM_PID, __instance.pawn.Map, pos);
@@ -237,7 +237,7 @@ namespace aRandomKiwi.KFM
 
                         ret.Add(draft);
 
-                        //Ajout bouton d'annulation d'un regroupement si la meute est en mode regroupement
+                        //Add button to cancel a regrouping if the pack is in regrouping mode
                         if (Utils.GCKFM.isPackInGroupMode(ck.parent.Map, ck.KFM_PID))
                         {
                             cur = new Command_Action
@@ -249,7 +249,7 @@ namespace aRandomKiwi.KFM
                                 {
                                     if (Utils.GCKFM.isHalfOfPackNearEachOther(ck.parent.Map, ck.KFM_PID))
                                     {
-                                        //Le cas échéant on force le non retour au point de ralliement des membres pour gagner du temps
+                                        //If necessary, we force non-return to the rallying point of the members to save time
                                         Utils.GCKFM.setLastAffectedEndedGT( Utils.GCKFM.getPackMapID(ck.parent.Map, ck.KFM_PID), Find.TickManager.TicksGame);
                                     }
 
@@ -278,14 +278,14 @@ namespace aRandomKiwi.KFM
             [HarmonyPrefix]
             public static bool Replacement(Pawn_MindState __instance, Thing instigator)
             {
-                //s'il sagit d'un animal en mode tueur il va y avoir un traitement différent des autres, sinon on envois à la routine vanilla avec la pssibilité de la fuite des troupeau de herdAnimals
-                //En effet car pour les animaux en mode tueur de type herAnimals (elephnt, rhino, etc...) il y a un code supplementaire dans le vanilla qui fait q'uil y a 10% de chance qu'ils fly tous dans un rayon
-                //de 25 si un des leurs est blessé ce qui n'est pas tolerable
+                // if it is an animal in killer mode there will be a different treatment from the others, otherwise we send to the vanilla routine with the possibility of the herdAnimals herd escaping
+                // Indeed because for animals in killer mode of the herAnimals type (elephnt, rhino, etc ...) there is an additional code in the vanilla which means that there is a 10% chance that they will all fly in a ray
+                // of 25 if one of them is injured which is not tolerable
                 if ( (__instance.pawn.CurJob != null && __instance.pawn.CurJob.def.defName == Utils.killJob)
                     || (__instance.pawn.TryGetComp<Comp_Killing>() != null
                         && Find.TickManager.TicksGame - Utils.GCKFM.getLastAffectedEndedGT(__instance.pawn.Map, __instance.pawn.TryGetComp<Comp_Killing>().KFM_PID) <= Utils.gtBeforeReturnToRallyPoint))
                 {
-                    //Si pas en mode termiantor, en mode terminator pas de fuite
+                    //If not in termiantor mode, in terminator mode no leak
                     if (!Settings.preventFleeWhenHit)
                     {
                         List<Thing> threats = new List<Thing>

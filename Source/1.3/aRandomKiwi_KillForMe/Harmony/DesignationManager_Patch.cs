@@ -15,7 +15,7 @@ namespace aRandomKiwi.KFM
             public static void Replacement(DesignationManager __instance, ref Designation des)
             {
                 //Log.Message(des.def.defName);
-                //On intercepte les libération d'affectation pour pouvoir cancelCurrentPack sur les meutes en mode supervisé en train d'attaquer une cible désaffectée 
+                //We intercept assignment releases to be able to cancelCurrentPack on packs in supervised mode attacking an unassigned target
                 if (des.def.defName == Utils.killDesignation)
                 {
                     Thing target = des.target.Thing;
@@ -38,7 +38,6 @@ namespace aRandomKiwi.KFM
                 {
                     if(des.def.defName == Utils.killDesignation && des.target.Thing == t)
                     {
-                        //Log.Message("ICI2");
                         Utils.GCKFM.unselectThingToKill(t);
                     }
                 }

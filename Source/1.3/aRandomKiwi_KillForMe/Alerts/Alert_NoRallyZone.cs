@@ -9,7 +9,6 @@ namespace aRandomKiwi.KFM
 {
     public class Alert_NoRallyZone : Alert
     {
-        // Token: 0x06002C07 RID: 11271 RVA: 0x0014A070 File Offset: 0x00148470
         public Alert_NoRallyZone()
         {
             this.defaultLabel = "KFM_AlertNoRallyZoneTitle".Translate();
@@ -44,7 +43,7 @@ namespace aRandomKiwi.KFM
                     if(obj == null)
                         obj = new List<GlobalTargetInfo>();
 
-                    //Ajout world objet
+                    //Add World Item
                     obj.Add(new GlobalTargetInfo( map.Center , map));
 
                     ok = false;

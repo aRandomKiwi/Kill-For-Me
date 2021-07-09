@@ -86,16 +86,16 @@ namespace aRandomKiwi.KFM
         protected override void FinalizeDesignationSucceeded()
         {
             base.FinalizeDesignationSucceeded();
-            //On annule les potentielles meutes targettant la thing
-            foreach(var t in justDesignated)
+            //We cancel the potential packs targetting the thing
+            foreach (var t in justDesignated)
             {
-                //Obtention PID des meutes targettant une cible a NE PAS TUER
+                //Obtaining PID of packs targeting a DO NOT KILL target
                 List<string> PID = Utils.GCKFM.getPawnPackTargetedPID(t);
                 if (PID != null)
                 {
                     foreach (var cpid in PID)
                     {
-                        //Si des meutes target la selection on les deboutes
+                        //If the packs target the selection, we stand them up
                         if (PID.Count() != 0)
                         {
                             Utils.GCKFM.cancelCurrentPack(t.Map, cpid);

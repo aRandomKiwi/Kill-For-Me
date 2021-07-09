@@ -39,10 +39,10 @@ namespace aRandomKiwi.KFM
                 return;
 
             Rect rect2 = rect.ContractedBy(2f);
-            //Callback appelée pour retourner la pack d'affectation de l'animal courant
-			Func<Pawn, string> getPayload = new Func<Pawn, string>(PackSelectButton_GetPackName);
-            //Callbacl de généraition de la liste déroulante des packs disponibles
-			Func<Pawn, IEnumerable<Widgets.DropdownMenuElement<string>>> menuGenerator = new Func<Pawn, IEnumerable<Widgets.DropdownMenuElement<string>>>(PackSelectButton_GenerateMenu);
+            //Callback called to return the current animal's assignment pack
+            Func<Pawn, string> getPayload = new Func<Pawn, string>(PackSelectButton_GetPackName);
+            //Generation callback from the drop-down list of available packs
+            Func<Pawn, IEnumerable<Widgets.DropdownMenuElement<string>>> menuGenerator = new Func<Pawn, IEnumerable<Widgets.DropdownMenuElement<string>>>(PackSelectButton_GenerateMenu);
             string part = "";
             
             if (ck != null)
@@ -53,7 +53,6 @@ namespace aRandomKiwi.KFM
                     part = " (" + ("KFM_WarriorText").Translate() + ")";
             }
             string buttonLabel = ("KFM_"+pawn.TryGetComp<Comp_Killing>().KFM_PID+"ColorLib").Translate().Truncate(rect.width, null)+part;
-			//string dragLabel = "LOL";
 			Widgets.Dropdown<Pawn, string>(rect2, pawn, getPayload, menuGenerator, buttonLabel, null, buttonLabel, null, null, false);
         }
 
@@ -96,7 +95,7 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         * Obtention meute de l'animal courant
+         * Obtaining pack of running animal
          */
         private static string PackSelectButton_GetPackName(Pawn pet)
         {   
@@ -104,7 +103,7 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         * Obtention de la liste des meutes affectables à l'animal courant
+         * Obtaining the list of packs assignable to the running animal
          */
         private static IEnumerable<Widgets.DropdownMenuElement<string>> PackSelectButton_GenerateMenu(Pawn p)
         {
@@ -117,7 +116,7 @@ namespace aRandomKiwi.KFM
             for (int i=0; i!= Utils.PACKS.Count(); i++)
             {
                 var PID = Utils.PACKS[i];
-                //On enleve la meute de l'animal courant s'il en possede une
+                //We remove the pack of the running animal if it has one.
                 if (curPID == PID)
                     continue;
                 yield return new Widgets.DropdownMenuElement<string>
@@ -127,13 +126,13 @@ namespace aRandomKiwi.KFM
                         if (p.TryGetComp<Comp_Killing>() == null)
                             return;
 
-                        //Si animal est un rois on refuse
+                        //If animal is a kings we refuse
                         if (p.TryGetComp<Comp_Killing>().KFM_isKing)
                         {
                             Messages.Message("KFM_cannotChangeKingPack".Translate(p.LabelCap),MessageTypeDefOf.NeutralEvent);
                             return;
                         }
-                        //Si warrior on enleve le status
+                        //If warrior we remove the status
                         if (p.TryGetComp<Comp_Killing>().KFM_isWarrior)
                         {
                             Find.WindowStack.Add(new Dialog_Msg("KFM_ConfirmWarriorChangePackTitle".Translate(), "KFM_ConfirmWarriorChangePackDetail".Translate(p.LabelCap), delegate
@@ -157,14 +156,14 @@ namespace aRandomKiwi.KFM
         {
             if (p.TryGetComp<Comp_Killing>() == null)
                 return;
-            //Si animal actuellement mobilisé (via sa meute) on le fait arreter son travail
+            //If an animal is currently mobilized (via its pack), it is made to stop its work
             Utils.GCKFM.cancelCurrentPackMemberJob(p);
-            //Si animal actuellement en mode regroupement on le fait arreter son travail 
+            //If the animal is currently in grouping mode, it is made to stop its work
             Utils.GCKFM.cancelCurrentPackMemberGroupJob(p);
 
-            //On enleve le pawn de son actuel pack
+            //We remove the pawn from its current pack
             Utils.GCKFM.removePackMember(p.TryGetComp<Comp_Killing>().KFM_PID, p);
-            //Ajout a la nouvelle
+            //Addition to the news
             Utils.GCKFM.addPackMember(PID, p);
             p.TryGetComp<Comp_Killing>().KFM_PID = PID;
         }

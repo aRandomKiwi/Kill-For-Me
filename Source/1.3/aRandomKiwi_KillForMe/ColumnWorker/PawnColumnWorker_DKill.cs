@@ -26,13 +26,13 @@ namespace aRandomKiwi.KFM
         protected override void Notify_DesignationAdded(Pawn pawn)
         {
             pawn.MapHeld.designationManager.TryRemoveDesignationOn(pawn, DefDatabase<DesignationDef>.GetNamed(Utils.killDesignation));
-            //Obtention PID des meutes targettant une cible a NE PAS TUER
+            //Obtaining PID of packs targeting a DO NOT KILL target
             List<string> PID = Utils.GCKFM.getPawnPackTargetedPID(pawn);
             if (PID != null)
             {
                 foreach (var cpid in PID)
                 {
-                    //Si des meutes target la selection on les deboutes
+                    //If the packs target the selection, we stand them up
                     if (PID.Count() != 0)
                     {
                         Utils.GCKFM.cancelCurrentPack(pawn.Map, cpid);

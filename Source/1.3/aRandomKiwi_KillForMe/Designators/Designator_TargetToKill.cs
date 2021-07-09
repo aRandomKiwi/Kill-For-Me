@@ -41,11 +41,11 @@ namespace aRandomKiwi.KFM
         {
             base.CanDesignateThing(t);
 
-            //Check s'il sagit d'un ennemis valide
+            //Check if this is a valid enemy
             if ( !Utils.isValidEnemy(t) )
                 return false;
 
-            //Check si tout les membres de la meute peuvent accéder à la cible
+            //Check if all pack members can access the target
             if (!Utils.GCKFM.canPackMembersReach(t.Map, PID, t.Position))
                 return false;
 
@@ -85,21 +85,21 @@ namespace aRandomKiwi.KFM
         {
             base.FinalizeDesignationSucceeded();
 
-            //On check si au moins 50% des membres de la meute sont proches les uns des autres
+            //We check if at least 50% of the members of the pack are close to each other
             if (Utils.GCKFM.isHalfOfPackNearEachOther(target.Map, PID))
             {
                 string PMID = Utils.GCKFM.getPackMapID(target.Map, PID);
-                //Le cas échéant on force le non retour au point de ralliement des membres pour gagner du temps
+                //If necessary, we force non-return to the rallying point of the members to save time
                 Utils.GCKFM.setLastAffectedEndedGT(PMID,Find.TickManager.TicksGame);
             }
 
-            //On force l'appel a checkEnnemies au prochain Tick pour éviter les latences
+            //We force the call to checkEnnemies at the next Tick to avoid latencies
             Utils.GCKFM.forceNextCheckEnemy = true;
 
-            //On affecte la meute a la nouvelle cible  ....
+            //We assign the pack to the new target ....
             Utils.GCKFM.manualAllocatePack(PID, target);
 
-            //ANimation sonore et visuelle
+            //Sound and visual animation
             SoundDefOf.DraftOn.PlayOneShotOnCamera(null);
             FleckMaker.ThrowDustPuffThick(pos.ToVector3Shifted(), cmap, 4.0f, Color.red);
         }

@@ -7,7 +7,7 @@ using RimWorld;
 namespace aRandomKiwi.KFM
 {
     /*
-     * Interception signal de despawing d'une MAP pour effacé les références dans le GCKFM  (PMID)
+     * Interception despawing signal from a MAP to erase the references in the GCKFM (PMID)
      */
     internal class MapDeiniter_Patch
     {

@@ -29,7 +29,7 @@ namespace aRandomKiwi.KFM
 
 
         /*
-         * Dispatcher du isValidEnemy en fonction des parametres
+         * Dispatcher of isValidEnemy according to parameters
          */
         public static bool isValidEnemy(Thing t, string PID = "")
         {
@@ -40,7 +40,7 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         * Check si la thing désigné est un ennemie valide au regard des parametres
+         * Check if the designated thing is a valid enemy with regard to the parameters
          */
         public static bool isValidEnemyLow(Thing t, string PID="")
         {
@@ -62,7 +62,7 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         * Check si la thing désigné est un ennemie valide au regard des parametres
+         * Check if the designated thing is a valid enemy with regard to the parameters
          */
         public static bool isValidEnemyExtended(Thing t, string PID="")
         {
@@ -82,7 +82,7 @@ namespace aRandomKiwi.KFM
 
         public static string TranslateTicksToTextIRLSeconds(int ticks)
         {
-            //Si moins d'une heure ingame alors affichage secondes
+            //If less than one hour ingame then display seconds
             if (ticks < 2500)
                 return ticks.ToStringSecondsFromTicks();
             else
@@ -91,13 +91,13 @@ namespace aRandomKiwi.KFM
 
 
         /*
-         * Modification dynamique de "KillingTraining"
+         * Dynamic modification of "KillingTraining"
          */
         static public void setAllowAllToKillState()
         {
             if (Settings.allowAllToKill)
             {
-                //Suppression de tout les prerequisites sauf obedience
+                //Removal of all prerequisites except obedience
                 foreach (var x in killingTrainingDef.prerequisites.ToList())
                 {
                     if (x.defName != "Obedience")
@@ -109,7 +109,7 @@ namespace aRandomKiwi.KFM
             {
                 bool findObedience = false;
 
-                //Rajout des prerequisites si pas trouvés
+                //Addition of prerequisites if not found
                 foreach (var x in killingTrainingDef.prerequisites.ToList())
                 {
                     if (x.defName == "Obedience")
@@ -152,7 +152,7 @@ namespace aRandomKiwi.KFM
 
 
         /*
-         * Check si le pawn est un animal et qu'il à appris "Tuer"
+         * Check if the pawn is an animal and has learned to "Kill"
          */
         public static bool hasLearnedKilling(Pawn pawn)
         {
@@ -161,7 +161,7 @@ namespace aRandomKiwi.KFM
 
         public static void setRandomChangeToVector(ref IntVec3 vector, int min, int max )
         {
-            //Déduction direction de variation
+            //Deduction direction of variation
             int dir = 1;
             if (Rand.Chance(0.5f))
                 dir = -1;
@@ -182,7 +182,7 @@ namespace aRandomKiwi.KFM
 
 
         /*
-         * Suppression des potentiels bonding pour l'animal désigné
+         * Elimination of bonding potentials for the designated animal
          */
         public static void removeAnimalBonding(Pawn animal)
         {
@@ -192,7 +192,7 @@ namespace aRandomKiwi.KFM
             {
                 if (rel.def.defName == "Bond")
                 {
-                    //Suppression de la relation equivalente chez l'autre pawn
+                    //Removal of the equivalent relation at the other pawn
                     foreach (var rel2 in rel.otherPawn.relations.DirectRelations.ToList())
                     {
                         if (rel2.def.defName == "Bond" && rel2.otherPawn == animal)
@@ -208,7 +208,7 @@ namespace aRandomKiwi.KFM
 
 
         /*
-         * Obtention miniature de meute
+         * Obtaining miniature pack
          */
         static public Texture2D getPackMinIcon(string PID)
         {

@@ -19,7 +19,7 @@ namespace aRandomKiwi.KFM
             {
                 Comp_Killing ck = attacker.TryGetComp<Comp_Killing>();
 
-                //Application bonus que si unité affectée pendant l'attaque
+                //Bonus application only if unit affected during attack
                 if (ck != null && ck.KFM_affected)
                 {
                     float bonus = Utils.GCKFM.getPackAttackBonus(attacker.Map, ck.KFM_PID, attacker);

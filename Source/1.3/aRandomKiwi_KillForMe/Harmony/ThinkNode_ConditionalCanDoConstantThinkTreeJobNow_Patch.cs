@@ -14,8 +14,8 @@ namespace aRandomKiwi.KFM
             [HarmonyPrefix]
             public static bool Replacement(ThinkNode_ConditionalCanDoConstantThinkTreeJobNow __instance, ref bool __result, Pawn pawn)
             {
-                //Si creature et dans un job "KFM_KillTarget" 
-                //ou alors il a recemment quitté la meute alors on force la non fuite au dépend de sa vie en face d'ennemis ( la créature fuira quand meme si elle se fait blessée physiquement)
+                //If creature and in a "KFM_KillTarget" job
+                //or he has recently left the pack so we force non-flight at the expense of his life in front of enemies (the creature will flee anyway if it is physically injured)
                 if ((pawn.CurJob != null && pawn.CurJob.def.defName == Utils.killJob)
                     || (pawn.TryGetComp<Comp_Killing>() != null
                         && Find.TickManager.TicksGame - Utils.GCKFM.getLastAffectedEndedGT(pawn.Map, pawn.TryGetComp<Comp_Killing>().KFM_PID) <= Utils.gtBeforeReturnToRallyPoint))

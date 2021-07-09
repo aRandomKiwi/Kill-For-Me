@@ -25,9 +25,9 @@ namespace aRandomKiwi.KFM
                     pawn = (Pawn)___launcher;
                     ck = pawn.TryGetComp<Comp_Killing>();
                 }
-                
 
-                //Application bonus que si unité affectée pendant l'attaque
+
+                //Bonus application only if unit affected during attack
                 if (ck != null && ck.KFM_affected)
                 {
                     //Log.Message("Attaque à distance ");

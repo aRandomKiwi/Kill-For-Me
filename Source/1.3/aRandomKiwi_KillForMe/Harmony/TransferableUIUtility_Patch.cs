@@ -16,7 +16,7 @@ namespace aRandomKiwi.KFM
             public static void Listener(Transferable trad, Rect rect, ref float curX)
             {
                 Pawn pawn = trad.AnyThing as Pawn;
-                //Si animal qui a appris à tué on lui adjoint a son nom sa meute
+                //If an animal that has learned to kill, it has its name added to its pack
                 if (pawn != null && Utils.hasLearnedKilling(pawn))
                 {
                     Comp_Killing ck = pawn.TryGetComp<Comp_Killing>();

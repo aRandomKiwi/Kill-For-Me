@@ -43,7 +43,7 @@ namespace aRandomKiwi.KFM
         public static int warriorNbToKill = 3;
         public static bool allowPackAttackStrongerTarget = false;
 
-        //Parametres par meute
+        //Parameters by pack
         public static bool blackSupMode = true;
         public static bool blueSupMode = true;
         public static bool redSupMode = true;
@@ -108,7 +108,7 @@ namespace aRandomKiwi.KFM
 
             list.Begin(scrollRect);
 
-            /****************************************************** Paremetres généraux ******************************************************/
+            /****************************************************** General parameters ******************************************************/
             list.GapLine();
             GUI.color = Color.green;
             list.Label("KFM_SettingsGeneralSection".Translate() + " :");
@@ -116,40 +116,40 @@ namespace aRandomKiwi.KFM
             list.GapLine();
 
 
-            //Masquer l'alerte de rally point
+            //Hide rally point alert
             list.CheckboxLabeled("KFM_HideRallyPointWarning".Translate(), ref hideRallyPointWarning);
 
-            //Masquer l'icone de meute
+            //Hide the pack icon
             list.CheckboxLabeled("KFM_HidePackIcon".Translate(), ref hidePackIcon);
 
-            //Prevenir les animaux de s'enfuir quand ils sont meurtris
+            //Prevent animals from running away when they are bruised
             list.CheckboxLabeled("KFM_SettingsPreventFromFleeWhenHit".Translate(), ref preventFleeWhenHit);
 
-            //autoriser les attaques à distance
+            //allow remote attacks
             list.CheckboxLabeled("KFM_SettingsAllowRangedAttack".Translate(), ref allowRangedAttack);
 
 
             list.CheckboxLabeled("KFM_SettingsAllowKillSelfPawns".Translate(), ref allowKillSelfPawns);
 
-            //Autoriser meutes à cibler tout type de batiments
+            //Allow packs to target all types of buildings
             list.CheckboxLabeled("KFM_SettingsAllowTargetAllBuildings".Translate(), ref allowTargetAllBuildings);
 
-            //Attaquer jusqu'à la mort les ennemies
+            //Attack enemies to the death
             list.CheckboxLabeled("KFM_SettingsAttackUntilDeath".Translate(), ref attackUntilDeath);
 
-            //Autoriser l'apprentissage de 'Hunt' à tout les animaux
+            //Allow learning of 'Hunt' to all animals
             list.CheckboxLabeled("KFM_SettingsAllowAllToKill".Translate(), ref allowAllToKill);
             Utils.setAllowAllToKillState();
 
-            //Désactivé les bond animals
+            //Disabled bond animals
             list.CheckboxLabeled("KFM_SettingsDisableKillerBond".Translate(), ref disableKillerBond);
 
-            //Poucentage membres d'une meutes proches pour éviter point de raliement
+            //Percentage of members of a nearby pack to avoid point of achievement
             list.Label("KFM_SettingsPercentageMemberNearToAvoidRallyPoint".Translate((int)(percentageMemberNearToAvoidRallyPoint * 100)));
             percentageMemberNearToAvoidRallyPoint = list.Slider(percentageMemberNearToAvoidRallyPoint, 0.0f, 1.00f);
 
             list.Gap(10f);
-            /****************************************************** Mode regroupement ******************************************************/
+            /****************************************************** Grouping mode ******************************************************/
             list.GapLine();
             GUI.color = Color.green;
             list.Label("KFM_SettingsGroupModeSection".Translate() + " :");
@@ -157,14 +157,14 @@ namespace aRandomKiwi.KFM
             list.GapLine();
 
 
-            //Autoriser uniquement le mode regroupement des meutes pour celles disposant d'un chef
+            //Only authorize the grouping mode of packs for those with a leader
             list.CheckboxLabeled("KFM_SettingsAllowGroupModeOnlyIfKing".Translate(), ref allowPackGroupModeOnlyIfKing);
 
-            //Désactiver mode regoupement
+            //Disable grouping mode
             list.CheckboxLabeled("KFM_SettingsDisallowPackGroupMode".Translate(), ref disallowPackGroupMode);
 
             list.Gap(10f);
-            /****************************************************** Bonus d'attaque ******************************************************/
+            /****************************************************** Attack bonus ******************************************************/
             list.GapLine();
             GUI.color = Color.green;
             list.Label("KFM_SettingsBonusAttackSection".Translate()+" :");
@@ -172,25 +172,25 @@ namespace aRandomKiwi.KFM
             list.GapLine();
 
 
-            //Autoriser les bonus d'attaque par meute
+            //Allow attack bonuses per pack
             list.CheckboxLabeled("KFM_SettingsAllowPackAttackBonus".Translate(), ref allowPackAttackBonus);
 
-            //Autoriser définir directement le rois d'une meute
+            //Allow to directly define the kings of a pack
             list.CheckboxLabeled("KFM_SettingsAllowManualKingSet".Translate(), ref allowManualKingSet);
 
-            //Durée de validitée des bonus d'attaque
+            //Duration of validity of attack bonuses
             list.Label("KFM_SettingsBonusAttackDuration".Translate( Utils.TranslateTicksToTextIRLSeconds( bonusAttackDurationHour*2500) ));
             bonusAttackDurationHour = (int) list.Slider(bonusAttackDurationHour, 1, 18);
 
-            //Bonus d'attaque guerrier, nb d'ennemis à tuer avant de devenir un guerrier
+            //Warrior attack bonus, number of enemies to kill before becoming a warrior
             list.Label("KFM_SettingsBonusAttackWarriorNbToKill".Translate( (int)warriorNbToKill));
             warriorNbToKill = (int) list.Slider(warriorNbToKill, 1, 150);
 
-            //BOnus d'attaque par ennemis tué
+            //Attack bonus per enemies slain
             list.Label("KFM_SettingsBonusAttackByEnemyKilled".Translate( (int)(bonusAttackByEnemyKilled*100)));
             bonusAttackByEnemyKilled = list.Slider(bonusAttackByEnemyKilled, 0.01f, 0.20f);
 
-            //Rois délais minimal avant nouvelle election
+            //Kings minimum time before new election
             list.Label("KFM_SettingsBonusKingElectionMinHour".Translate(Utils.TranslateTicksToTextIRLSeconds(kingElectionMinHour * 2500)));
             kingElectionMinHour = (int) list.Slider(kingElectionMinHour, 1, 720);
 
@@ -199,32 +199,32 @@ namespace aRandomKiwi.KFM
                 kingElectionMaxHour = kingElectionMinHour + 1;
             }
 
-            //Rois délais maximal avant nouvelle election
+            //Kings maximum delay before new election
             list.Label("KFM_SettingsBonusKingElectionMaxHour".Translate(Utils.TranslateTicksToTextIRLSeconds(kingElectionMaxHour * 2500)));
             kingElectionMaxHour = (int) list.Slider(kingElectionMaxHour, kingElectionMinHour, 740);
 
-            //Temps additionnel en cas de nouvelle election suite au décés du rois actuel
+            //Additional time in the event of a new election following the death of the current kings
             list.Label("KFM_SettingsBonusKingElectionPenalityCausedByKingDeath".Translate(Utils.TranslateTicksToTextIRLSeconds(kingElectionHourPenalityCausedByKingDeath * 2500)));
             kingElectionHourPenalityCausedByKingDeath = (int)list.Slider(kingElectionHourPenalityCausedByKingDeath, 12, 740);
 
-            //Condition de définition d'un chef de meute
+            //Condition of definition of a pack leader
             list.Label("KFM_SettingsBonusKingElectionMinMembers".Translate(kingElectionMinMembers));
             kingElectionMinMembers = (int)list.Slider(kingElectionMinMembers, 3, 30);
 
-            //Délais avant auto annulation du mode regroupement des animaux
+            //Time before auto-cancellation of animal grouping mode
             list.Label("KFM_SettingsHoursBeforeAutoDisableGroupMode".Translate(Utils.TranslateTicksToTextIRLSeconds(hoursBeforeAutoDisableGroupMode * 2500)));
             hoursBeforeAutoDisableGroupMode = (int) list.Slider(hoursBeforeAutoDisableGroupMode, 2, 24);
 
-            //Bonus d'attaque des rois
+            //Kings attack bonus
             list.Label("KFM_SettingsBonusAttackOfKings".Translate((int)( kingAttackBonus * 100)));
             kingAttackBonus = list.Slider(kingAttackBonus, 0.01f, 1.5f);
 
-            //Bonus d'attaque des warriors
+            //Warrior attack bonus
             list.Label("KFM_SettingsBonusAttackOfWarriors".Translate((int)(warriorAttackBonus * 100)));
             warriorAttackBonus = list.Slider(warriorAttackBonus, 0.01f, 1.0f);
 
             list.Gap(10f);
-            //*********************************************  Liste des parametres par meute *************************************
+            //*********************************************  List of parameters by pack *************************************
             list.GapLine();
             //Black
             GUI.color = Color.green;
@@ -367,7 +367,7 @@ namespace aRandomKiwi.KFM
                 resetDefaultIgnoredTargets();
 
 
-            // Liste d'exception des créatures attaquant à distance
+            // Ranged attacking creature exception list
             list.Gap(25f);
             GUI.color = Color.green;
             list.Label("KFM_SettingsIgnoredRangedAttack".Translate());
@@ -399,7 +399,7 @@ namespace aRandomKiwi.KFM
 
 
 
-            // Liste des abtiments par defaut a attaquer
+            // List of default buildings to attack
             list.Gap(25f);
             GUI.color = Color.green;
             list.Label("KFM_SettingsDefaultBuildingToAttack".Translate());
@@ -470,7 +470,7 @@ namespace aRandomKiwi.KFM
             Scribe_Values.Look<float>(ref percentageMemberNearToAvoidRallyPoint, "percentageMemberNearToAvoidRallyPoint", 0.5f);
             Scribe_Values.Look<bool>(ref allowManualKingSet, "allowManualKingSet", false);
 
-            //Meutes
+            //Packs
             Scribe_Values.Look<bool>(ref blackSupMode, "blackSupMode", true);
             Scribe_Values.Look<bool>(ref blueSupMode, "blueSupMode", true);
             Scribe_Values.Look<bool>(ref graySupMode, "graySupMode", true);
@@ -532,7 +532,7 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         * Check si pour la meute donné le mode d'attaque jusqua la mort est activé
+         * Check if for the given pack the attack until death mode is activated
          */
         static public bool isAttackUntilDeathEnabled(Pawn pawn, string APID = "")
         {
@@ -572,7 +572,7 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         * Check si pour la meute donné le mode supervisé est activé
+         * Check if for the given pack the supervised mode is activated
          */
         static public bool isSupModeEnabled(string PID)
         {
@@ -602,7 +602,7 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         * Check si pour la meute donné le mode manual est activé
+         * Check if for the given pack the manual mode is activated
          */
         static public bool isManualModeEnabled(string PID)
         {
@@ -632,7 +632,7 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-        * Check si pour la meute donné elle peut attaquer des cibles plus fortes
+        * Check if for the given pack it can attack stronger targets
         */
         static public bool isAllowAttackStrongerTargetEnabled(string PID)
         {

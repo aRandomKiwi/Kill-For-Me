@@ -18,9 +18,9 @@ namespace aRandomKiwi.KFM
 
 		public override bool TryMakePreToilReservations(bool errorOnFailed)
 		{
-            //Sauvegarde ID Unique de la map
+            //Unique ID save of the map
             mapUID = this.pawn.Map.uniqueID;
-            //Marquage unitée comme affectée pour killé 
+            //Unit marking as assigned for killing
             this.pawn.TryGetComp<Comp_Killing>().KFM_affected = true;
 
             return true;
@@ -34,7 +34,7 @@ namespace aRandomKiwi.KFM
 				base.Map.attackTargetsCache.UpdateTarget(this.pawn);
                 OnEndKillingTarget();
             });
-            //Eviter rotation vers la cible du pawn on définis la cible de rotation vers un index non définis
+            //Avoid rotation towards the pawn target we define the rotation target towards an undefined index
             this.rotateToFace = TargetIndex.C;
             this.job.playerForced = true;
 
@@ -45,7 +45,7 @@ namespace aRandomKiwi.KFM
                 if (x.uniqueID == mapUID)
                 {
                     cmap = x;
-                    //Définition PMID
+                    //PMID definition
                     PMID = Utils.GCKFM.getPackMapID(cmap, pawn.TryGetComp<Comp_Killing>().KFM_PID);
                     break;
                 }
@@ -60,7 +60,7 @@ namespace aRandomKiwi.KFM
             Toil initToil = new Toil();
             initToil.AddFinishAction(delegate()
             {
-                //Restauration Map universellement
+                //Map restoration universally
                 Map cmap2 = null;
                 foreach (var x in Find.Maps)
                 {
@@ -70,9 +70,9 @@ namespace aRandomKiwi.KFM
             });
             yield return initToil;
 
-            //le cas échéant Attente tant que tout les membres ne sont pas arrivés ( au point du leader )
+            //if applicable Waiting until all members have arrived (at the leader's point)
 
-            //Déplacement aux coordonnées du point de groupement
+            //Move to the coordinates of the grouping point
             Toil updatePos = new Toil();
             Toil nothing = new Toil();
             Toil gotoWaitingPoint = Toils_Goto.
@@ -80,7 +80,7 @@ namespace aRandomKiwi.KFM
                 {
                     if (Find.TickManager.TicksGame % 100 == 0)
                     {
-                        //Si changement point de destination entre temps changement de position
+                        //If change of destination point meanwhile change of position
                         IntVec3 point = Utils.GCKFM.getGroupPoint(cmap, pawn.TryGetComp<Comp_Killing>().KFM_PID);
                         return !groupPoint.Equals(point);
                     }
@@ -96,19 +96,19 @@ namespace aRandomKiwi.KFM
             yield return setSkin;
             yield return Toils_General.Wait(35, TargetIndex.None);
 
-            //Le cas échéant changement destination
-             updatePos.initAction = delegate ()
+            //If necessary, change of destination
+            updatePos.initAction = delegate ()
              {
-                //Obtention point d'attente
-                IntVec3 point = Utils.GCKFM.getGroupPoint(cmap, pawn.TryGetComp<Comp_Killing>().KFM_PID);
+                 //Obtaining waiting point
+                 IntVec3 point = Utils.GCKFM.getGroupPoint(cmap, pawn.TryGetComp<Comp_Killing>().KFM_PID);
 
                  if (!OnEndGroupMode() && !groupPoint.Equals(point) && point.x >= 0) {
                      IntVec3 pointDec = new IntVec3(point.ToVector3());
                      Utils.setRandomChangeToVector(ref pointDec, 0, 4);
                      groupPoint = point;
 
-                    //Génération d'une version proche pour placer effectivement l'animal
-                    this.job.targetA = new LocalTargetInfo(CellFinder.RandomSpawnCellForPawnNear(pointDec, cmap));
+                     //Generation of a close version to actually place the animal
+                     this.job.targetA = new LocalTargetInfo(CellFinder.RandomSpawnCellForPawnNear(pointDec, cmap));
                     this.JumpToToil(gotoWaitingPoint);
                     return;
                 }
@@ -127,13 +127,13 @@ namespace aRandomKiwi.KFM
         }
 
         /*
-         *  Action invoquée lorsque la cible est morte ou que la toil se termine de maniere abrupte
+         *  Action summoned when the target is dead or the canvas abruptly ends
          */
         private void OnEndKillingTarget()
         {
             ////Log.Message("Arret du JOB KILL "+this.job.GetUniqueLoadID());
             Comp_Killing ch = pawn.TryGetComp<Comp_Killing>();
-            //Démobilisation de l'animal
+            //Animal demobilization
             ch.KFM_affected = false;
         }
 

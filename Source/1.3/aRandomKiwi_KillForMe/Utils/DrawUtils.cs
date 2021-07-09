@@ -17,7 +17,6 @@ namespace aRandomKiwi.KFM
 
         }
 
-        // Token: 0x060060BC RID: 24764 RVA: 0x002BBD68 File Offset: 0x002BA168
         public static void DrawRadiusRingEx(IntVec3 center, float radius)
         {
             ringDrawCells.Clear();

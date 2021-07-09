@@ -7,9 +7,9 @@ using RimWorld;
 namespace aRandomKiwi.KFM
 {
     internal class Pawn_PathFollower_Patch
-    {   
+    {
         /*
-         * Patch permettant d'éviter une erreur liée au mod qui fait que soit jobs soit curdriver == null lors de l'appel a cette fonction
+         * Patch to avoid an error related to the mod which causes either jobs or curdriver == null when calling this function
          */
         [HarmonyPatch(typeof(Pawn_PathFollower), "PatherFailed")]
         public class PatherFailed

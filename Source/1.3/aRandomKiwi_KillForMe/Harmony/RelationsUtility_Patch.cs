@@ -15,7 +15,7 @@ namespace aRandomKiwi.KFM
             public static bool Replacement( ref bool __result, Pawn humanlike, Pawn animal, float baseChance)
             {
                 //Log.Message("BOND1");
-                //Si parametre activé ET animal tueur ==> on return false
+                //If parameter enabled AND killer animal ==> on return false
                 if ( Settings.disableKillerBond && Utils.hasLearnedKilling(animal))
                 {
                     //Log.Message("BOND2");
