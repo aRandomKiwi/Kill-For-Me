@@ -1778,8 +1778,6 @@ namespace aRandomKiwi.KFM
                                 || !Utils.GCKFM.canPackMembersReach(map, cpack.Key, t.Position))
                                 continue;
 
-                            //if(t is Pawn)
-                              //  Log.Message(t.LabelCap + " " + t.def.defName + " " + ((Pawn)t).Downed);
 
                             string nearestPack = null;
                             float cdist = t.Position.DistanceTo(packsCoordinates[cpack.Key]);
@@ -1800,11 +1798,13 @@ namespace aRandomKiwi.KFM
 
                                 //Calcul distance de la pack en cours
                                 cdist2 = t.Position.DistanceTo(packsCoordinates[el.Key]);
-                                //Pack doit etre non affectée et non en mode regroupement
-                                if ((dist2 == -1 || dist2 > cdist2) 
-                                    && (!packOrderSource.ContainsKey(CPMID) || packOrderSource[CPMID] != 1) 
+                                //Pack must be unassigned and not in grouping mode and 
+                                if ((dist2 == -1 || dist2 > cdist2)
+                                    && (!packOrderSource.ContainsKey(CPMID) || packOrderSource[CPMID] != 1)
                                     && (!(cpMembers.Count == 0
                                             || isPackInGroupMode(map, el.Key)
+                                            || (Settings.isManualModeEnabled(el.Key) && getPackForcedAffectionEnemy(CPMID) != t) // if in manual mode not assigned to the current target
+                                            || (!Settings.isManualModeEnabled(el.Key) && packForcedAffectionEnemy.ContainsValue(t)) // if the target is already reserved
                                             || (packAffectedEnemy.ContainsKey(CPMID) && (!packsCanReCheckNearestTarget || (packOrderSource.ContainsKey(CPMID) && packOrderSource[CPMID] == 1))))))
                                 {
                                     dist2 = cdist2;
@@ -1844,6 +1844,7 @@ namespace aRandomKiwi.KFM
                             checkEnemiesCurrentAffected[selPID] = selEnemy;
                             //Log.Message(selPID + " doit cibler " + selEnemy.LabelCap);
                             //Lancement de la meute a l'assault de l'ennemis
+                       
                             
                             manualAllocatePack(selPID, selEnemy, false, 0);
                             processEnemy(map, selEnemy);
@@ -2025,6 +2026,7 @@ namespace aRandomKiwi.KFM
 
                 if (entry.Value == null || entry.Value.DestroyedOrNull() || entry.Value.Map == null || !Utils.isValidEnemy(entry.Value, PID) || (supMode && !supModeOk))
                 {
+                    //Log.Message("=>"+(entry.Value == null)+" "+entry.Value.DestroyedOrNull()+" "+(entry.Value.Map == null)+" "+(!Utils.isValidEnemy(entry.Value, PID))+" "+(!supMode || (supMode && supModeOk)));
                     packAffectedEnemy.Remove(entry.Key);
                     cancelCurrentPack(map, PID);
                 }
