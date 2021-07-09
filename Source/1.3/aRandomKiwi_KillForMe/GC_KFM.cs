@@ -1842,7 +1842,7 @@ namespace aRandomKiwi.KFM
                             }
                             //Log.Message("Manually affected pack " + selPID + " on " + selEnemy.LabelCap);
                             checkEnemiesCurrentAffected[selPID] = selEnemy;
-                            Log.Message(selPID + " doit cibler " + selEnemy.LabelCap);
+                            //Log.Message(selPID + " doit cibler " + selEnemy.LabelCap);
                             //Lancement de la meute a l'assault de l'ennemis
                             
                             manualAllocatePack(selPID, selEnemy, false, 0);
