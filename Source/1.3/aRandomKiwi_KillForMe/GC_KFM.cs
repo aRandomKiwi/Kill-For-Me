@@ -1666,6 +1666,13 @@ namespace aRandomKiwi.KFM
                         //processEnemy(map, target.Thing);
                     }
 
+                    //Check des ennemis downed
+                    foreach(var target in map.mapPawns.SpawnedDownedPawns)
+                    {
+                        if (target.HostileTo(Faction.OfPlayer))
+                            targets.Add(target);
+                    }
+
                     //Check les ennemis désignés
                     foreach (var des in map.designationManager.SpawnedDesignationsOfDef(Utils.killDesignationDef))
                     {
@@ -1913,7 +1920,21 @@ namespace aRandomKiwi.KFM
          */
         private bool activeThreatOrDesignatedEnemies(Map map)
         {
+            bool downedEnemy = false;
+            foreach (var target in map.mapPawns.SpawnedDownedPawns)
+            {
+                if (target.HostileTo(Faction.OfPlayer))
+                {
+                    downedEnemy = true;
+                    break;
+                }
+            }
+            downedEnemy = downedEnemy && (Settings.greenAttackUntilDeath || Settings.blackAttackUntilDeath
+                || Settings.blueAttackUntilDeath || Settings.redAttackUntilDeath || Settings.orangeAttackUntilDeath || Settings.yellowAttackUntilDeath
+                || Settings.purpleAttackUntilDeath || Settings.grayAttackUntilDeath || Settings.whiteAttackUntilDeath || Settings.pinkAttackUntilDeath);
+
             return GenHostility.AnyHostileActiveThreatToPlayer(map) 
+                || downedEnemy
                 || (map.designationManager.SpawnedDesignationsOfDef(Utils.killDesignationDef).Count() > 0)
                 || (packForcedAffectionEnemy.Count() > 0);
         }
@@ -2002,8 +2023,9 @@ namespace aRandomKiwi.KFM
                 bool supModeOk = entry.Value != null && map.designationManager.DesignationOn(entry.Value) != null && map.designationManager.DesignationOn(entry.Value).def.defName == Utils.killDesignation;
                 //Si cible devenue invalide on la retire
 
-                if (entry.Value == null || entry.Value.DestroyedOrNull() || entry.Value.Map == null || !Utils.isValidEnemy(entry.Value,PID) || (!supMode || ( supMode && supModeOk ) ))
+                if (entry.Value == null || entry.Value.DestroyedOrNull() || entry.Value.Map == null || !Utils.isValidEnemy(entry.Value,PID) ||  ( supMode && !supModeOk ) )
                 {
+                    Log.Message("=>"+(entry.Value == null)+" "+entry.Value.DestroyedOrNull()+" "+(entry.Value.Map == null)+" "+(!Utils.isValidEnemy(entry.Value, PID))+" "+(!supMode || (supMode && supModeOk)));
                     packAffectedEnemy.Remove(entry.Key);
                     cancelCurrentPack(map, PID);
                 }
