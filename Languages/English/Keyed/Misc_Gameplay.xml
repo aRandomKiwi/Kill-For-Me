@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+	<KFM_TransfertKing>Reassign</KFM_TransfertKing>
+	<KFM_TransfertKingDesc>Reassign the king of this pack to another (if the destination pack already contains a kings it will be swapped)</KFM_TransfertKingDesc>
+	<KFM_HideRallyPointWarning>Hide missing rally point warning</KFM_HideRallyPointWarning>
+	<KFM_DesignatorRallyLabel>Rally point area</KFM_DesignatorRallyLabel>
+	<KFM_DesignatorRallyDesc>Set the area where killer animals will meet up before going to fight or retreat</KFM_DesignatorRallyDesc>
+	<KFM_AlertNoRallyZoneTitle>Missing rally point!</KFM_AlertNoRallyZoneTitle>
+	<KFM_AlertNoRallyZoneDesc>Missing rally point for one of your maps, Please set one!</KFM_AlertNoRallyZoneDesc>
+	<KFM_SettingsAttackUntilDeath>Attack till death of enemies</KFM_SettingsAttackUntilDeath>
+	<KFM_SettingsAllowRangedAttack>Allow ranged attacks</KFM_SettingsAllowRangedAttack>
+	<KFM_SettingsAllowAllToKill>Allow any animal to kill in pack</KFM_SettingsAllowAllToKill>
+	<KFM_SettingsIgnoredRangedAttack>List of animals forced to melee attack (defName):</KFM_SettingsIgnoredRangedAttack>
+	<KFM_SettingsResetIgnoredRangedAttack>Reset the list of animals forced to melee attack</KFM_SettingsResetIgnoredRangedAttack>
+	<KFM_SettingsIgnoredTargets>Targets to ignore (defName):</KFM_SettingsIgnoredTargets>
+	<KFM_SettingsIgnoredPreyListNumber>Target {0}</KFM_SettingsIgnoredPreyListNumber>
+	<KFM_SettingsResetignoredTargets>Reset the list of ignored targets</KFM_SettingsResetignoredTargets>
+	<KFM_SettingsSupMode>Supervised mode : Attack only defined enemies</KFM_SettingsSupMode>
+	<KFM_SettingsAllowPackAttackBonus>Allow bonus attack by pack</KFM_SettingsAllowPackAttackBonus>
+	<KFM_SettingsBonusAttackDuration>Duration of attack bonus ({0})</KFM_SettingsBonusAttackDuration>
+	<KFM_SettingsBonusAttackByEnemyKilled>Bonus attack by enemy killed ({0}%)</KFM_SettingsBonusAttackByEnemyKilled>
+	<KFM_SettingsDisableKillerBond>Disable bonding of killer animals (retro-active)</KFM_SettingsDisableKillerBond>
+	<KFM_SettingsManualMode>Manual Mode: Pack will only attack manually selected enemies (button "Force Kill")</KFM_SettingsManualMode>
+	
+	<KFM_ForceKillLabel>Force kill</KFM_ForceKillLabel>
+	<KFM_ForceCancelKillLabel>Cancel kill</KFM_ForceCancelKillLabel>
+	<KFM_ForceKillPackContextLabel>Force kill</KFM_ForceKillPackContextLabel>
+	<KFM_ForceKillPackContextDesc>Force pack to kill designed target</KFM_ForceKillPackContextDesc>
+	
+	<KFM_ForceCancelKillDesc>Cancel current mission of the animal and his pack</KFM_ForceCancelKillDesc>
+	<KFM_ForceKillDesc>Force pack to kill this enemy</KFM_ForceKillDesc>
+	<KFM_FloatMenuForceKillNoAvailablePack>No pack available</KFM_FloatMenuForceKillNoAvailablePack>
+	<KFM_FloatMenuForceKillAvailablePack>Pack to send</KFM_FloatMenuForceKillAvailablePack>
+	<KFM_PackAvailableAllocate>Assign {0} ({1} available members)</KFM_PackAvailableAllocate>
+	<KFM_PackAvailableDeallocate>Unassign {0} ({1} available members)</KFM_PackAvailableDeallocate>
+	<KFM_ForceDeallocateOK>{0} stopped targeting {1}</KFM_ForceDeallocateOK>
+	<KFM_ForceAllocateOK>{0} is targeting {1}</KFM_ForceAllocateOK>
+	<KFM_ForceAllocateAfterDeallocateOK>{0} stopped targeting {1} and now take {2} as a target</KFM_ForceAllocateAfterDeallocateOK>
+	<KFM_ForceAllocateAfterDeallocateFAILED>{0} is already killing {1}</KFM_ForceAllocateAfterDeallocateFAILED>
+	<KFM_ForceAllocateAfterDeallocateRegroupOK>{0} has stopped being in grouping mode and now take {1} as a target</KFM_ForceAllocateAfterDeallocateRegroupOK>
+	<KFM_PackAvailableAllocateAfterRegroupMode>Assign {0} (-In grouping mode- {1} available members)</KFM_PackAvailableAllocateAfterRegroupMode>
+	
+	<KFM_PackColorblack>black pack</KFM_PackColorblack>
+	<KFM_PackColorblue>blue pack</KFM_PackColorblue>
+	<KFM_PackColorgreen>green pack</KFM_PackColorgreen>
+	<KFM_PackColorpink>pink pack</KFM_PackColorpink>
+	<KFM_PackColorred>red pack</KFM_PackColorred>
+	<KFM_PackColoryellow>yellow pack</KFM_PackColoryellow>
+	<KFM_PackColorwhite>white pack</KFM_PackColorwhite>
+	<KFM_PackColorgray>grey pack</KFM_PackColorgray>
+	<KFM_PackColororange>orange pack</KFM_PackColororange>
+	<KFM_PackColorpurple>purple pack</KFM_PackColorpurple>
+	
+	<KFM_blackColorLib>black</KFM_blackColorLib>
+	<KFM_blueColorLib>blue</KFM_blueColorLib>
+	<KFM_greenColorLib>green</KFM_greenColorLib>
+	<KFM_pinkColorLib>pink</KFM_pinkColorLib>
+	<KFM_redColorLib>red</KFM_redColorLib>
+	<KFM_yellowColorLib>yellow</KFM_yellowColorLib>
+	<KFM_whiteColorLib>white</KFM_whiteColorLib>
+	<KFM_grayColorLib>grey</KFM_grayColorLib>
+	<KFM_orangeColorLib>orange</KFM_orangeColorLib>
+	<KFM_purpleColorLib>purple</KFM_purpleColorLib>
+	
+	<KFM_DesignatorKillNeedSelectKillable>You cant target this!</KFM_DesignatorKillNeedSelectKillable>
+	<KFM_DesignatorKillLabel>Kill</KFM_DesignatorKillLabel>
+	<KFM_DesignatorKillDesc>Target this enemy</KFM_DesignatorKillDesc>
+	<KFM_DesignatorDKillLabel>Dont kill</KFM_DesignatorDKillLabel>
+	<KFM_DesignatorDKillDesc>Force packs to not target this enemy</KFM_DesignatorDKillDesc>
+	
+	<KFM_BonusAttackLost>Bonus loss</KFM_BonusAttackLost>
+	<KFM_JoiningPackToKill>Joining the pack to kill an enemy...</KFM_JoiningPackToKill>
+	<KFM_WaintingForOtherToKill>Awaiting other members to fight enemy...</KFM_WaintingForOtherToKill>
+	<KFM_PackBonusAttackInspectString>Temporary bonus: {0}% (Run out in {1})</KFM_PackBonusAttackInspectString>
+	<KFM_PackBonusAttackInspectStringExpired>Temporary bonus: {0}% (Ran out)</KFM_PackBonusAttackInspectStringExpired>
+	<KFM_PackKingBonusAttackInspectString>Permanent bonus (Leader): {0}%</KFM_PackKingBonusAttackInspectString>
+	<KFM_PackBonusAttackTotalInspectString>Total Bonus: {0}%</KFM_PackBonusAttackTotalInspectString>
+	<KFM_PackBonusAttackNbKilledEnemiesInspectString>Amount of killed enemies: {0}</KFM_PackBonusAttackNbKilledEnemiesInspectString>
+	
+	<KFM_HidePackIcon>Hide packs icons</KFM_HidePackIcon>
+	<KFM_GroupPack>Group</KFM_GroupPack>
+	<KFM_GroupPackDesc>Group the pack to custom determined point.</KFM_GroupPackDesc>
+	<KFM_CancelRegroupLabel>Cancel</KFM_CancelRegroupLabel>
+	<KFM_CancelRegroupDesc>Cancel grouping pack</KFM_CancelRegroupDesc>
+	<KFM_SettingsHoursBeforeAutoDisableGroupMode>Amount of hours before auto disable grouping mode ({0})</KFM_SettingsHoursBeforeAutoDisableGroupMode>
+	<KFM_ForceAllocateFAILEDSupMode>{0} cant attack target in supervised mode and {1} isnt set as a target to kill.</KFM_ForceAllocateFAILEDSupMode>
+	
+	<KFM_PackKingOf>Leader of the {0}</KFM_PackKingOf>
+	<KFM_KingElectionNewKingLabel>Leader of pack</KFM_KingElectionNewKingLabel>
+	<KFM_KingElectionNewKingDesc>{0} is now leader of {1}</KFM_KingElectionNewKingDesc>
+	<KFM_MessagePackKingBonusAttackInc>Increasing bonus by 5% for pack leader {0}, to have killed {1} enemies !</KFM_MessagePackKingBonusAttackInc>
+	
+	<KFM_SettingsBonusKingElectionMinHour>Minimum amount of time before creation of new pack leader ({0})</KFM_SettingsBonusKingElectionMinHour>
+	<KFM_SettingsBonusKingElectionMaxHour>Maximum amount of time before creation of new pack leader ({0})</KFM_SettingsBonusKingElectionMaxHour>
+	<KFM_SettingsBonusKingElectionMinMembers>Minimum number of animals in a pack allowed before creation of a pack leader ({0} members)</KFM_SettingsBonusKingElectionMinMembers>
+	<KFM_SettingsAllowGroupModeOnlyIfKing>Allow grouping mode for packs only if a pack leader is on it</KFM_SettingsAllowGroupModeOnlyIfKing>
+	<KFM_SettingsDisallowPackGroupMode>Unconditionally disable grouping mode for packs</KFM_SettingsDisallowPackGroupMode>
+	<KFM_SettingsBonusAttackSection>Packs bonus attack settings</KFM_SettingsBonusAttackSection>
+	<KFM_SettingsGroupModeSection>Grouping mode settings</KFM_SettingsGroupModeSection>
+	<KFM_SettingsGeneralSection>Global settings</KFM_SettingsGeneralSection>
+	<KFM_SettingsBonusKingElectionPenalityCausedByKingDeath>Time penality before creation of a new leader pack if current one is killed ({0})</KFM_SettingsBonusKingElectionPenalityCausedByKingDeath>
+	<KFM_SettingsBonusAttackWarriorNbToKill>Number of enemies to kill before a member of the pack can become 'warrior' ({0} enemies)</KFM_SettingsBonusAttackWarriorNbToKill>
+	<KFM_SettingsBonusAttackOfWarriors>Warriors attack bonus ({0}%)</KFM_SettingsBonusAttackOfWarriors>
+	<KFM_SettingsBonusAttackOfKings>Pack leaders attack bonus ({0}%)</KFM_SettingsBonusAttackOfKings>
+	<KFM_SettingsAllowKillSelfPawns>(Dangerous) Allow pack members to target the colony pawns</KFM_SettingsAllowKillSelfPawns>
+	<KFM_SettingsPreventFromFleeWhenHit>Enable "terminator" mode</KFM_SettingsPreventFromFleeWhenHit>
+	<KFM_SettingsAllowTargetAllBuildings>Allow packs to target all buildings</KFM_SettingsAllowTargetAllBuildings>
+	<KFM_SettingsPercentageMemberNearToAvoidRallyPoint>Percentage of members of a pack to be close to avoid regrouping at the rallying point ({0}%)</KFM_SettingsPercentageMemberNearToAvoidRallyPoint>
+	<KFM_SettingsDefaultBuildingToAttack>List of buildings that can be attacked by default</KFM_SettingsDefaultBuildingToAttack>
+	<KFM_SettingsResetDefaultBuildingToAttack>Reset the list of default attackable buildings</KFM_SettingsResetDefaultBuildingToAttack>
+	<KFM_SettingsAllowPackToAttackStrongerTarget>(Dangerous) Allow pack to attack stronger enemies</KFM_SettingsAllowPackToAttackStrongerTarget>
+	<KFM_SettingsAllowManualKingSet>Manually define the leader of each pack</KFM_SettingsAllowManualKingSet>
+	
+	<KFM_ManualKingSetLabel>Become leader</KFM_ManualKingSetLabel>
+	<KFM_ManualKingSetDesc>Force this animal to become the new leader of his pack, watch out bonus accumulated with the former leader will be lost!</KFM_ManualKingSetDesc>
+	<KFM_PackKingDeadLabel>Killed leader</KFM_PackKingDeadLabel>
+	<KFM_cannotChangeKingPack>{0} is a pack leader, you cant change his pack !</KFM_cannotChangeKingPack>
+	<KFM_PackKingDeadDesc>{0}, leader of pack {1} has been killed, the permanent {2}% pack bonus has been lost !</KFM_PackKingDeadDesc>
+	<KFM_PackKingBonusAttackEnemyToKillBeforeNextReward>{0} enemies to kill before new bonus</KFM_PackKingBonusAttackEnemyToKillBeforeNextReward>
+	
+	<KFM_ConfirmWarriorChangePackTitle>Pack changing</KFM_ConfirmWarriorChangePackTitle>
+	<KFM_ConfirmWarriorChangePackDetail>Warning ! {0} is a warrior, if you change his pack he will lose his warrior status and his bonus.</KFM_ConfirmWarriorChangePackDetail>
+	<KFM_KingText>Leader</KFM_KingText>
+	<KFM_WarriorText>Warrior</KFM_WarriorText>
+	<KFM_CannotTargetStrongerEnemie>You cannot target that! the pack attack power ({0}) is less than the target ({1})</KFM_CannotTargetStrongerEnemie>
+</LanguageData>

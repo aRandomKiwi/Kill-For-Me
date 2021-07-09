@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+	<KFM_HideRallyPointWarning>Masquer l'alerte de point de ralliement manquant</KFM_HideRallyPointWarning>
+	<KFM_DesignatorRallyLabel>Point de ralliement</KFM_DesignatorRallyLabel>
+	<KFM_DesignatorRallyDesc>Désigner le lieu sécurisé ou les animaux tueurs viendront se rassembler avant de partir au combat ou battre en retraite</KFM_DesignatorRallyDesc>
+	<KFM_AlertNoRallyZoneTitle>Ralliement manquant!</KFM_AlertNoRallyZoneTitle>
+	<KFM_AlertNoRallyZoneDesc>Zone de ralliement manquante sur une des maps, veuillez en définir une !</KFM_AlertNoRallyZoneDesc>
+	<KFM_SettingsAttackUntilDeath>Attaquer jusqu'à la mort les ennemis</KFM_SettingsAttackUntilDeath>
+	<KFM_SettingsAllowRangedAttack>Autoriser les attaques à distance</KFM_SettingsAllowRangedAttack>
+	<KFM_SettingsAllowAllToKill>Autoriser tous les animaux à apprendre à tuer en meute</KFM_SettingsAllowAllToKill>
+	<KFM_SettingsIgnoredRangedAttack>Liste des animaux forcés d'attaquer au corps à corps (defName):</KFM_SettingsIgnoredRangedAttack>
+	<KFM_SettingsResetIgnoredRangedAttack>Réinitialiser la liste des animaux forcés d'attaquer en mêlée</KFM_SettingsResetIgnoredRangedAttack>
+	<KFM_SettingsIgnoredTargets>Cibles à ignorer (defName):</KFM_SettingsIgnoredTargets>
+	<KFM_SettingsIgnoredPreyListNumber>Cible {0}</KFM_SettingsIgnoredPreyListNumber>
+	<KFM_SettingsResetignoredTargets>Réinitialiser la liste des cibles ignorées</KFM_SettingsResetignoredTargets>
+	<KFM_SettingsSupMode>Mode supervisé : Attaquer uniquement les ennemis désignés</KFM_SettingsSupMode>
+	<KFM_SettingsAllowPackAttackBonus>Autoriser les bonus d'attaque par meute</KFM_SettingsAllowPackAttackBonus>
+	<KFM_SettingsBonusAttackDuration>Durée des bonus d'attaque ({0})</KFM_SettingsBonusAttackDuration>
+	<KFM_SettingsBonusAttackByEnemyKilled>Bonus d'attaque par ennemi tué ({0}%)</KFM_SettingsBonusAttackByEnemyKilled>
+	<KFM_SettingsDisableKillerBond>Désactiver l'attachement des animaux tueurs (rétro-actif)</KFM_SettingsDisableKillerBond>
+	<KFM_SettingsManualMode>Mode manuel : la meute attaquera uniquement les ennemis manuellement assigné ( boutton "Forcer tuer")</KFM_SettingsManualMode>
+	
+	<KFM_ForceKillLabel>Forcer tuer</KFM_ForceKillLabel>
+	<KFM_ForceCancelKillLabel>Annuler tuer</KFM_ForceCancelKillLabel>
+	<KFM_ForceKillPackContextLabel>Forcer tuer</KFM_ForceKillPackContextLabel>
+	<KFM_ForceKillPackContextDesc>Forcer la meute à tuer la cible désignée</KFM_ForceKillPackContextDesc>
+	
+	<KFM_ForceCancelKillDesc>Annuler la mission actuelle de l'animal selectionné et de sa meute</KFM_ForceCancelKillDesc>
+	<KFM_ForceKillDesc>Forcer une de vos meutes à aller tuer cet ennemi</KFM_ForceKillDesc>
+	<KFM_FloatMenuForceKillNoAvailablePack>Aucunes meutes disponible</KFM_FloatMenuForceKillNoAvailablePack>
+	<KFM_FloatMenuForceKillAvailablePack>Meute à envoyer</KFM_FloatMenuForceKillAvailablePack>
+	<KFM_PackAvailableAllocate>Attribuer {0} ({1} membres disponibles)</KFM_PackAvailableAllocate>
+	<KFM_PackAvailableDeallocate>Désattribuer {0} ({1} membres disponibles)</KFM_PackAvailableDeallocate>
+	<KFM_ForceDeallocateOK>{0} à arrêté de prendre pour cible {1}</KFM_ForceDeallocateOK>
+	<KFM_ForceAllocateOK>{0} prend pour cible {1}</KFM_ForceAllocateOK>
+	<KFM_ForceAllocateAfterDeallocateOK>{0} à arrêté de prendre pour cible {1} et prend maintenant {2} pour cible</KFM_ForceAllocateAfterDeallocateOK>
+	<KFM_ForceAllocateAfterDeallocateFAILED>{0} est déjà en train de tuer {1}</KFM_ForceAllocateAfterDeallocateFAILED>
+	<KFM_ForceAllocateAfterDeallocateRegroupOK>{0} à arrêté d'être en mode regroupement et prend maintenant {1} pour cible</KFM_ForceAllocateAfterDeallocateRegroupOK>
+	<KFM_PackAvailableAllocateAfterRegroupMode>Attribuer {0} ( -En mode regroupement- {1} membres disponibles)</KFM_PackAvailableAllocateAfterRegroupMode>
+	
+	<KFM_PackColorblack>meute noire</KFM_PackColorblack>
+	<KFM_PackColorblue>meute bleue</KFM_PackColorblue>
+	<KFM_PackColorgreen>meute verte</KFM_PackColorgreen>
+	<KFM_PackColorpink>meute rose</KFM_PackColorpink>
+	<KFM_PackColorred>meute rouge</KFM_PackColorred>
+	<KFM_PackColoryellow>meute jaune</KFM_PackColoryellow>
+	<KFM_PackColorwhite>meute blanche</KFM_PackColorwhite>
+	<KFM_PackColorgray>meute grise</KFM_PackColorgray>
+	<KFM_PackColororange>meute orange</KFM_PackColororange>
+	<KFM_PackColorpurple>meute violette</KFM_PackColorpurple>
+	
+	<KFM_blackColorLib>noire</KFM_blackColorLib>
+	<KFM_blueColorLib>bleue</KFM_blueColorLib>
+	<KFM_greenColorLib>verte</KFM_greenColorLib>
+	<KFM_pinkColorLib>rose</KFM_pinkColorLib>
+	<KFM_redColorLib>rouge</KFM_redColorLib>
+	<KFM_yellowColorLib>jaune</KFM_yellowColorLib>
+	<KFM_whiteColorLib>blanche</KFM_whiteColorLib>
+	<KFM_grayColorLib>grise</KFM_grayColorLib>
+	<KFM_orangeColorLib>orange</KFM_orangeColorLib>
+	<KFM_purpleColorLib>violette</KFM_purpleColorLib>
+	
+	<KFM_DesignatorKillNeedSelectKillable>Vous devez désigner un ennemi valide !</KFM_DesignatorKillNeedSelectKillable>
+	<KFM_DesignatorKillLabel>Tuer</KFM_DesignatorKillLabel>
+	<KFM_DesignatorKillDesc>Désigner cette cible pour vos meutes d'animaux tueurs</KFM_DesignatorKillDesc>
+	<KFM_DesignatorDKillLabel>Ne pas tuer</KFM_DesignatorDKillLabel>
+	<KFM_DesignatorDKillDesc>Forcer les meutes à ne pas prendre pour cible cette ennemi</KFM_DesignatorDKillDesc>
+	
+	<KFM_BonusAttackLost>Perte du bonus</KFM_BonusAttackLost>
+	<KFM_JoiningPackToKill>Rejoint la meute pour tuer...</KFM_JoiningPackToKill>
+	<KFM_WaintingForOtherToKill>En attente des autres membres pour l'attaque...</KFM_WaintingForOtherToKill>
+	<KFM_PackBonusAttackInspectString>Bonus temporaire : {0}% (expire dans {1})</KFM_PackBonusAttackInspectString>
+	<KFM_PackBonusAttackInspectStringExpired>Bonus temporaire : {0}% (expiré)</KFM_PackBonusAttackInspectStringExpired>
+	<KFM_PackKingBonusAttackInspectString>Bonus permanent (leader) : {0}%</KFM_PackKingBonusAttackInspectString>
+	<KFM_PackBonusAttackTotalInspectString>Bonus total : {0}%</KFM_PackBonusAttackTotalInspectString>
+	<KFM_PackBonusAttackNbKilledEnemiesInspectString>Nombre d'ennemis tués : {0}</KFM_PackBonusAttackNbKilledEnemiesInspectString>
+	
+	<KFM_HidePackIcon>Masquer l'icône de meute</KFM_HidePackIcon>
+	<KFM_GroupPack>regrouper</KFM_GroupPack>
+	<KFM_GroupPackDesc>Regroupement de la meute à un point donné.</KFM_GroupPackDesc>
+	<KFM_CancelRegroupLabel>Annuler</KFM_CancelRegroupLabel>
+	<KFM_CancelRegroupDesc>Annuler le regroupement de la meute</KFM_CancelRegroupDesc>
+	<KFM_SettingsHoursBeforeAutoDisableGroupMode>Nombre d'heures avant désactivation automatique du mode regroupement ({0})</KFM_SettingsHoursBeforeAutoDisableGroupMode>
+	<KFM_ForceAllocateFAILEDSupMode>{0} ne peut pas attaquer la cible car elle est en mode supervisé et {1} n'est pas marqué comme cible à tuer.</KFM_ForceAllocateFAILEDSupMode>
+	
+	<KFM_PackKingOf>Leader de la {0}</KFM_PackKingOf>
+	<KFM_KingElectionNewKingLabel>Leader</KFM_KingElectionNewKingLabel>
+	<KFM_KingElectionNewKingDesc>{0} est maintenant le leader de la {1}</KFM_KingElectionNewKingDesc>
+	<KFM_MessagePackKingBonusAttackInc>Augmentation de 5% du bonus d'attaque du leader de la {0}, comme réponse des {1} ennemis tués !</KFM_MessagePackKingBonusAttackInc>
+	
+	<KFM_SettingsBonusKingElectionMinHour>Temps minimal d'élection d'un nouveau leader ({0})</KFM_SettingsBonusKingElectionMinHour>
+	<KFM_SettingsBonusKingElectionMaxHour>Temps maximal d'élection d'un nouveau leader ({0})</KFM_SettingsBonusKingElectionMaxHour>
+	<KFM_SettingsBonusKingElectionMinMembers>Nombre minimum de membres requis dans une meute pour pouvoir élir un leader ({0} membres)</KFM_SettingsBonusKingElectionMinMembers>
+	<KFM_SettingsAllowGroupModeOnlyIfKing>Autoriser le mode regroupement des meutes uniquement pour celles possédant un leader</KFM_SettingsAllowGroupModeOnlyIfKing>
+	<KFM_SettingsDisallowPackGroupMode>Désactiver inconditionnellement le mode regroupement des meutes</KFM_SettingsDisallowPackGroupMode>
+	<KFM_SettingsBonusAttackSection>Paramètres des bonus d'attaque des meutes</KFM_SettingsBonusAttackSection>
+	<KFM_SettingsGroupModeSection>Paramètres du mode de regroupement</KFM_SettingsGroupModeSection>
+	<KFM_SettingsGeneralSection>Paramètres généraux</KFM_SettingsGeneralSection>
+	<KFM_SettingsBonusKingElectionPenalityCausedByKingDeath>Temps de pénalité du au décès d'un leader, avant de nouvelles élections ({0})</KFM_SettingsBonusKingElectionPenalityCausedByKingDeath>
+	<KFM_SettingsBonusAttackWarriorNbToKill>Nombre d'ennemis à tuer pour qu'un animal membre d'une meute puissse devenir un 'guerrier' ({0} ennemis)</KFM_SettingsBonusAttackWarriorNbToKill>
+	<KFM_SettingsBonusAttackOfWarriors>Bonus d'attaque des guerriers ({0}%)</KFM_SettingsBonusAttackOfWarriors>
+	<KFM_SettingsBonusAttackOfKings>Bonus d'attaque des leaders ({0}%)</KFM_SettingsBonusAttackOfKings>
+	<KFM_SettingsAllowKillSelfPawns>(Dangereux) Autoriser les meutes à prendre pour cible des membres de sa propre colonie</KFM_SettingsAllowKillSelfPawns>
+	<KFM_SettingsPreventFromFleeWhenHit>Activer le mode "terminator"</KFM_SettingsPreventFromFleeWhenHit>
+	<KFM_SettingsAllowTargetAllBuildings>Autoriser les meutes à prendre pour cible tout type de batiments</KFM_SettingsAllowTargetAllBuildings>
+	<KFM_SettingsPercentageMemberNearToAvoidRallyPoint>Pourcentage de membres d'une meute devant être proche pour éviter le regroupement au point de ralliement ({0}%)</KFM_SettingsPercentageMemberNearToAvoidRallyPoint>
+	<KFM_SettingsDefaultBuildingToAttack>Liste des batiments attaquables par defaut</KFM_SettingsDefaultBuildingToAttack>
+	<KFM_SettingsResetDefaultBuildingToAttack>Réinitialiser la liste des batiments attaquables par défaut</KFM_SettingsResetDefaultBuildingToAttack>
+	<KFM_SettingsAllowPackToAttackStrongerTarget>(Dangereux) Autoriser les meutes à attaquer des ennemis plus puissants</KFM_SettingsAllowPackToAttackStrongerTarget>
+	<KFM_SettingsAllowManualKingSet>Définir manuellement le leader de chaque meute</KFM_SettingsAllowManualKingSet>
+	
+	<KFM_ManualKingSetLabel>Devenir leader</KFM_ManualKingSetLabel>
+	<KFM_ManualKingSetDesc>Forcer cet animal à devenir le leader de sa meute, attention tous les bonus accumulés avec le précédent leader seront perdus !</KFM_ManualKingSetDesc>
+	<KFM_PackKingDeadLabel>Leader tué</KFM_PackKingDeadLabel>
+	<KFM_cannotChangeKingPack>{0} est leader, vous ne pouvez le changer meute !</KFM_cannotChangeKingPack>
+	<KFM_PackKingDeadDesc>{0}, le leader de la {1} a été tué, les {2}% de points bonus d'attaque permanent de la meute ont été perdu!</KFM_PackKingDeadDesc>
+	<KFM_PackKingBonusAttackEnemyToKillBeforeNextReward>{0} ennemis à tuer avant le nouveau bonus</KFM_PackKingBonusAttackEnemyToKillBeforeNextReward>
+	
+	<KFM_ConfirmWarriorChangePackTitle>Changement de meute</KFM_ConfirmWarriorChangePackTitle>
+	<KFM_ConfirmWarriorChangePackDetail>Attention ! {0} est un guerrier, si vous le changer de meute il perdra son statut de guerrier et son bonus.</KFM_ConfirmWarriorChangePackDetail>
+	<KFM_KingText>Leader</KFM_KingText>
+	<KFM_WarriorText>Guerrier</KFM_WarriorText>
+	<KFM_CannotTargetStrongerEnemie>Vous ne pouvez pas cibler cette ennemi! La puissance d'attaque de la meute ({0}) est inférieure à celle de la cible ({1})</KFM_CannotTargetStrongerEnemie>
+</LanguageData>

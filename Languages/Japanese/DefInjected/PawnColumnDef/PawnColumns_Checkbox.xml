@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+	<KFM_KillState.headerTip>殺害許可：すべての動物の殺害を許可する</KFM_KillState.headerTip>
+	<KFM_Pack.headerTip>動物への包装の影響</KFM_Pack.headerTip>
+	<KFM_PC_Kill.headerTip>パックで殺される動物に印を付けます。</KFM_PC_Kill.headerTip>
+	<KFM_PC_DKill.headerTip>動物をパックで殺さないように印を付ける。</KFM_PC_DKill.headerTip>
+	<KFM_Pack.label>パック</KFM_Pack.label>
+</LanguageData>

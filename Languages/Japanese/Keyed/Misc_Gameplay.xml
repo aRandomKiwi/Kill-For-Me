@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+	<KFM_HideRallyPointWarning>行方不明のラリーポイント警告を隠す</KFM_HideRallyPointWarning>
+	<KFM_DesignatorRallyLabel>ラリーポイント領域</KFM_DesignatorRallyLabel>
+	<KFM_DesignatorRallyDesc>キラー動物が戦う、または退却する前に集まる場所を設定します。</KFM_DesignatorRallyDesc>
+	<KFM_AlertNoRallyZoneTitle>ラリーポイントがありません！</KFM_AlertNoRallyZoneTitle>
+	<KFM_AlertNoRallyZoneDesc>1つのマップにラリーポイントがありません。設定してください。</KFM_AlertNoRallyZoneDesc>
+	<KFM_SettingsAttackUntilDeath>敵が死ぬまで攻撃する</KFM_SettingsAttackUntilDeath>
+	<KFM_SettingsAllowRangedAttack>遠隔攻撃を許可する</KFM_SettingsAllowRangedAttack>
+	<KFM_SettingsAllowAllToKill>どんな動物でもパックで殺すことを許可します。</KFM_SettingsAllowAllToKill>
+	<KFM_SettingsIgnoredRangedAttack>近接攻撃を強いられた動物の一覧（defName）：</KFM_SettingsIgnoredRangedAttack>
+	<KFM_SettingsResetIgnoredRangedAttack>近接攻撃を強いられた動物のリストをリセットします。</KFM_SettingsResetIgnoredRangedAttack>
+	<KFM_SettingsIgnoredTargets>無視するターゲット（defName）：</KFM_SettingsIgnoredTargets>
+	<KFM_SettingsIgnoredPreyListNumber>ターゲット{0}</KFM_SettingsIgnoredPreyListNumber>
+	<KFM_SettingsResetignoredTargets>無視されたターゲットのリストをリセットします。</KFM_SettingsResetignoredTargets>
+	<KFM_SettingsSupMode>監視モード：定義された敵だけを攻撃する</KFM_SettingsSupMode>
+	<KFM_SettingsAllowPackAttackBonus>パックによるボーナス攻撃を許可する</KFM_SettingsAllowPackAttackBonus>
+	<KFM_SettingsBonusAttackDuration>アタックボーナスの期間（{0}）</KFM_SettingsBonusAttackDuration>
+	<KFM_SettingsBonusAttackByEnemyKilled>敵によるボーナス攻撃が殺されました（{0}％）</KFM_SettingsBonusAttackByEnemyKilled>
+	<KFM_SettingsDisableKillerBond>キラー動物の結合を無効にする（旧式）</KFM_SettingsDisableKillerBond>
+	<KFM_SettingsManualMode>手動モード：パックは手動で選択された敵のみを攻撃します（「強制キル」ボタン）</KFM_SettingsManualMode>
+
+	<KFM_ForceKillLabel>強制終了</KFM_ForceKillLabel>
+	<KFM_ForceCancelKillLabel>強制終了をキャンセルします</KFM_ForceCancelKillLabel>
+	<KFM_ForceKillPackContextLabel>強制終了</KFM_ForceKillPackContextLabel>
+	<KFM_ForceKillPackContextDesc>設計されたターゲットを強制的に終了させます。</KFM_ForceKillPackContextDesc>
+
+	<KFM_ForceCancelKillDesc>動物とそのパックの現在の任務をキャンセルする</KFM_ForceCancelKillDesc>
+	<KFM_ForceKillDesc>この敵を倒すためのパックを強制します。</KFM_ForceKillDesc>
+	<KFM_FloatMenuForceKillNoAvailablePack>利用可能なパックなし</KFM_FloatMenuForceKillNoAvailablePack>
+	<KFM_FloatMenuForceKillAvailablePack>送信するパック</KFM_FloatMenuForceKillAvailablePack>
+	<KFM_PackAvailableAllocate>{0}（{1}人の利用可能なメンバー）を割り当てます。</KFM_PackAvailableAllocate>
+	<KFM_PackAvailableDeallocate>{0}（{1}人の利用可能なメンバー）の割り当てを解除します。</KFM_PackAvailableDeallocate>
+	<KFM_ForceDeallocateOK>{0}が{1}のターゲティングを停止しました。</KFM_ForceDeallocateOK>
+	<KFM_ForceAllocateOK>{0}は{1}をターゲットにしています。</KFM_ForceAllocateOK>
+	<KFM_ForceAllocateAfterDeallocateOK>{0}は{1}のターゲティングを中止し、{2}をターゲットにします。</KFM_ForceAllocateAfterDeallocateOK>
+	<KFM_ForceAllocateAfterDeallocateFAILED>{0}はすでに{1}を強制終了しています。</KFM_ForceAllocateAfterDeallocateFAILED>
+	<KFM_ForceAllocateAfterDeallocateRegroupOK>{0}はグループ化モードになっていないため、{1}をターゲットにします。</KFM_ForceAllocateAfterDeallocateRegroupOK>
+	<KFM_PackAvailableAllocateAfterRegroupMode>{0}を割り当てます（ - グループ化モード -  {1}人の利用可能なメンバー）</KFM_PackAvailableAllocateAfterRegroupMode>
+
+	<KFM_PackColorblack>ブラックパック</KFM_PackColorblack>
+	<KFM_PackColorblue>ブルーパック</KFM_PackColorblue>
+	<KFM_PackColorgreen>グリーンパック</KFM_PackColorgreen>
+	<KFM_PackColorpink>ピンクパック</KFM_PackColorpink>
+	<KFM_PackColorred>レッドパック</KFM_PackColorred>
+	<KFM_PackColoryellow>イエローパック</KFM_PackColoryellow>
+	<KFM_PackColorwhite>ホワイトパック</KFM_PackColorwhite>
+	<KFM_PackColorgray>グレーパック</KFM_PackColorgray>
+	<KFM_PackColororange>オレンジパック</KFM_PackColororange>
+	<KFM_PackColorpurple>紫色のパック</KFM_PackColorpurple>
+
+	<KFM_blackColorLib>黒</KFM_blackColorLib>
+	<KFM_blueColorLib>青</KFM_blueColorLib>
+	<KFM_greenColorLib>緑</KFM_greenColorLib>
+	<KFM_pinkColorLib>ピンク</KFM_pinkColorLib>
+	<KFM_redColorLib>赤</KFM_redColorLib>
+	<KFM_yellowColorLib>黄</KFM_yellowColorLib>
+	<KFM_whiteColorLib>白</KFM_whiteColorLib>
+	<KFM_grayColorLib>グレー</KFM_grayColorLib>
+	<KFM_orangeColorLib>オレンジ色</KFM_orangeColorLib>
+	<KFM_purpleColorLib>紫色</KFM_purpleColorLib>
+
+	<KFM_DesignatorKillNeedSelectKillable>これをターゲットにすることはできません。</KFM_DesignatorKillNeedSelectKillable>
+	<KFM_DesignatorKillLabel>強制終了</KFM_DesignatorKillLabel>
+	<KFM_DesignatorKillDesc>この敵を狙え</KFM_DesignatorKillDesc>
+	<KFM_DesignatorDKillLabel>殺さないで</KFM_DesignatorDKillLabel>
+	<KFM_DesignatorDKillDesc>この敵をターゲットにしないようにパックを強制します</KFM_DesignatorDKillDesc>
+
+	<KFM_BonusAttackLost>ボーナスロス</KFM_BonusAttackLost>
+	<KFM_JoiningPackToKill>敵を殺すためにパックに参加しています...</KFM_JoiningPackToKill>
+	<KFM_WaintingForOtherToKill>他のメンバーが敵と戦うのを待っています...</KFM_WaintingForOtherToKill>
+	<KFM_PackBonusAttackInspectString>一時的なボーナス：{0}％（{1}で不足）</KFM_PackBonusAttackInspectString>
+	<KFM_PackBonusAttackInspectStringExpired>一時的なボーナス：{0}％（不足）</KFM_PackBonusAttackInspectStringExpired>
+	<KFM_PackKingBonusAttackInspectString>パーマネントボーナス（リーダー）：{0}％</KFM_PackKingBonusAttackInspectString>
+	<KFM_PackBonusAttackTotalInspectString>合計ボーナス：{0}％</KFM_PackBonusAttackTotalInspectString>
+	<KFM_PackBonusAttackNbKilledEnemiesInspectString>殺された敵の数：{0}</KFM_PackBonusAttackNbKilledEnemiesInspectString>
+
+	<KFM_HidePackIcon>パックアイコンを隠す</KFM_HidePackIcon>
+	<KFM_GroupPack>グループ</KFM_GroupPack>
+	<KFM_GroupPackDesc>パックをカスタムの決められたポイントにグループ化します。</KFM_GroupPackDesc>
+	<KFM_CancelRegroupLabel>キャンセル</KFM_CancelRegroupLabel>
+	<KFM_CancelRegroupDesc>グループ化パックをキャンセルする</KFM_CancelRegroupDesc>
+	<KFM_SettingsHoursBeforeAutoDisableGroupMode>グループ化モードを自動的に無効にするまでの時間数（{0}）</KFM_SettingsHoursBeforeAutoDisableGroupMode>
+	<KFM_ForceAllocateFAILEDSupMode>{0}は監視対象モードで攻撃対象を傾けられず、{1}は殺害対象として設定されていません。</KFM_ForceAllocateFAILEDSupMode>
+
+	<KFM_PackKingOf>{0}のリーダー</KFM_PackKingOf>
+	<KFM_KingElectionNewKingLabel>パックのリーダー</KFM_KingElectionNewKingLabel>
+	<KFM_KingElectionNewKingDesc>{0}が{1}のリーダーになりました</KFM_KingElectionNewKingDesc>
+	<KFM_MessagePackKingBonusAttackInc>パックリーダー{0}のボーナスが5％増加し、{1}人の敵が死亡しました！</KFM_MessagePackKingBonusAttackInc>
+
+	<KFM_SettingsBonusKingElectionMinHour>新規パックリーダーが作成されるまでの最小時間（{0}）</KFM_SettingsBonusKingElectionMinHour>
+	<KFM_SettingsBonusKingElectionMaxHour>新しいパックリーダーが作成されるまでの最大時間（{0}）</KFM_SettingsBonusKingElectionMaxHour>
+	<KFM_SettingsBonusKingElectionMinMembers>パックリーダーを作成するまでに許可されるパック内の最小動物数（{0}人のメンバー）</KFM_SettingsBonusKingElectionMinMembers>
+	<KFM_SettingsAllowGroupModeOnlyIfKing>パックリーダーが存在する場合にのみパックのグループ化モードを許可します。</KFM_SettingsAllowGroupModeOnlyIfKing>
+	<KFM_SettingsDisallowPackGroupMode>パックのグループ化モードを無条件で無効にします</KFM_SettingsDisallowPackGroupMode>
+	<KFM_SettingsBonusAttackSection>ボーナス攻撃設定をパックします</KFM_SettingsBonusAttackSection>
+	<KFM_SettingsGroupModeSection>グループ化モードの設定</KFM_SettingsGroupModeSection>
+	<KFM_SettingsGeneralSection>グローバル設定</KFM_SettingsGeneralSection>
+	<KFM_SettingsBonusKingElectionPenalityCausedByKingDeath>現在のリーダーパックが殺された場合、新しいリーダーパックが作成されるまでのペナルティ（{0}）</KFM_SettingsBonusKingElectionPenalityCausedByKingDeath>
+	<KFM_SettingsBonusAttackWarriorNbToKill>パックのメンバーが '戦士'（{0}人の敵）になる前に殺す敵の数</KFM_SettingsBonusAttackWarriorNbToKill>
+	<KFM_SettingsBonusAttackOfWarriors>戦士の攻撃ボーナス（{0}％）</KFM_SettingsBonusAttackOfWarriors>
+	<KFM_SettingsBonusAttackOfKings>パックリーダーがボーナスを攻撃します（{0}％）</KFM_SettingsBonusAttackOfKings>
+	<KFM_SettingsAllowKillSelfPawns>（危険）パックメンバーがコロニーポーンをターゲットにすることを許可します。</KFM_SettingsAllowKillSelfPawns>
+	<KFM_SettingsPreventFromFleeWhenHit>「ターミネーター」モードを有効にします。</KFM_SettingsPreventFromFleeWhenHit>
+	<KFM_SettingsAllowTargetAllBuildings>パックがすべての建物をターゲットにできるようにします</KFM_SettingsAllowTargetAllBuildings>
+	<KFM_SettingsPercentageMemberNearToAvoidRallyPoint>集合ポイントでの再グループ化を回避するためにパックのメンバーの割合が近くなる割合（{0}％）</KFM_SettingsPercentageMemberNearToAvoidRallyPoint>
+	<KFM_SettingsDefaultBuildingToAttack>デフォルトで攻撃される可能性がある建物のリスト</KFM_SettingsDefaultBuildingToAttack>
+	<KFM_SettingsResetDefaultBuildingToAttack>デフォルトの攻撃可能な建物のリストをリセットする</KFM_SettingsResetDefaultBuildingToAttack>
+	<KFM_SettingsAllowPackToAttackStrongerTarget>（危険）パックに強い敵を攻撃させる</KFM_SettingsAllowPackToAttackStrongerTarget>
+	<KFM_SettingsAllowManualKingSet>各パックのリーダーを手動で定義する</KFM_SettingsAllowManualKingSet>
+	
+	<KFM_ManualKingSetLabel>リーダーになる</KFM_ManualKingSetLabel>
+	<KFM_ManualKingSetDesc>この動物に彼のパックの新しいリーダーになるように強制し、前のリーダーと一緒に蓄積されたボーナスが失われることに気を付けろ！</KFM_ManualKingSetDesc>
+	<KFM_PackKingDeadLabel>殺害されたリーダー</KFM_PackKingDeadLabel>
+	<KFM_cannotChangeKingPack>{0}はパックリーダーです。彼のパックを変更することはできません。</KFM_cannotChangeKingPack>
+	<KFM_PackKingDeadDesc>{0}、パック{1}のリーダーは倒されました、恒久的な{2}％パックのボーナスは失われました！</KFM_PackKingDeadDesc>
+	<KFM_PackKingBonusAttackEnemyToKillBeforeNextReward>{0}敵が新しいボーナスの前に殺します</KFM_PackKingBonusAttackEnemyToKillBeforeNextReward>
+
+	<KFM_ConfirmWarriorChangePackTitle>パックの変更</KFM_ConfirmWarriorChangePackTitle>
+	<KFM_ConfirmWarriorChangePackDetail>警告！あなたが彼のパックを変更した場合、彼は彼の戦士のステータスと彼のボーナスを失うことになる{0}は、戦士です。</KFM_ConfirmWarriorChangePackDetail>
+	<KFM_KingText>リーダー</KFM_KingText>
+	<KFM_WarriorText>戦士</KFM_WarriorText>
+	<KFM_CannotTargetStrongerEnemie>あなたはそれをターゲットにすることはできません！ パック攻撃力（{0}）が目標値（{1}）より小さい</KFM_CannotTargetStrongerEnemie>
+</LanguageData>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+	<KFM_KillState.headerTip>죽일 수 있음 : 모든 동물을 죽일 수있게합니다.</KFM_KillState.headerTip>
+	<KFM_Pack.headerTip>포장 할 동물에 영향을줍니다.</KFM_Pack.headerTip>
+	<KFM_PC_Kill.headerTip>팩에 의해 살해 될 동물을 표시하십시오.</KFM_PC_Kill.headerTip>
+	<KFM_PC_DKill.headerTip>짐승이 짐승으로 죽지 않도록 표시하십시오.</KFM_PC_DKill.headerTip>
+	<KFM_Pack.label>팩</KFM_Pack.label>
+</LanguageData>

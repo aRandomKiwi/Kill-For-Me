@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+	<KFM_KillState.headerTip>Autoriser à tuer : Autoriser l'animal à tuer</KFM_KillState.headerTip>
+	<KFM_Pack.headerTip>Affecter l'animal dans une meute</KFM_Pack.headerTip>
+	<KFM_PC_Kill.headerTip>Marquer l'animal comme étant à tuer par les meutes.</KFM_PC_Kill.headerTip>
+	<KFM_PC_DKill.headerTip>Marquer l'animal comme n'étant pas à tuer par les meutes.</KFM_PC_DKill.headerTip>
+	<KFM_Pack.label>Meute</KFM_Pack.label>
+</LanguageData>

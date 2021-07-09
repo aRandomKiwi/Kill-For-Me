@@ -1,0 +1,8 @@
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Kill For Me\Assemblies\aRandomKiwi_KillForMe.dll
+C:\Users\kiwi\Desktop\Dev RMMods\Kill For Me\aRandomKiwi_KillForMe\obj\Debug\aRandomKiwi_KillForMe.csproj.CoreCompileInputs.cache
+C:\Users\kiwi\Desktop\Dev RMMods\Kill For Me\aRandomKiwi_KillForMe\obj\Debug\aRandomKiwi_KillForMe.csproj.CopyComplete
+C:\Users\kiwi\Desktop\Dev RMMods\Kill For Me\aRandomKiwi_KillForMe\obj\Debug\aRandomKiwi_KillForMe.dll
+C:\Users\kiwi\Desktop\Dev RMModsV1.1\Kill For Me\aRandomKiwi_KillForMe\obj\Debug\aRandomKiwi_KillForMe.csproj.CoreCompileInputs.cache
+C:\Users\kiwi\Desktop\Dev RMModsV1.1\Kill For Me\aRandomKiwi_KillForMe\obj\Debug\aRandomKiwi_KillForMe.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Kill For Me\1.1\Assemblies\aRandomKiwi_KillForMe.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Kill For Me\1.2\Assemblies\aRandomKiwi_KillForMe.dll

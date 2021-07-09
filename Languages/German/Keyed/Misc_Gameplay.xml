@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+	<KFM_HideRallyPointWarning>Warnung für fehlenden Sammelpunkt ausblenden</KFM_HideRallyPointWarning>
+	<KFM_DesignatorRallyLabel>Sammelpunktbereich</KFM_DesignatorRallyLabel>
+	<KFM_DesignatorRallyDesc>Legt den Bereich fest, in dem sich die Rudel treffen, bevor sie kämpfen oder sich zurückziehen.</KFM_DesignatorRallyDesc>
+	<KFM_AlertNoRallyZoneTitle>Fehlender Sammelpunkt!</KFM_AlertNoRallyZoneTitle>
+	<KFM_AlertNoRallyZoneDesc>Auf ihrer Karte fehlt ein Sammelpunkt für ihr/e Rudel, bitte setzen Sie ein!</KFM_AlertNoRallyZoneDesc>
+	<KFM_SettingsAttackUntilDeath>Angriff bis zum Tod der Feinde</KFM_SettingsAttackUntilDeath>
+	<KFM_SettingsAllowRangedAttack>Erlaube Distanzangriffe</KFM_SettingsAllowRangedAttack>
+	<KFM_SettingsAllowAllToKill>Erlaubt, dass ein Tier im Rudel tötet</KFM_SettingsAllowAllToKill>
+	<KFM_SettingsIgnoredRangedAttack>Liste der Tiere, die gezwungen werden im Nahkampfangriff anzugreifen (defName):</KFM_SettingsIgnoredRangedAttack>
+	<KFM_SettingsResetIgnoredRangedAttack>Setzen Sie die Liste der Tiere zurück, die zu einem Nahkampfangriff gezwungen wurden</KFM_SettingsResetIgnoredRangedAttack>
+	<KFM_SettingsIgnoredTargets>Ziele die ignoriert werden (defName):</KFM_SettingsIgnoredTargets>
+	<KFM_SettingsIgnoredPreyListNumber>Ziel {0}</KFM_SettingsIgnoredPreyListNumber>
+	<KFM_SettingsResetignoredTargets>Setzen Sie die Liste der ignorierten Ziele zurück.</KFM_SettingsResetignoredTargets>
+	<KFM_SettingsSupMode>Überwachter Modus: Nur definierte Gegner angreifen</KFM_SettingsSupMode>
+	<KFM_SettingsAllowPackAttackBonus>Erlaube Angriffsbonus durch das Rudel</KFM_SettingsAllowPackAttackBonus>
+	<KFM_SettingsBonusAttackDuration>Dauer des Angriffsbonus ({0})</KFM_SettingsBonusAttackDuration>
+	<KFM_SettingsBonusAttackByEnemyKilled>Bonusangriff durch getöteten Feind ({0}%)</KFM_SettingsBonusAttackByEnemyKilled>
+	<KFM_SettingsDisableKillerBond>Deaktivieren Sie die Verbindung von Rudeln (retroaktiv)</KFM_SettingsDisableKillerBond>
+	<KFM_SettingsManualMode>Manueller Modus: Das Rudel greift nur manuell ausgewählte Gegner an (Schaltfläche "Erzwungener Kill")</KFM_SettingsManualMode>
+
+	<KFM_ForceKillLabel>töten erzwingen</KFM_ForceKillLabel>
+	<KFM_ForceCancelKillLabel>töten abbrechen</KFM_ForceCancelKillLabel>
+	<KFM_ForceKillPackContextLabel>Ziel fokussieren</KFM_ForceKillPackContextLabel>
+	<KFM_ForceKillPackContextDesc>Fokussiere das Ziel an bis es das Rudel getötet hat</KFM_ForceKillPackContextDesc>
+
+	<KFM_ForceCancelKillDesc>Bricht die aktuelle Mission des Tieres und seines Rudels ab.</KFM_ForceCancelKillDesc>
+	<KFM_ForceKillDesc>Erzwinge, dass dieser Gegner getötet wird</KFM_ForceKillDesc>
+	<KFM_FloatMenuForceKillNoAvailablePack>Kein Rudel verfügbar</KFM_FloatMenuForceKillNoAvailablePack>
+	<KFM_FloatMenuForceKillAvailablePack>Sende das Rudel aus</KFM_FloatMenuForceKillAvailablePack>
+	<KFM_PackAvailableAllocate>Weisen Sie {0} ({1} verfügbare Tiere zu)</KFM_PackAvailableAllocate>
+	<KFM_PackAvailableDeallocate>Heben Sie die Zuweisung von {0} ({1} verfügbaren Tieren auf)</KFM_PackAvailableDeallocate>
+	<KFM_ForceDeallocateOK>{0} hat das anvisieren von {1} beendet</KFM_ForceDeallocateOK>
+	<KFM_ForceAllocateOK>{0} visiert {1} an</KFM_ForceAllocateOK>
+	<KFM_ForceAllocateAfterDeallocateOK>{0} hat das anvisieren von {1} beendet und visiert jetzt {2} an</KFM_ForceAllocateAfterDeallocateOK>
+	<KFM_ForceAllocateAfterDeallocateFAILED>{0} tötet bereits {1}</KFM_ForceAllocateAfterDeallocateFAILED>
+	<KFM_ForceAllocateAfterDeallocateRegroupOK>{0} befindet sich nicht mehr im Rudelmodus und verwendet jetzt {1} als Ziel</KFM_ForceAllocateAfterDeallocateRegroupOK>
+	<KFM_PackAvailableAllocateAfterRegroupMode>Weisen Sie {0} zu (-Im Rudelmodus {1} verfügbare Tiere)</KFM_PackAvailableAllocateAfterRegroupMode>
+
+	<KFM_PackColorblack>Rudel Schwarz</KFM_PackColorblack>
+	<KFM_PackColorblue>Rudel Blau</KFM_PackColorblue>
+	<KFM_PackColorgreen>Rudel Grün</KFM_PackColorgreen>
+	<KFM_PackColorpink>Rudel Pink</KFM_PackColorpink>
+	<KFM_PackColorred>Rudel Rot</KFM_PackColorred>
+	<KFM_PackColoryellow>Rudel Gelb</KFM_PackColoryellow>
+	<KFM_PackColorwhite>Rudel Weiß</KFM_PackColorwhite>
+	<KFM_PackColorgray>Rudel Grau</KFM_PackColorgray>
+	<KFM_PackColororange>Rudel Orange</KFM_PackColororange>
+	<KFM_PackColorpurple>Rudel Violett</KFM_PackColorpurple>
+
+	<KFM_blackColorLib>Schwarz</KFM_blackColorLib>
+	<KFM_blueColorLib>Blau</KFM_blueColorLib>
+	<KFM_greenColorLib>Grün</KFM_greenColorLib>
+	<KFM_pinkColorLib>Pink</KFM_pinkColorLib>
+	<KFM_redColorLib>Rot</KFM_redColorLib>
+	<KFM_yellowColorLib>Gelb</KFM_yellowColorLib>
+	<KFM_whiteColorLib>Weiß</KFM_whiteColorLib>
+	<KFM_grayColorLib>Grau</KFM_grayColorLib>
+	<KFM_orangeColorLib>Orange</KFM_orangeColorLib>
+	<KFM_purpleColorLib>Violett</KFM_purpleColorLib>
+
+	<KFM_DesignatorKillNeedSelectKillable>Du kannst das nicht anvisieren!</KFM_DesignatorKillNeedSelectKillable>
+	<KFM_DesignatorKillLabel>Töte</KFM_DesignatorKillLabel>
+	<KFM_DesignatorKillDesc>Visiere diesen Gegner an</KFM_DesignatorKillDesc>
+	<KFM_DesignatorDKillLabel>nicht töten</KFM_DesignatorDKillLabel>
+	<KFM_DesignatorDKillDesc>Weise dein Rudel an diesen Gegner nicht anzuvisieren</KFM_DesignatorDKillDesc>
+
+	<KFM_BonusAttackLost>Verlust des Angriffsbonus</KFM_BonusAttackLost>
+	<KFM_JoiningPackToKill>Sich dem Rudel anschließen, um einen Feind zu töten ...</KFM_JoiningPackToKill>
+	<KFM_WaintingForOtherToKill>Wartet auf andere Rudelmitglieder, um den Feind zu bekämpfen ...</KFM_WaintingForOtherToKill>
+	<KFM_PackBonusAttackInspectString>Temporärer Angriffsbonus: {0}% (Läuft aus in {1})</KFM_PackBonusAttackInspectString>
+	<KFM_PackBonusAttackInspectStringExpired>Temporärer Angriffsbonus: {0}% (Ausgelaufen)</KFM_PackBonusAttackInspectStringExpired>
+	<KFM_PackKingBonusAttackInspectString>Permanenter Angriffsbonus (durch Anführer): {0}%</KFM_PackKingBonusAttackInspectString>
+	<KFM_PackBonusAttackTotalInspectString>Gesamtangriffsbonus: {0}%</KFM_PackBonusAttackTotalInspectString>
+	<KFM_PackBonusAttackNbKilledEnemiesInspectString>Anzahl der getöteten Feinde: {0}</KFM_PackBonusAttackNbKilledEnemiesInspectString>
+
+	<KFM_HidePackIcon>Rudelsymbole ausblenden</KFM_HidePackIcon>
+	<KFM_GroupPack>Gruppe</KFM_GroupPack>
+	<KFM_GroupPackDesc>Gruppieren Sie das Rudel an einem benutzerdefinierten festgelegten Punkt.</KFM_GroupPackDesc>
+	<KFM_CancelRegroupLabel>Abbrechen</KFM_CancelRegroupLabel>
+	<KFM_CancelRegroupDesc>Rudelbildung abbrechen</KFM_CancelRegroupDesc>
+	<KFM_SettingsHoursBeforeAutoDisableGroupMode>Anzahl der Stunden vor dem automatischen Deaktivieren des Gruppierungsmodus ({0})</KFM_SettingsHoursBeforeAutoDisableGroupMode>
+	<KFM_ForceAllocateFAILEDSupMode>{0} kann im beaufsichtigten Modus kein Angriffsziel sein, und {1} ist nicht als zu tötendes Ziel festgelegt.</KFM_ForceAllocateFAILEDSupMode>
+
+	<KFM_PackKingOf>Rudelführer der {0}</KFM_PackKingOf>
+	<KFM_KingElectionNewKingLabel>Rudelleiter des Rudels</KFM_KingElectionNewKingLabel>
+	<KFM_KingElectionNewKingDesc>{0} ist jetzt Rudelanführer von {1}</KFM_KingElectionNewKingDesc>
+	<KFM_MessagePackKingBonusAttackInc>Erhöhung des Angriffsbonus um 5% vom Rudelführer {0}, um {1} Gegner getötet zu haben!</KFM_MessagePackKingBonusAttackInc>
+
+	<KFM_SettingsBonusKingElectionMinHour>Minimale Zeit vor dem Erstellen des neuen Rudelführers ({0})</KFM_SettingsBonusKingElectionMinHour>
+	<KFM_SettingsBonusKingElectionMaxHour>Maximale Zeit bis zur Erstellung des neuen Rudelführers ({0})</KFM_SettingsBonusKingElectionMaxHour>
+	<KFM_SettingsBonusKingElectionMinMembers>Minimale Anzahl von Tieren in einem Rudel, die vor dem Erstellen eines Rudelführers ({0} -Mitglieder) zulässig sind</KFM_SettingsBonusKingElectionMinMembers>
+	<KFM_SettingsAllowGroupModeOnlyIfKing>Erlaube den Gruppierungsmodus für Rudel nur, wenn sich ein Rudelführer darin befindet</KFM_SettingsAllowGroupModeOnlyIfKing>
+	<KFM_SettingsDisallowPackGroupMode>Deaktivieren Sie den Gruppierungsmodus für Rudel unbedingt</KFM_SettingsDisallowPackGroupMode>
+	<KFM_SettingsBonusAttackSection>Rudel-Einstellungen für Bonusangriffe</KFM_SettingsBonusAttackSection>
+	<KFM_SettingsGroupModeSection>Einstellungen für Gruppierungsmodus</KFM_SettingsGroupModeSection>
+	<KFM_SettingsGeneralSection>Globale Einstellungen</KFM_SettingsGeneralSection>
+	<KFM_SettingsBonusKingElectionPenalityCausedByKingDeath>Zeitstrafe vor dem Erstellen eines neuen Rudelführers, wenn das aktuelle Rudel ({0}) aufgelöst wird</KFM_SettingsBonusKingElectionPenalityCausedByKingDeath>
+	<KFM_SettingsBonusAttackWarriorNbToKill>Anzahl der Gegner, die getötet werden müssen, bevor ein Mitglied des Rudels "Krieger" ({0}) werden kann</KFM_SettingsBonusAttackWarriorNbToKill>
+	<KFM_SettingsBonusAttackOfWarriors>Krieger-Angriffsbonus ({0}%)</KFM_SettingsBonusAttackOfWarriors>
+	<KFM_SettingsBonusAttackOfKings>Angriffsbonus für Führungslinien ({0}%)</KFM_SettingsBonusAttackOfKings>
+	<KFM_SettingsAllowKillSelfPawns>(Gefährlich) Erlaubt Rudelmitgliedern, die eigene Kolonie anzuvisieren</KFM_SettingsAllowKillSelfPawns>
+	<KFM_SettingsPreventFromFleeWhenHit>Aktivieren Sie den Modus "Terminator"</KFM_SettingsPreventFromFleeWhenHit>
+	<KFM_SettingsAllowTargetAllBuildings>Erlaube deinem Rudel das sie Gebäude anvisieren</KFM_SettingsAllowTargetAllBuildings>
+	<KFM_SettingsPercentageMemberNearToAvoidRallyPoint>Prozentsatz der Mitglieder eines Rudels, die dicht beieinander liegen, um eine Umgruppierung am Sammelpunkt zu vermeiden ({0}%)</KFM_SettingsPercentageMemberNearToAvoidRallyPoint>
+	<KFM_SettingsDefaultBuildingToAttack>Liste der Gebäude, die standardmäßig angegriffen werden können</KFM_SettingsDefaultBuildingToAttack>
+	<KFM_SettingsResetDefaultBuildingToAttack>Setzen Sie die Liste der standardmäßig angreifbaren Gebäude zurück</KFM_SettingsResetDefaultBuildingToAttack>
+	<KFM_SettingsAllowPackToAttackStrongerTarget>(Gefährlich) Erlaubt dem Rudel, stärkere Gegner anzugreifen</KFM_SettingsAllowPackToAttackStrongerTarget>
+	<KFM_SettingsAllowManualKingSet>Definieren Sie manuell den Anführer jedes Rudelss</KFM_SettingsAllowManualKingSet>
+	
+	<KFM_ManualKingSetLabel>Rudelführer werden</KFM_ManualKingSetLabel>
+	<KFM_ManualKingSetDesc>Lege dieses Tier als den neuen Rudelführer fest. ACHTUNG Der Angriffsbonus des ehem. Rudelführers geht dabei verloren!</KFM_ManualKingSetDesc>
+	<KFM_PackKingDeadLabel>getöteter Anführer</KFM_PackKingDeadLabel>
+	<KFM_cannotChangeKingPack>{0} ist ein Rudelführer, Sie können sein Rudel nicht ändern!</KFM_cannotChangeKingPack>
+	<KFM_PackKingDeadDesc>{0}, der Anführer vom Rudel {1} wurde getötet, der permanente {2}% -Angriffsonus ist vorbei!</KFM_PackKingDeadDesc>
+	<KFM_PackKingBonusAttackEnemyToKillBeforeNextReward>{0} zu tötende Gegner vor dem neuen Bonus</KFM_PackKingBonusAttackEnemyToKillBeforeNextReward>
+
+	<KFM_ConfirmWarriorChangePackTitle>Rudel ändern</KFM_ConfirmWarriorChangePackTitle>
+	<KFM_ConfirmWarriorChangePackDetail>Warnung! {0} ist ein Krieger. Wenn Sie sein Rudel wechseln, verliert er seinen Kriegerstatus und seinen Bonus.</KFM_ConfirmWarriorChangePackDetail>
+	<KFM_KingText>Anführer</KFM_KingText>
+	<KFM_WarriorText>Krieger</KFM_WarriorText>
+	<KFM_CannotTargetStrongerEnemie>Das kannst du nicht anvisieren! Die Rudel-Angriffskraft ({0}) ist geringer als das Ziel ({1}).</KFM_CannotTargetStrongerEnemie>
+</LanguageData>

@@ -1,0 +1,4 @@
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Hunting Training\Assemblies\randomKiwi_HuntingTraining.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Hunting Training\Source\randomKiwi_HuntingTraining\obj\Debug\randomKiwi_HuntingTraining.csproj.CoreCompileInputs.cache
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Hunting Training\Source\randomKiwi_HuntingTraining\obj\Debug\randomKiwi_HuntingTraining.csproj.CopyComplete
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Hunting Training\Source\randomKiwi_HuntingTraining\obj\Debug\randomKiwi_HuntingTraining.dll

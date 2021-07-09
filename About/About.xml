@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+    <name>Kill For Me</name>
+    <author>aRandomKiwi</author>
+	<supportedVersions>
+        <li>1.0</li>
+		<li>1.1</li>
+		<li>1.2</li>
+	</supportedVersions>
+	<modDependencies>
+    <li>
+        <packageId>brrainz.harmony</packageId>
+        <displayName>Harmony</displayName>
+        <steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
+        <downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
+    </li>
+	</modDependencies>
+	<packageId>aRandomKiwi.KillForMe</packageId>
+    <description><![CDATA[
+Teach your animals to kill enemies in packs
+Make your own animal army, up to 10 "regiments" with their own leader and warriors !
+Fully customizable !
+One RimThemes theme included !
+
+Please watch the tutorial video and read the "tips" section (important) to use the mod correctly.
+
+Version <color=#FFD800>1.6.0</color>
+
+]]>
+</description>
+
+</ModMetaData>

@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+	<KFM_HideRallyPointWarning>隐藏缺少集结点警告</KFM_HideRallyPointWarning>
+	<KFM_DesignatorRallyLabel>集结点区域</KFM_DesignatorRallyLabel>
+	<KFM_DesignatorRallyDesc>在准备战斗或撤退之前，设置好出击动物的聚集地</KFM_DesignatorRallyDesc>
+	<KFM_AlertNoRallyZoneTitle>缺少集结点！</KFM_AlertNoRallyZoneTitle>
+	<KFM_AlertNoRallyZoneDesc>您的某个地图缺少集结点，请设置一个！</KFM_AlertNoRallyZoneDesc>
+	<KFM_SettingsAttackUntilDeath>攻击直到击杀/摧毁目标</KFM_SettingsAttackUntilDeath>
+	<KFM_SettingsAllowRangedAttack>允许远程攻击</KFM_SettingsAllowRangedAttack>
+	<KFM_SettingsAllowAllToKill>允许任何动物加入编队作战</KFM_SettingsAllowAllToKill>
+	<KFM_SettingsIgnoredRangedAttack>强制近战攻击的动物名单（defName）：</KFM_SettingsIgnoredRangedAttack>
+	<KFM_SettingsResetIgnoredRangedAttack>重置强制进行近战攻击的动物列表</KFM_SettingsResetIgnoredRangedAttack>
+	<KFM_SettingsIgnoredTargets>要忽略的目标（defName）：</KFM_SettingsIgnoredTargets>
+	<KFM_SettingsIgnoredPreyListNumber>目标{0}</KFM_SettingsIgnoredPreyListNumber>
+	<KFM_SettingsResetignoredTargets>重置已忽略目标列表</KFM_SettingsResetignoredTargets>
+	<KFM_SettingsSupMode>监督模式：仅攻击已选定的目标</KFM_SettingsSupMode>
+	<KFM_SettingsAllowPackAttackBonus>允许击杀目标获得攻击加成</KFM_SettingsAllowPackAttackBonus>
+	<KFM_SettingsBonusAttackDuration>攻击加强持续时间（{0}）</KFM_SettingsBonusAttackDuration>
+	<KFM_SettingsBonusAttackByEnemyKilled>击杀/摧毁目标的战斗加成（{0}％）</KFM_SettingsBonusAttackByEnemyKilled>
+	<KFM_SettingsDisableKillerBond>禁用动物作战（包括已下令）</KFM_SettingsDisableKillerBond>
+	<KFM_SettingsManualMode>手动模式，编队只会攻击手动选择的目标（选择攻击目标）</KFM_SettingsManualMode>
+
+	<KFM_ForceKillLabel>强制攻击</KFM_ForceKillLabel>
+	<KFM_ForceCancelKillLabel>取消攻击</KFM_ForceCancelKillLabel>
+	<KFM_ForceKillPackContextLabel>强制攻击</KFM_ForceKillPackContextLabel>
+	<KFM_ForceKillPackContextDesc>强制编队攻击目标</KFM_ForceKillPackContextDesc>
+
+	<KFM_ForceCancelKillDesc>取消编队当前目标</KFM_ForceCancelKillDesc>
+	<KFM_ForceKillDesc>强制编队攻击目标</KFM_ForceKillDesc>
+	<KFM_FloatMenuForceKillNoAvailablePack>无可用编队</KFM_FloatMenuForceKillNoAvailablePack>
+	<KFM_FloatMenuForceKillAvailablePack>编队出击</KFM_FloatMenuForceKillAvailablePack>
+	<KFM_PackAvailableAllocate>分配{0}（{1}可用成员）</KFM_PackAvailableAllocate>
+	<KFM_PackAvailableDeallocate>取消分配{0}（{1}可用成员）</KFM_PackAvailableDeallocate>
+	<KFM_ForceDeallocateOK>{0}已取消进攻目标：{1}</KFM_ForceDeallocateOK>
+	<KFM_ForceAllocateOK>{0}正在进攻目标：{1}</KFM_ForceAllocateOK>
+	<KFM_ForceAllocateAfterDeallocateOK>{0}已取消进攻目标：{1}，现在以{2}作为目标</KFM_ForceAllocateAfterDeallocateOK>
+	<KFM_ForceAllocateAfterDeallocateFAILED>{0}已经进攻目标{1}</KFM_ForceAllocateAfterDeallocateFAILED>
+	<KFM_ForceAllocateAfterDeallocateRegroupOK>{0}已取消分组模式，现在将{1}作为目标</KFM_ForceAllocateAfterDeallocateRegroupOK>
+	<KFM_PackAvailableAllocateAfterRegroupMode>分配{0}（ - 分组模式 -  {1}可用成员）</KFM_PackAvailableAllocateAfterRegroupMode>
+
+	<KFM_PackColorblack>黑色编队</KFM_PackColorblack>
+	<KFM_PackColorblue>蓝色编队</KFM_PackColorblue>
+	<KFM_PackColorgreen>绿色编队</KFM_PackColorgreen>
+	<KFM_PackColorpink>粉色编队</KFM_PackColorpink>
+	<KFM_PackColorred>红包编队</KFM_PackColorred>
+	<KFM_PackColoryellow>黄色编队</KFM_PackColoryellow>
+	<KFM_PackColorwhite>白色编队</KFM_PackColorwhite>
+	<KFM_PackColorgray>灰色编队</KFM_PackColorgray>
+	<KFM_PackColororange>橙色编队</KFM_PackColororange>
+	<KFM_PackColorpurple>紫色编队</KFM_PackColorpurple>
+
+	<KFM_blackColorLib>黑色编队</KFM_blackColorLib>
+	<KFM_blueColorLib>蓝色编队</KFM_blueColorLib>
+	<KFM_greenColorLib>绿色编队</KFM_greenColorLib>
+	<KFM_pinkColorLib>粉红编队</KFM_pinkColorLib>
+	<KFM_redColorLib>红色编队</KFM_redColorLib>
+	<KFM_yellowColorLib>黄色编队</KFM_yellowColorLib>
+	<KFM_whiteColorLib>白色编队</KFM_whiteColorLib>
+	<KFM_grayColorLib>灰色编队</KFM_grayColorLib>
+	<KFM_orangeColorLib>橙色编队</KFM_orangeColorLib>
+	<KFM_purpleColorLib>紫色编队</KFM_purpleColorLib>
+
+	<KFM_DesignatorKillNeedSelectKillable>你不能以此为目标！</KFM_DesignatorKillNeedSelectKillable>
+	<KFM_DesignatorKillLabel>攻击</KFM_DesignatorKillLabel>
+	<KFM_DesignatorKillDesc>选择攻击目标</KFM_DesignatorKillDesc>
+	<KFM_DesignatorDKillLabel>禁止攻击</KFM_DesignatorDKillLabel>
+	<KFM_DesignatorDKillDesc>禁止攻击目标</KFM_DesignatorDKillDesc>
+
+	<KFM_BonusAttackLost>战斗加成损失</KFM_BonusAttackLost>
+	<KFM_JoiningPackToKill>加入作战,攻击目标......</KFM_JoiningPackToKill>
+	<KFM_WaintingForOtherToKill>等待其他成员攻击目标......</KFM_WaintingForOtherToKill>
+	<KFM_PackBonusAttackInspectString>临时战斗加成：{0}％（在{1}后消失）</KFM_PackBonusAttackInspectString>
+	<KFM_PackBonusAttackInspectStringExpired>临时战斗加成：{0}％（消失）</KFM_PackBonusAttackInspectStringExpired>
+	<KFM_PackKingBonusAttackInspectString>永久战斗加成（队长）：{0}％</KFM_PackKingBonusAttackInspectString>
+	<KFM_PackBonusAttackTotalInspectString>合计战斗加成：{0}％</KFM_PackBonusAttackTotalInspectString>
+	<KFM_PackBonusAttackNbKilledEnemiesInspectString>摧毁/杀死目标的数量：{0}</KFM_PackBonusAttackNbKilledEnemiesInspectString>
+
+	<KFM_HidePackIcon>隐藏队伍图标</KFM_HidePackIcon>
+	<KFM_GroupPack>群组</KFM_GroupPack>
+	<KFM_GroupPackDesc>将编队带到到自定义位置。</KFM_GroupPackDesc>
+	<KFM_CancelRegroupLabel>取消</KFM_CancelRegroupLabel>
+	<KFM_CancelRegroupDesc>取消编队分组</KFM_CancelRegroupDesc>
+	<KFM_SettingsHoursBeforeAutoDisableGroupMode>自动禁用分组模式前的小时数（{0}）</KFM_SettingsHoursBeforeAutoDisableGroupMode>
+	<KFM_ForceAllocateFAILEDSupMode>{0}无法在监督模式下攻击目标，并且{1}未设置为要杀死的目标。</KFM_ForceAllocateFAILEDSupMode>
+
+	<KFM_PackKingOf>{0}的队长</KFM_PackKingOf>
+	<KFM_KingElectionNewKingLabel>晋升队长</KFM_KingElectionNewKingLabel>
+	<KFM_KingElectionNewKingDesc>{0}已经成为{1}的队长</KFM_KingElectionNewKingDesc>
+	<KFM_MessagePackKingBonusAttackInc>已击杀/摧毁{1}个目标，{0}获得5％的战斗加成！</KFM_MessagePackKingBonusAttackInc>
+
+	<KFM_SettingsBonusKingElectionMinHour>创建新的编队队长（{0}）之前的最短时间</KFM_SettingsBonusKingElectionMinHour>
+	<KFM_SettingsBonusKingElectionMaxHour>创建新的编队队长（{0}）之前的最长时间</KFM_SettingsBonusKingElectionMaxHour>
+	<KFM_SettingsBonusKingElectionMinMembers>在创建编队队长（{0}成员）之前允许的最少成员数</KFM_SettingsBonusKingElectionMinMembers>
+	<KFM_SettingsAllowGroupModeOnlyIfKing>仅当编队队长在其上时才允许编队的分组模式</KFM_SettingsAllowGroupModeOnlyIfKing>
+	<KFM_SettingsDisallowPackGroupMode>无条件禁用编队的分组模式</KFM_SettingsDisallowPackGroupMode>
+	<KFM_SettingsBonusAttackSection>编队击杀加成设置</KFM_SettingsBonusAttackSection>
+	<KFM_SettingsGroupModeSection>分组模式设置</KFM_SettingsGroupModeSection>
+	<KFM_SettingsGeneralSection>全局设置</KFM_SettingsGeneralSection>
+	<KFM_SettingsBonusKingElectionPenalityCausedByKingDeath>在创建新的编队队长之前的时间限制如果当前的一个被杀死（{0}）</KFM_SettingsBonusKingElectionPenalityCausedByKingDeath>
+	<KFM_SettingsBonusAttackWarriorNbToKill>在一名成员成为'精英'（{0}敌人）之前杀死的目标数量</KFM_SettingsBonusAttackWarriorNbToKill>
+	<KFM_SettingsBonusAttackOfWarriors>队长攻击战斗加成（{0}％）</KFM_SettingsBonusAttackOfWarriors>
+	<KFM_SettingsBonusAttackOfKings>进攻队长的战斗加成（{0}％）</KFM_SettingsBonusAttackOfKings>
+	<KFM_SettingsAllowKillSelfPawns>（警告！）允许队员以殖民者为目标</KFM_SettingsAllowKillSelfPawns>
+	<KFM_SettingsPreventFromFleeWhenHit>启用“终结者”模式(开启后，受伤时不会逃跑)</KFM_SettingsPreventFromFleeWhenHit>
+	<KFM_SettingsAllowTargetAllBuildings>允许队伍以所有建筑物为目标</KFM_SettingsAllowTargetAllBuildings>
+	<KFM_SettingsPercentageMemberNearToAvoidRallyPoint>至少有多少队伍成员集结完毕后直接出击（{0}％）</KFM_SettingsPercentageMemberNearToAvoidRallyPoint>
+	<KFM_SettingsDefaultBuildingToAttack>可以默认攻击的建筑物列表</KFM_SettingsDefaultBuildingToAttack>
+	<KFM_SettingsResetDefaultBuildingToAttack>重置默认可攻击建筑物列表</KFM_SettingsResetDefaultBuildingToAttack>
+	<KFM_SettingsAllowPackToAttackStrongerTarget>（危险）允许编队攻击更强大的敌人</KFM_SettingsAllowPackToAttackStrongerTarget>
+	<KFM_SettingsAllowManualKingSet>手动定义每个包的领导者</KFM_SettingsAllowManualKingSet>
+	
+	<KFM_ManualKingSetLabel>更换队长</KFM_ManualKingSetLabel>
+	<KFM_ManualKingSetDesc>更换为新队长。注意：此举将丢失原队长战斗加成！</KFM_ManualKingSetDesc>
+	
+	<KFM_PackKingDeadLabel>队长已死亡</KFM_PackKingDeadLabel>
+	<KFM_cannotChangeKingPack>{0}是队长，你不能改变他的队伍！</KFM_cannotChangeKingPack>
+	<KFM_PackKingDeadDesc>{0}，队伍{1}的队长已死亡，{2}％战斗加成已经丢失！</KFM_PackKingDeadDesc>
+	<KFM_PackKingBonusAttackEnemyToKillBeforeNextReward>下次获得战斗加成之前需要击杀目标：{0}</KFM_PackKingBonusAttackEnemyToKillBeforeNextReward>
+
+	<KFM_ConfirmWarriorChangePackTitle>队伍更改</KFM_ConfirmWarriorChangePackTitle>
+	<KFM_ConfirmWarriorChangePackDetail>警告！{0}是精英，如果你改变他的编队，他将失去他的精英身份和他的战斗加成。</KFM_ConfirmWarriorChangePackDetail>
+	<KFM_KingText>队长</KFM_KingText>
+	<KFM_WarriorText>精英</KFM_WarriorText>
+	<KFM_CannotTargetStrongerEnemie>无效指令！队长（{0}）低于目标（{1}）</KFM_CannotTargetStrongerEnemie>
+</LanguageData>

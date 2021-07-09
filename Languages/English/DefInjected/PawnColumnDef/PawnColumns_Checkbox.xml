@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+	<KFM_KillState.headerTip>Allowed to kill : Allow all your animals to kill</KFM_KillState.headerTip>
+	<KFM_Pack.headerTip>Affect animal to pack</KFM_Pack.headerTip>
+	<KFM_PC_Kill.headerTip>Mark animals to be killed by pack.</KFM_PC_Kill.headerTip>
+	<KFM_PC_DKill.headerTip>Mark animals to be not killed by pack.</KFM_PC_DKill.headerTip>
+	<KFM_Pack.label>Pack</KFM_Pack.label>
+</LanguageData>

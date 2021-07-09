@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <KFM_KillState.headerTip>殺戮狀態</KFM_KillState.headerTip>
+  <KFM_PC_Kill.headerTip>標記洞物被隊伍殺死</KFM_PC_Kill.headerTip>
+  <KFM_PC_DKill.headerTip>標記動物不被隊伍殺死</KFM_PC_DKill.headerTip>
+
+
+</LanguageData>

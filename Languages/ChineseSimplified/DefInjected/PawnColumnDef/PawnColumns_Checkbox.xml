@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+	<KFM_KillState.headerTip>允许作战：允许动物出战</KFM_KillState.headerTip>
+	<KFM_Pack.headerTip>影响成员编队</KFM_Pack.headerTip>
+	<KFM_PC_Kill.headerTip>标记进攻目标</KFM_PC_Kill.headerTip>
+	<KFM_PC_DKill.headerTip>标记禁止进攻目标</KFM_PC_DKill.headerTip>
+	<KFM_Pack.label>编队</KFM_Pack.label>
+</LanguageData>

@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+	<KFM_HideRallyPointWarning>누락 랠리 포인트 경고 숨기기</KFM_HideRallyPointWarning>
+	<KFM_DesignatorRallyLabel>랠리 포인트 영역</KFM_DesignatorRallyLabel>
+	<KFM_DesignatorRallyDesc>싸우거나 퇴각하기 전에 살인 동물이 만나는 지역을 설정하십시오.</KFM_DesignatorRallyDesc>
+	<KFM_AlertNoRallyZoneTitle>랠리 포인트가 없습니다!</KFM_AlertNoRallyZoneTitle>
+	<KFM_AlertNoRallyZoneDesc>지도 중 하나의 랠리 포인트가 없습니다. 설정하십시오!</KFM_AlertNoRallyZoneDesc>
+	<KFM_SettingsAttackUntilDeath>적의 죽음까지 공격</KFM_SettingsAttackUntilDeath>
+	<KFM_SettingsAllowRangedAttack>원거리 공격 허용</KFM_SettingsAllowRangedAttack>
+	<KFM_SettingsAllowAllToKill>모든 동물이 팩으로 죽일 수있게합니다.</KFM_SettingsAllowAllToKill>
+	<KFM_SettingsIgnoredRangedAttack>근접 공격을당한 동물 목록 (defName) :</KFM_SettingsIgnoredRangedAttack>
+	<KFM_SettingsResetIgnoredRangedAttack>근접 공격을당한 동물 목록 재설정</KFM_SettingsResetIgnoredRangedAttack>
+	<KFM_SettingsIgnoredTargets>무시할 대상 (defName) :</KFM_SettingsIgnoredTargets>
+	<KFM_SettingsIgnoredPreyListNumber>대상 {0}</KFM_SettingsIgnoredPreyListNumber>
+	<KFM_SettingsResetignoredTargets>무시 된 대상 목록 재설정</KFM_SettingsResetignoredTargets>
+	<KFM_SettingsSupMode>감독 모드 : 정의 된 적만 공격</KFM_SettingsSupMode>
+	<KFM_SettingsAllowPackAttackBonus>팩별 보너스 공격 허용</KFM_SettingsAllowPackAttackBonus>
+	<KFM_SettingsBonusAttackDuration>공격 보너스 기간 ({0})</KFM_SettingsBonusAttackDuration>
+	<KFM_SettingsBonusAttackByEnemyKilled>적의 보너스 공격 ({0} %)</KFM_SettingsBonusAttackByEnemyKilled>
+	<KFM_SettingsDisableKillerBond>킬러 동물의 결합 해제 (역 활동)</KFM_SettingsDisableKillerBond>
+	<KFM_SettingsManualMode>수동 모드 : 팩은 수동으로 선택한 적을 공격합니다 ( "강제 종료"버튼).</KFM_SettingsManualMode>
+
+	<KFM_ForceKillLabel>강제 종료</KFM_ForceKillLabel>
+	<KFM_ForceCancelKillLabel>살인 취소</KFM_ForceCancelKillLabel>
+	<KFM_ForceKillPackContextLabel>강제 종료</KFM_ForceKillPackContextLabel>
+	<KFM_ForceKillPackContextDesc>팩을 사용하여 설계된 타겟을 강제 종료합니다.</KFM_ForceKillPackContextDesc>
+
+	<KFM_ForceCancelKillDesc>동물과 그의 짐의 현재 임무를 취소하십시오.</KFM_ForceCancelKillDesc>
+	<KFM_ForceKillDesc>이 적을 죽일 팩 강제 실행</KFM_ForceKillDesc>
+	<KFM_FloatMenuForceKillNoAvailablePack>사용 가능한 팩 없음</KFM_FloatMenuForceKillNoAvailablePack>
+	<KFM_FloatMenuForceKillAvailablePack>보낼 팩</KFM_FloatMenuForceKillAvailablePack>
+	<KFM_PackAvailableAllocate>{0} (사용 가능한 멤버 중 {1}) 할당</KFM_PackAvailableAllocate>
+	<KFM_PackAvailableDeallocate>{0} ({1} 사용 가능한 멤버) 할당 해제</KFM_PackAvailableDeallocate>
+	<KFM_ForceDeallocateOK>{0} 목표 설정 중단 {1}</KFM_ForceDeallocateOK>
+	<KFM_ForceAllocateOK>{0}이 (가) {1}을 (를) 타겟으로합니다.</KFM_ForceAllocateOK>
+	<KFM_ForceAllocateAfterDeallocateOK>{0}은 {1} 타겟팅을 중단하고 이제 {2} 목표로 삼습니다.</KFM_ForceAllocateAfterDeallocateOK>
+	<KFM_ForceAllocateAfterDeallocateFAILED>{0}은 이미 {1}을 죽이고 있습니다.</KFM_ForceAllocateAfterDeallocateFAILED>
+	<KFM_ForceAllocateAfterDeallocateRegroupOK>{0}이 (가) 그룹화 모드에 들지 못하고 이제 {1}을 목표로 삼습니다.</KFM_ForceAllocateAfterDeallocateRegroupOK>
+	<KFM_PackAvailableAllocateAfterRegroupMode>{0} 할당 (- 그룹화 모드 - {1} 사용 가능한 멤버)</KFM_PackAvailableAllocateAfterRegroupMode>
+
+	<KFM_PackColorblack>검정색 팩</KFM_PackColorblack>
+	<KFM_PackColorblue>파란 팩</KFM_PackColorblue>
+	<KFM_PackColorgreen>그린 팩</KFM_PackColorgreen>
+	<KFM_PackColorpink>분홍색 팩</KFM_PackColorpink>
+	<KFM_PackColorred>빨간색 팩</KFM_PackColorred>
+	<KFM_PackColoryellow>노란색 팩</KFM_PackColoryellow>
+	<KFM_PackColorwhite>흰색 팩</KFM_PackColorwhite>
+	<KFM_PackColorgray>그레이 팩</KFM_PackColorgray>
+	<KFM_PackColororange>주황색 팩</KFM_PackColororange>
+	<KFM_PackColorpurple>보라색 팩</KFM_PackColorpurple>
+
+	<KFM_blackColorLib>검정색</KFM_blackColorLib>
+	<KFM_blueColorLib>파란색</KFM_blueColorLib>
+	<KFM_greenColorLib>녹색</KFM_greenColorLib>
+	<KFM_pinkColorLib>분홍색</KFM_pinkColorLib>
+	<KFM_redColorLib>빨간색</KFM_redColorLib>
+	<KFM_yellowColorLib>노란색</KFM_yellowColorLib>
+	<KFM_whiteColorLib>흰색</KFM_whiteColorLib>
+	<KFM_grayColorLib>회색</KFM_grayColorLib>
+	<KFM_orangeColorLib>주황색</KFM_orangeColorLib>
+	<KFM_purpleColorLib>보라색</KFM_purpleColorLib>
+
+	<KFM_DesignatorKillNeedSelectKillable>이것을 타겟으로 할 수 없습니다!</KFM_DesignatorKillNeedSelectKillable>
+	<KFM_DesignatorKillLabel>죽이기</KFM_DesignatorKillLabel>
+	<KFM_DesignatorKillDesc>이 적을 타겟</KFM_DesignatorKillDesc>
+	<KFM_DesignatorDKillLabel>죽이지 마라</KFM_DesignatorDKillLabel>
+	<KFM_DesignatorDKillDesc>군대가이 적을 공격하지 못하도록합니다</KFM_DesignatorDKillDesc>
+
+	<KFM_BonusAttackLost>보너스 손실</KFM_BonusAttackLost>
+	<KFM_JoiningPackToKill>팩에 가입하여 적을 죽입니다 ...</KFM_JoiningPackToKill>
+	<KFM_WaintingForOtherToKill>적을 물리 치기 위해 다른 멤버를 기다리는 중 ...</KFM_WaintingForOtherToKill>
+	<KFM_PackBonusAttackInspectString>임시 보너스 : {0} % ({1} 제외)</KFM_PackBonusAttackInspectString>
+	<KFM_PackBonusAttackInspectStringExpired>임시 보너스 : {0} % (제외)</KFM_PackBonusAttackInspectStringExpired>
+	<KFM_PackKingBonusAttackInspectString>영구 보너스 (리더) : {0} %</KFM_PackKingBonusAttackInspectString>
+	<KFM_PackBonusAttackTotalInspectString>총 보너스 : {0} %</KFM_PackBonusAttackTotalInspectString>
+	<KFM_PackBonusAttackNbKilledEnemiesInspectString>사망자 수 : {0}</KFM_PackBonusAttackNbKilledEnemiesInspectString>
+
+	<KFM_HidePackIcon>팩 아이콘 숨기기</KFM_HidePackIcon>
+	<KFM_GroupPack>그룹</KFM_GroupPack>
+	<KFM_GroupPackDesc>팩을 사용자 정의 된 결정 지점으로 그룹화합니다.</KFM_GroupPackDesc>
+	<KFM_CancelRegroupLabel>취소</KFM_CancelRegroupLabel>
+	<KFM_CancelRegroupDesc>그룹화 팩 취소</KFM_CancelRegroupDesc>
+	<KFM_SettingsHoursBeforeAutoDisableGroupMode>자동 비활성화 그룹화 모드 ({0}) 전의 시간</KFM_SettingsHoursBeforeAutoDisableGroupMode>
+	<KFM_ForceAllocateFAILEDSupMode>{0} 감독 모드에서 공격 대상을 공격 할 수 없으며 {1}이 목표로 설정되지 않습니다.</KFM_ForceAllocateFAILEDSupMode>
+
+	<KFM_PackKingOf>{0}의 리더</KFM_PackKingOf>
+	<KFM_KingElectionNewKingLabel>팩 리더</KFM_KingElectionNewKingLabel>
+	<KFM_KingElectionNewKingDesc>{0}은 (는) {1}의 리더가되었습니다.</KFM_KingElectionNewKingDesc>
+	<KFM_MessagePackKingBonusAttackInc>팩 리더 {0}에게 보너스를 5 % 증가시켜 {1} 적을 죽였습니다!</KFM_MessagePackKingBonusAttackInc>
+
+	<KFM_SettingsBonusKingElectionMinHour>새 팩 리더 ({0})를 만들기 전의 최소 시간</KFM_SettingsBonusKingElectionMinHour>
+	<KFM_SettingsBonusKingElectionMaxHour>새 팩 리더 ({0})를 만들기 전의 최대 시간</KFM_SettingsBonusKingElectionMaxHour>
+	<KFM_SettingsBonusKingElectionMinMembers>팩 리더 ({0} 회원)를 만들기 전에 허용되는 팩의 최소 동물 수</KFM_SettingsBonusKingElectionMinMembers>
+	<KFM_SettingsAllowGroupModeOnlyIfKing>팩 리더가있는 경우에만 팩의 그룹화 모드 허용</KFM_SettingsAllowGroupModeOnlyIfKing>
+	<KFM_SettingsDisallowPackGroupMode>팩의 그룹화 모드를 무조건적으로 비활성화합니다.</KFM_SettingsDisallowPackGroupMode>
+	<KFM_SettingsBonusAttackSection>보너스 공격 설정을 묶습니다.</KFM_SettingsBonusAttackSection>
+	<KFM_SettingsGroupModeSection>그룹화 모드 설정</KFM_SettingsGroupModeSection>
+	<KFM_SettingsGeneralSection>전역 설정</KFM_SettingsGeneralSection>
+	<KFM_SettingsBonusKingElectionPenalityCausedByKingDeath>현재 리더 팩이 죽으면 새로운 리더 팩을 만들기 전의 시간 페널티 ({0})</KFM_SettingsBonusKingElectionPenalityCausedByKingDeath>
+	<KFM_SettingsBonusAttackWarriorNbToKill>팩 멤버가 전사 ({0} 적)가 될 수 있기 전에 죽일 적의 수</KFM_SettingsBonusAttackWarriorNbToKill>
+	<KFM_SettingsBonusAttackOfWarriors>워리어 공격 보너스 ({0} %)</KFM_SettingsBonusAttackOfWarriors>
+	<KFM_SettingsBonusAttackOfKings>팩 리더의 공격 보너스 ({0} %)</KFM_SettingsBonusAttackOfKings>
+	<KFM_SettingsAllowKillSelfPawns>(위험) 팩 멤버가 식민지 폰을 타겟팅하도록 허용</KFM_SettingsAllowKillSelfPawns>
+	<KFM_SettingsPreventFromFleeWhenHit>"종결 자"모드 사용</KFM_SettingsPreventFromFleeWhenHit>
+	<KFM_SettingsAllowTargetAllBuildings>건물이 모든 건물을 타겟팅하도록 허용</KFM_SettingsAllowTargetAllBuildings>
+	<KFM_SettingsPercentageMemberNearToAvoidRallyPoint>합계 포인트 ({0} %)에서 재 그룹화를 피하기 위해 팩 멤버의 백분율</KFM_SettingsPercentageMemberNearToAvoidRallyPoint>
+	<KFM_SettingsDefaultBuildingToAttack>기본적으로 공격을받을 수있는 건물 목록</KFM_SettingsDefaultBuildingToAttack>
+	<KFM_SettingsResetDefaultBuildingToAttack>기본 공격 가능 건물 목록 재설정</KFM_SettingsResetDefaultBuildingToAttack>
+	<KFM_SettingsAllowPackToAttackStrongerTarget>(위험한) 팩으로 더 강한 적을 공격 할 수있게하십시오.</KFM_SettingsAllowPackToAttackStrongerTarget>
+	<KFM_SettingsAllowManualKingSet>각 팩의 리더를 수동으로 정의하십시오</KFM_SettingsAllowManualKingSet>
+	
+	<KFM_ManualKingSetLabel>지도자가된다</KFM_ManualKingSetLabel>
+	<KFM_ManualKingSetDesc>이 동물이 그의 팩의 새로운 리더가 될 것을 강요하며, 전 리더와 축적 된 보너스가 사라질 것을주의하십시오!</KFM_ManualKingSetDesc>
+	<KFM_PackKingDeadLabel>사망 한 리더</KFM_PackKingDeadLabel>
+	<KFM_cannotChangeKingPack>{0}은 팩 리더이며, 팩을 바꿀 수 없습니다!</KFM_cannotChangeKingPack>
+	<KFM_PackKingDeadDesc>팩 {1}의 리더가 {0} 인 경우, 영구적 인 {2} %의 팩 보너스가 사라졌습니다.</KFM_PackKingDeadDesc>
+	<KFM_PackKingBonusAttackEnemyToKillBeforeNextReward>{0} 새로운 보너스를 받기 전에 적을 죽이는 적들</KFM_PackKingBonusAttackEnemyToKillBeforeNextReward>
+
+	<KFM_ConfirmWarriorChangePackTitle>팩 변경</KFM_ConfirmWarriorChangePackTitle>
+	<KFM_ConfirmWarriorChangePackDetail>경고! {0}은 전사이며, 팩을 변경하면 전사 상태와 보너스가 사라집니다.</KFM_ConfirmWarriorChangePackDetail>
+	<KFM_KingText>리더</KFM_KingText>
+	<KFM_WarriorText>워리어</KFM_WarriorText>
+	<KFM_CannotTargetStrongerEnemie>당신은 그것을 목표로 할 수 없습니다! 팩 공격력 ({0})이 대상 ({1})보다 작습니다</KFM_CannotTargetStrongerEnemie>
+</LanguageData>
