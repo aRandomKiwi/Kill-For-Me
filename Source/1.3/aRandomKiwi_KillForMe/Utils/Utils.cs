@@ -50,7 +50,7 @@ namespace aRandomKiwi.KFM
             /*if (t is Building_CrashedShipPart)
                 Log.Message("LOL !!! " + isBuilding);*/
             if ( t.Spawned && (t is Pawn || isBuilding || t is Hive)
-                && ((Settings.isSupModeEnabled(PID) && (t.Map.designationManager.DesignationOn(t) != null && t.Map.designationManager.DesignationOn(t).def.defName == Utils.dKillDesignation)) || !Settings.isSupModeEnabled(PID)) //Valid Supervised mode or not
+                && ((Settings.isSupModeEnabled(PID) && (t.Map.designationManager.DesignationOn(t) != null && t.Map.designationManager.DesignationOn(t).def.defName == Utils.killDesignation)) || !Settings.isSupModeEnabled(PID)) //Valid Supervised mode or not
                 && (t.Map.designationManager.DesignationOn(t) == null || t.Map.designationManager.DesignationOn(t).def.defName != Utils.dKillDesignation) //No DontKill designation on target
                 && (PID == "" || (Settings.isAttackUntilDeathEnabled(null, PID) || (!Settings.isAttackUntilDeathEnabled(null, PID) && ((pawn == null && !t.IsBrokenDown()) || (pawn != null && !pawn.Downed)))) )
                 //&& (Settings.attackUntilDeath || (!Settings.attackUntilDeath && ((pawn == null && !t.IsBrokenDown()) || (pawn != null && !pawn.Downed))))
@@ -69,7 +69,7 @@ namespace aRandomKiwi.KFM
             Pawn pawn = t as Pawn;
             bool isBuilding = t is Building;
             if (t.Spawned && (t is Pawn || isBuilding || t is Hive)
-                && ((Settings.isSupModeEnabled(PID) && (t.Map.designationManager.DesignationOn(t) != null && t.Map.designationManager.DesignationOn(t).def.defName == Utils.dKillDesignation)) || !Settings.isSupModeEnabled(PID))  //Valid Supervised mode or not
+                && ((Settings.isSupModeEnabled(PID) && (t.Map.designationManager.DesignationOn(t) != null && t.Map.designationManager.DesignationOn(t).def.defName == Utils.killDesignation)) || !Settings.isSupModeEnabled(PID))  //Valid Supervised mode or not
                 && (t.Map.designationManager.DesignationOn(t) == null || t.Map.designationManager.DesignationOn(t).def.defName != Utils.dKillDesignation)    //No DontKill designation on target
                 && (PID == "" || (Settings.isAttackUntilDeathEnabled(null, PID) || (!Settings.isAttackUntilDeathEnabled(null, PID) && ((pawn == null && !t.IsBrokenDown()) || (pawn != null && !pawn.Downed)))))
                 && (Settings.allowKillSelfPawns || (!Settings.allowKillSelfPawns && (t.Faction != Faction.OfPlayer) || isBuilding))
