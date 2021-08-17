@@ -125,11 +125,14 @@ namespace aRandomKiwi.KFM
 
             list.Begin(scrollRect);
 
+            list.ButtonImage(Utils.SettingsHeader, 850, 128);
+            list.Gap(10);
+
             /****************************************************** General parameters ******************************************************/
             if (!sectionGeneralExpanded)
                 GUI.color = Color.green;
             else
-                GUI.color = Color.gray;
+                GUI.color = Color.cyan;
             if (list.ButtonText("KFM_SettingsGeneralSection".Translate()))
                 sectionGeneralExpanded = !sectionGeneralExpanded;
             GUI.color = Color.white;
@@ -173,7 +176,7 @@ namespace aRandomKiwi.KFM
             if (!sectionGroupingExpanded)
                 GUI.color = Color.green;
             else
-                GUI.color = Color.gray;
+                GUI.color = Color.cyan;
 
             if (list.ButtonText("KFM_SettingsGroupModeSection".Translate()))
                 sectionGroupingExpanded = !sectionGroupingExpanded;
@@ -192,7 +195,7 @@ namespace aRandomKiwi.KFM
             if (!sectionAttackBonusExpanded)
                 GUI.color = Color.green;
             else
-                GUI.color = Color.gray;
+                GUI.color = Color.cyan;
             if (list.ButtonText("KFM_SettingsBonusAttackSection".Translate()))
                 sectionAttackBonusExpanded = !sectionAttackBonusExpanded;
             GUI.color = Color.white;
@@ -257,7 +260,7 @@ namespace aRandomKiwi.KFM
             if (!sectionBlackExpanded)
                 GUI.color = Color.green;
             else
-                GUI.color = Color.gray;
+                GUI.color = Color.cyan;
             if (list.ButtonText("KFM_PackColorblack".Translate().CapitalizeFirst()))
                 sectionBlackExpanded = !sectionBlackExpanded;
             GUI.color = Color.white;
@@ -272,7 +275,7 @@ namespace aRandomKiwi.KFM
             if (!sectionBlueExpanded)
                 GUI.color = Color.green;
             else
-                GUI.color = Color.gray;
+                GUI.color = Color.cyan;
             if (list.ButtonText("KFM_PackColorblue".Translate().CapitalizeFirst()))
                 sectionBlueExpanded = !sectionBlueExpanded;
             GUI.color = Color.white;
@@ -287,7 +290,7 @@ namespace aRandomKiwi.KFM
             if (!sectionGrayExpanded)
                 GUI.color = Color.green;
             else
-                GUI.color = Color.gray;
+                GUI.color = Color.cyan;
             if (list.ButtonText("KFM_PackColorgray".Translate().CapitalizeFirst()))
                 sectionGrayExpanded = !sectionGrayExpanded;
             GUI.color = Color.white;
@@ -302,7 +305,7 @@ namespace aRandomKiwi.KFM
             if (!sectionGreenExpanded)
                 GUI.color = Color.green;
             else
-                GUI.color = Color.gray;
+                GUI.color = Color.cyan;
             if (list.ButtonText("KFM_PackColorgreen".Translate().CapitalizeFirst()))
                 sectionGreenExpanded = !sectionGreenExpanded;
             GUI.color = Color.white;
@@ -317,7 +320,7 @@ namespace aRandomKiwi.KFM
             if (!sectionOrangeExpanded)
                 GUI.color = Color.green;
             else
-                GUI.color = Color.gray;
+                GUI.color = Color.cyan;
             if (list.ButtonText("KFM_PackColororange".Translate().CapitalizeFirst()))
                 sectionOrangeExpanded = !sectionOrangeExpanded;
             GUI.color = Color.white;
@@ -332,7 +335,7 @@ namespace aRandomKiwi.KFM
             if (!sectionPinkExpanded)
                 GUI.color = Color.green;
             else
-                GUI.color = Color.gray;
+                GUI.color = Color.cyan;
             if (list.ButtonText("KFM_PackColorpink".Translate().CapitalizeFirst()))
                 sectionPinkExpanded = !sectionPinkExpanded;
             GUI.color = Color.white;
@@ -347,7 +350,7 @@ namespace aRandomKiwi.KFM
             if (!sectionPurpleExpanded)
                 GUI.color = Color.green;
             else
-                GUI.color = Color.gray;
+                GUI.color = Color.cyan;
             if (list.ButtonText("KFM_PackColorpurple".Translate().CapitalizeFirst()))
                 sectionPurpleExpanded = !sectionPurpleExpanded;
             GUI.color = Color.white;
@@ -362,7 +365,7 @@ namespace aRandomKiwi.KFM
             if (!sectionRedExpanded)
                 GUI.color = Color.green;
             else
-                GUI.color = Color.gray;
+                GUI.color = Color.cyan;
             if (list.ButtonText("KFM_PackColorred".Translate().CapitalizeFirst()))
                 sectionRedExpanded = !sectionRedExpanded;
             GUI.color = Color.white;
@@ -377,7 +380,7 @@ namespace aRandomKiwi.KFM
             if (!sectionWhiteExpanded)
                 GUI.color = Color.green;
             else
-                GUI.color = Color.gray;
+                GUI.color = Color.cyan;
             if (list.ButtonText("KFM_PackColorwhite".Translate().CapitalizeFirst()))
                 sectionWhiteExpanded = !sectionWhiteExpanded;
             GUI.color = Color.white;
@@ -392,7 +395,7 @@ namespace aRandomKiwi.KFM
             if (!sectionYellowExpanded)
                 GUI.color = Color.green;
             else
-                GUI.color = Color.gray;
+                GUI.color = Color.cyan;
             if (list.ButtonText("KFM_PackColoryellow".Translate().CapitalizeFirst()))
                 sectionYellowExpanded = !sectionYellowExpanded;
             GUI.color = Color.white;
@@ -407,7 +410,7 @@ namespace aRandomKiwi.KFM
             if (!sectionTargetToIgnoreExpanded)
                 GUI.color = Color.green;
             else
-                GUI.color = Color.gray;
+                GUI.color = Color.cyan;
             if (list.ButtonText("KFM_SettingsIgnoredTargets".Translate()))
                 sectionTargetToIgnoreExpanded = !sectionTargetToIgnoreExpanded;
             GUI.color = Color.white;
@@ -442,7 +445,7 @@ namespace aRandomKiwi.KFM
             if (!sectionForcedMeleeExpanded)
                 GUI.color = Color.green;
             else
-                GUI.color = Color.gray;
+                GUI.color = Color.cyan;
             if (list.ButtonText("KFM_SettingsIgnoredRangedAttack".Translate()))
                 sectionForcedMeleeExpanded = !sectionForcedMeleeExpanded;
             GUI.color = Color.white;
@@ -476,7 +479,7 @@ namespace aRandomKiwi.KFM
             if (!sectionBuildingAttackExpanded)
                 GUI.color = Color.green;
             else
-                GUI.color = Color.gray;
+                GUI.color = Color.cyan;
             if (list.ButtonText("KFM_SettingsDefaultBuildingToAttack".Translate()))
                 sectionBuildingAttackExpanded = !sectionBuildingAttackExpanded;
             GUI.color = Color.white;
