@@ -8,6 +8,7 @@ namespace aRandomKiwi.KFM
 {
 	public class JobDriver_GroupToPoint : JobDriver
 	{
+
 		public override void ExposeData()
 		{
 			base.ExposeData();
@@ -18,10 +19,11 @@ namespace aRandomKiwi.KFM
 
 		public override bool TryMakePreToilReservations(bool errorOnFailed)
 		{
+            Comp_Killing ck = Utils.getCachedCKilling(this.pawn);
             //Unique ID save of the map
             mapUID = this.pawn.Map.uniqueID;
             //Unit marking as assigned for killing
-            this.pawn.TryGetComp<Comp_Killing>().KFM_affected = true;
+            ck.KFM_affected = true;
 
             return true;
         }
@@ -45,8 +47,10 @@ namespace aRandomKiwi.KFM
                 if (x.uniqueID == mapUID)
                 {
                     cmap = x;
+                    Comp_Killing ck = Utils.getCachedCKilling(pawn);
                     //PMID definition
-                    PMID = Utils.GCKFM.getPackMapID(cmap, pawn.TryGetComp<Comp_Killing>().KFM_PID);
+                    if (ck != null)
+                        PMID = Utils.GCKFM.getPackMapID(cmap, ck.KFM_PID);
                     break;
                 }
             }
@@ -80,8 +84,11 @@ namespace aRandomKiwi.KFM
                 {
                     if (Find.TickManager.TicksGame % 100 == 0)
                     {
+                        Comp_Killing ck = Utils.getCachedCKilling(pawn);
                         //If change of destination point meanwhile change of position
-                        IntVec3 point = Utils.GCKFM.getGroupPoint(cmap, pawn.TryGetComp<Comp_Killing>().KFM_PID);
+                        IntVec3 point = pawn.Position;
+                        if (ck != null)
+                             point = Utils.GCKFM.getGroupPoint(cmap, ck.KFM_PID);
                         return !groupPoint.Equals(point);
                     }
                     else
@@ -99,8 +106,9 @@ namespace aRandomKiwi.KFM
             //If necessary, change of destination
             updatePos.initAction = delegate ()
              {
+                 Comp_Killing ck = Utils.getCachedCKilling(this.pawn);
                  //Obtaining waiting point
-                 IntVec3 point = Utils.GCKFM.getGroupPoint(cmap, pawn.TryGetComp<Comp_Killing>().KFM_PID);
+                 IntVec3 point = Utils.GCKFM.getGroupPoint(cmap, ck.KFM_PID);
 
                  if (!OnEndGroupMode() && !groupPoint.Equals(point) && point.x >= 0) {
                      IntVec3 pointDec = new IntVec3(point.ToVector3());
@@ -123,7 +131,8 @@ namespace aRandomKiwi.KFM
 
         public bool OnEndGroupMode()
         {
-            return !Utils.GCKFM.isPackInGroupMode(pawn.Map, pawn.TryGetComp<Comp_Killing>().KFM_PID);
+            Comp_Killing ck = Utils.getCachedCKilling(this.pawn);
+            return !Utils.GCKFM.isPackInGroupMode(pawn.Map, ck.KFM_PID);
         }
 
         /*
@@ -131,10 +140,10 @@ namespace aRandomKiwi.KFM
          */
         private void OnEndKillingTarget()
         {
+            Comp_Killing ck = Utils.getCachedCKilling(this.pawn);
             ////Log.Message("Arret du JOB KILL "+this.job.GetUniqueLoadID());
-            Comp_Killing ch = pawn.TryGetComp<Comp_Killing>();
             //Animal demobilization
-            ch.KFM_affected = false;
+            ck.KFM_affected = false;
         }
 
         public int mapUID = 0;

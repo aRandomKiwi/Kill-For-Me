@@ -12,8 +12,11 @@ namespace aRandomKiwi.KFM
     internal static class Pawn_MindState_Patch
     {
         [HarmonyPatch(typeof(Pawn_MindState), "GetGizmos")]
-        public class GetGizmos
+        public class Pawn_MindState_GetGizmos_Patch
         {
+            private static Pawn prevPawn = null;
+            private static Comp_Killing ck = null;
+
             [HarmonyPostfix]
             public static void Listener(Pawn_MindState __instance, ref IEnumerable<Gizmo> __result)
             {
@@ -40,15 +43,19 @@ namespace aRandomKiwi.KFM
                     __result = __result.Concat(ret);
                 }
 
+                if(prevPawn != __instance.pawn)
+                {
+                    prevPawn = __instance.pawn;
+                    ck = Utils.getCachedCKilling(__instance.pawn);
+                }
+
                 //Following buttons reserved for killer animals
-                if (__instance.pawn.TryGetComp<Comp_Killing>() == null || !__instance.pawn.TryGetComp<Comp_Killing>().killEnabled())
+                if (ck == null || !ck.killEnabled())
                     return;
 
                 //Add button to cancel an order from a current pack (target)
                 if (Utils.hasLearnedKilling(__instance.pawn)){
                     ret = new List<Gizmo>();
-                    Comp_Killing ck = __instance.pawn.TryGetComp<Comp_Killing>();
-
 
                     //Add button allowing to change the pack if not a king
                     if (ck.KFM_PID != null && ck.KFM_PID != "" && !ck.KFM_isKing)
@@ -90,7 +97,7 @@ namespace aRandomKiwi.KFM
                                                 }
 
                                                 Pawn cpawn = (Pawn)entry;
-                                                ck = cpawn.TryGetComp<Comp_Killing>();
+                                                ck = Utils.getCachedCKilling(cpawn);
                                                 if (ck == null || !cpawn.Faction.IsPlayer || !ck.killEnabled() || !Utils.hasLearnedKilling(cpawn))
                                                     continue;
 
@@ -203,7 +210,7 @@ namespace aRandomKiwi.KFM
                             {
                                 if (__instance != null && __instance.pawn!= null)
                                 {
-                                    Comp_Killing ck2 = __instance.pawn.TryGetComp<Comp_Killing>();
+                                    Comp_Killing ck2 = Utils.getCachedCKilling(__instance.pawn);
                                     if (ck2 != null && affectedEnemy != null)
                                     {
                                         if (Utils.GCKFM.isHalfOfPackNearEachOther(ck2.parent.Map, ck2.KFM_PID))
@@ -281,9 +288,10 @@ namespace aRandomKiwi.KFM
                 // if it is an animal in killer mode there will be a different treatment from the others, otherwise we send to the vanilla routine with the possibility of the herdAnimals herd escaping
                 // Indeed because for animals in killer mode of the herAnimals type (elephnt, rhino, etc ...) there is an additional code in the vanilla which means that there is a 10% chance that they will all fly in a ray
                 // of 25 if one of them is injured which is not tolerable
+                Comp_Killing ck = Utils.getCachedCKilling(__instance.pawn);
                 if ( (__instance.pawn.CurJob != null && __instance.pawn.CurJob.def.defName == Utils.killJob)
-                    || (__instance.pawn.TryGetComp<Comp_Killing>() != null
-                        && Find.TickManager.TicksGame - Utils.GCKFM.getLastAffectedEndedGT(__instance.pawn.Map, __instance.pawn.TryGetComp<Comp_Killing>().KFM_PID) <= Utils.gtBeforeReturnToRallyPoint))
+                    || (ck != null
+                        && Find.TickManager.TicksGame - Utils.GCKFM.getLastAffectedEndedGT(__instance.pawn.Map, ck.KFM_PID) <= Utils.gtBeforeReturnToRallyPoint))
                 {
                     //If not in termiantor mode, in terminator mode no leak
                     if (!Settings.preventFleeWhenHit)

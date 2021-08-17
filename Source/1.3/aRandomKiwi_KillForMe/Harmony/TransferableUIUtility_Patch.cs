@@ -19,7 +19,7 @@ namespace aRandomKiwi.KFM
                 //If an animal that has learned to kill, it has its name added to its pack
                 if (pawn != null && Utils.hasLearnedKilling(pawn))
                 {
-                    Comp_Killing ck = pawn.TryGetComp<Comp_Killing>();
+                    Comp_Killing ck = Utils.getCachedCKilling(pawn);
                     Rect rect3 = new Rect(curX - 24f, (rect.height - 24f) / 2f, 24f, 24f);
                     curX -= 24f;
                     //TooltipHandler.TipRegion(rect3, PawnColumnWorker_Pregnant.GetTooltipText(pawn));

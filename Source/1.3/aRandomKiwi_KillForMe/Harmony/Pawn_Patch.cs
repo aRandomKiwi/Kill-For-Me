@@ -21,7 +21,7 @@ namespace aRandomKiwi.KFM
                     Comp_Killing ck = null;
                     if (killer is Pawn) {
                         pawnKiller = (Pawn)killer;
-                        ck = killer.TryGetComp<Comp_Killing>();
+                        ck = Utils.getCachedCKilling(pawnKiller);
                     }
 
                     //If the killer is a member of a pack and is affected
@@ -45,7 +45,7 @@ namespace aRandomKiwi.KFM
                 //If slain creature is an animal in a pack
                 if (Utils.hasLearnedKilling(__instance))
                 {
-                    Comp_Killing kck = __instance.TryGetComp<Comp_Killing>();
+                    Comp_Killing kck = Utils.getCachedCKilling(__instance);
                     if (kck != null)
                     {
                         //Log.Message("Suppression du membre décédé "+ __instance.LabelCap+" de la meute "+ __instance.TryGetComp<Comp_Killing>().KFM_PID);
@@ -74,7 +74,7 @@ namespace aRandomKiwi.KFM
                 //If an animal that has learned to kill
                 if (Utils.hasLearnedKilling(__instance))
                 {
-                    Comp_Killing ck = __instance.TryGetComp<Comp_Killing>();
+                    Comp_Killing ck = Utils.getCachedCKilling(__instance);
                     //Display only if the animal is a valid animal for the kill mode (avoid that by clicking on animal down or in mental break that the trait is displayed)
                     if (ck != null && Utils.GCKFM.isValidPackMember(__instance, ck))
                     {
@@ -108,7 +108,7 @@ namespace aRandomKiwi.KFM
                 //If it is an animal that has learned to kill AND that its faction is assigned to a value other than player (===> runWild, sale to a merchant) it is removed from its pack
                 if (Utils.hasLearnedKilling(__instance) && newFaction != Faction.OfPlayer)
                 {
-                    Comp_Killing ck = __instance.TryGetComp<Comp_Killing>();
+                    Comp_Killing ck = Utils.getCachedCKilling(__instance);
                     if (ck != null)
                     {
                         Utils.GCKFM.removePackMember(ck.KFM_PID, __instance);

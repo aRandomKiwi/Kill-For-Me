@@ -89,6 +89,23 @@ namespace aRandomKiwi.KFM
         public static bool orangeAttackUntilDeath = false;
 
 
+        private static bool sectionGeneralExpanded = false;
+        private static bool sectionGroupingExpanded = false;
+        private static bool sectionAttackBonusExpanded = false;
+        private static bool sectionBlackExpanded = false;
+        private static bool sectionBlueExpanded = false;
+        private static bool sectionRedExpanded = false;
+        private static bool sectionOrangeExpanded = false;
+        private static bool sectionYellowExpanded = false;
+        private static bool sectionPinkExpanded = false;
+        private static bool sectionPurpleExpanded = false;
+        private static bool sectionGreenExpanded = false;
+        private static bool sectionGrayExpanded = false;
+        private static bool sectionWhiteExpanded = false;
+        private static bool sectionTargetToIgnoreExpanded = false;
+        private static bool sectionForcedMeleeExpanded = false;
+        private static bool sectionBuildingAttackExpanded = false;
+
         public static Vector2 scrollPosition = Vector2.zero;
 
         public static void DoSettingsWindowContents(Rect inRect)
@@ -109,323 +126,384 @@ namespace aRandomKiwi.KFM
             list.Begin(scrollRect);
 
             /****************************************************** General parameters ******************************************************/
-            list.GapLine();
-            GUI.color = Color.green;
-            list.Label("KFM_SettingsGeneralSection".Translate() + " :");
+            if (!sectionGeneralExpanded)
+                GUI.color = Color.green;
+            else
+                GUI.color = Color.gray;
+            if (list.ButtonText("KFM_SettingsGeneralSection".Translate()))
+                sectionGeneralExpanded = !sectionGeneralExpanded;
             GUI.color = Color.white;
-            list.GapLine();
+
+            if (sectionGeneralExpanded)
+            {
+                //Hide rally point alert
+                list.CheckboxLabeled("KFM_HideRallyPointWarning".Translate(), ref hideRallyPointWarning);
+
+                //Hide the pack icon
+                list.CheckboxLabeled("KFM_HidePackIcon".Translate(), ref hidePackIcon);
+
+                //Prevent animals from running away when they are bruised
+                list.CheckboxLabeled("KFM_SettingsPreventFromFleeWhenHit".Translate(), ref preventFleeWhenHit);
+
+                //allow remote attacks
+                list.CheckboxLabeled("KFM_SettingsAllowRangedAttack".Translate(), ref allowRangedAttack);
 
 
-            //Hide rally point alert
-            list.CheckboxLabeled("KFM_HideRallyPointWarning".Translate(), ref hideRallyPointWarning);
+                list.CheckboxLabeled("KFM_SettingsAllowKillSelfPawns".Translate(), ref allowKillSelfPawns);
 
-            //Hide the pack icon
-            list.CheckboxLabeled("KFM_HidePackIcon".Translate(), ref hidePackIcon);
+                //Allow packs to target all types of buildings
+                list.CheckboxLabeled("KFM_SettingsAllowTargetAllBuildings".Translate(), ref allowTargetAllBuildings);
 
-            //Prevent animals from running away when they are bruised
-            list.CheckboxLabeled("KFM_SettingsPreventFromFleeWhenHit".Translate(), ref preventFleeWhenHit);
+                //Attack enemies to the death
+                list.CheckboxLabeled("KFM_SettingsAttackUntilDeath".Translate(), ref attackUntilDeath);
 
-            //allow remote attacks
-            list.CheckboxLabeled("KFM_SettingsAllowRangedAttack".Translate(), ref allowRangedAttack);
+                //Allow learning of 'Hunt' to all animals
+                list.CheckboxLabeled("KFM_SettingsAllowAllToKill".Translate(), ref allowAllToKill);
+                Utils.setAllowAllToKillState();
 
+                //Disabled bond animals
+                list.CheckboxLabeled("KFM_SettingsDisableKillerBond".Translate(), ref disableKillerBond);
 
-            list.CheckboxLabeled("KFM_SettingsAllowKillSelfPawns".Translate(), ref allowKillSelfPawns);
+                //Percentage of members of a nearby pack to avoid point of achievement
+                list.Label("KFM_SettingsPercentageMemberNearToAvoidRallyPoint".Translate((int)(percentageMemberNearToAvoidRallyPoint * 100)));
+                percentageMemberNearToAvoidRallyPoint = list.Slider(percentageMemberNearToAvoidRallyPoint, 0.0f, 1.00f);
+            }
 
-            //Allow packs to target all types of buildings
-            list.CheckboxLabeled("KFM_SettingsAllowTargetAllBuildings".Translate(), ref allowTargetAllBuildings);
-
-            //Attack enemies to the death
-            list.CheckboxLabeled("KFM_SettingsAttackUntilDeath".Translate(), ref attackUntilDeath);
-
-            //Allow learning of 'Hunt' to all animals
-            list.CheckboxLabeled("KFM_SettingsAllowAllToKill".Translate(), ref allowAllToKill);
-            Utils.setAllowAllToKillState();
-
-            //Disabled bond animals
-            list.CheckboxLabeled("KFM_SettingsDisableKillerBond".Translate(), ref disableKillerBond);
-
-            //Percentage of members of a nearby pack to avoid point of achievement
-            list.Label("KFM_SettingsPercentageMemberNearToAvoidRallyPoint".Translate((int)(percentageMemberNearToAvoidRallyPoint * 100)));
-            percentageMemberNearToAvoidRallyPoint = list.Slider(percentageMemberNearToAvoidRallyPoint, 0.0f, 1.00f);
-
-            list.Gap(10f);
             /****************************************************** Grouping mode ******************************************************/
-            list.GapLine();
-            GUI.color = Color.green;
-            list.Label("KFM_SettingsGroupModeSection".Translate() + " :");
+            if (!sectionGroupingExpanded)
+                GUI.color = Color.green;
+            else
+                GUI.color = Color.gray;
+
+            if (list.ButtonText("KFM_SettingsGroupModeSection".Translate()))
+                sectionGroupingExpanded = !sectionGroupingExpanded;
             GUI.color = Color.white;
-            list.GapLine();
 
+            if (sectionGroupingExpanded)
+            {
+                //Only authorize the grouping mode of packs for those with a leader
+                list.CheckboxLabeled("KFM_SettingsAllowGroupModeOnlyIfKing".Translate(), ref allowPackGroupModeOnlyIfKing);
 
-            //Only authorize the grouping mode of packs for those with a leader
-            list.CheckboxLabeled("KFM_SettingsAllowGroupModeOnlyIfKing".Translate(), ref allowPackGroupModeOnlyIfKing);
+                //Disable grouping mode
+                list.CheckboxLabeled("KFM_SettingsDisallowPackGroupMode".Translate(), ref disallowPackGroupMode);
+            }
 
-            //Disable grouping mode
-            list.CheckboxLabeled("KFM_SettingsDisallowPackGroupMode".Translate(), ref disallowPackGroupMode);
-
-            list.Gap(10f);
             /****************************************************** Attack bonus ******************************************************/
-            list.GapLine();
-            GUI.color = Color.green;
-            list.Label("KFM_SettingsBonusAttackSection".Translate()+" :");
+            if (!sectionAttackBonusExpanded)
+                GUI.color = Color.green;
+            else
+                GUI.color = Color.gray;
+            if (list.ButtonText("KFM_SettingsBonusAttackSection".Translate()))
+                sectionAttackBonusExpanded = !sectionAttackBonusExpanded;
             GUI.color = Color.white;
-            list.GapLine();
 
-
-            //Allow attack bonuses per pack
-            list.CheckboxLabeled("KFM_SettingsAllowPackAttackBonus".Translate(), ref allowPackAttackBonus);
-
-            //Allow to directly define the kings of a pack
-            list.CheckboxLabeled("KFM_SettingsAllowManualKingSet".Translate(), ref allowManualKingSet);
-
-            //Duration of validity of attack bonuses
-            list.Label("KFM_SettingsBonusAttackDuration".Translate( Utils.TranslateTicksToTextIRLSeconds( bonusAttackDurationHour*2500) ));
-            bonusAttackDurationHour = (int) list.Slider(bonusAttackDurationHour, 1, 18);
-
-            //Warrior attack bonus, number of enemies to kill before becoming a warrior
-            list.Label("KFM_SettingsBonusAttackWarriorNbToKill".Translate( (int)warriorNbToKill));
-            warriorNbToKill = (int) list.Slider(warriorNbToKill, 1, 150);
-
-            //Attack bonus per enemies slain
-            list.Label("KFM_SettingsBonusAttackByEnemyKilled".Translate( (int)(bonusAttackByEnemyKilled*100)));
-            bonusAttackByEnemyKilled = list.Slider(bonusAttackByEnemyKilled, 0.01f, 0.20f);
-
-            //Kings minimum time before new election
-            list.Label("KFM_SettingsBonusKingElectionMinHour".Translate(Utils.TranslateTicksToTextIRLSeconds(kingElectionMinHour * 2500)));
-            kingElectionMinHour = (int) list.Slider(kingElectionMinHour, 1, 720);
-
-            if (kingElectionMaxHour < kingElectionMinHour)
+            if (sectionAttackBonusExpanded)
             {
-                kingElectionMaxHour = kingElectionMinHour + 1;
+                //Allow attack bonuses per pack
+                list.CheckboxLabeled("KFM_SettingsAllowPackAttackBonus".Translate(), ref allowPackAttackBonus);
+
+                //Allow to directly define the kings of a pack
+                list.CheckboxLabeled("KFM_SettingsAllowManualKingSet".Translate(), ref allowManualKingSet);
+
+                //Duration of validity of attack bonuses
+                list.Label("KFM_SettingsBonusAttackDuration".Translate(Utils.TranslateTicksToTextIRLSeconds(bonusAttackDurationHour * 2500)));
+                bonusAttackDurationHour = (int)list.Slider(bonusAttackDurationHour, 1, 18);
+
+                //Warrior attack bonus, number of enemies to kill before becoming a warrior
+                list.Label("KFM_SettingsBonusAttackWarriorNbToKill".Translate((int)warriorNbToKill));
+                warriorNbToKill = (int)list.Slider(warriorNbToKill, 1, 150);
+
+                //Attack bonus per enemies slain
+                list.Label("KFM_SettingsBonusAttackByEnemyKilled".Translate((int)(bonusAttackByEnemyKilled * 100)));
+                bonusAttackByEnemyKilled = list.Slider(bonusAttackByEnemyKilled, 0.01f, 0.20f);
+
+                //Kings minimum time before new election
+                list.Label("KFM_SettingsBonusKingElectionMinHour".Translate(Utils.TranslateTicksToTextIRLSeconds(kingElectionMinHour * 2500)));
+                kingElectionMinHour = (int)list.Slider(kingElectionMinHour, 1, 720);
+
+                if (kingElectionMaxHour < kingElectionMinHour)
+                {
+                    kingElectionMaxHour = kingElectionMinHour + 1;
+                }
+
+                //Kings maximum delay before new election
+                list.Label("KFM_SettingsBonusKingElectionMaxHour".Translate(Utils.TranslateTicksToTextIRLSeconds(kingElectionMaxHour * 2500)));
+                kingElectionMaxHour = (int)list.Slider(kingElectionMaxHour, kingElectionMinHour, 740);
+
+                //Additional time in the event of a new election following the death of the current kings
+                list.Label("KFM_SettingsBonusKingElectionPenalityCausedByKingDeath".Translate(Utils.TranslateTicksToTextIRLSeconds(kingElectionHourPenalityCausedByKingDeath * 2500)));
+                kingElectionHourPenalityCausedByKingDeath = (int)list.Slider(kingElectionHourPenalityCausedByKingDeath, 12, 740);
+
+                //Condition of definition of a pack leader
+                list.Label("KFM_SettingsBonusKingElectionMinMembers".Translate(kingElectionMinMembers));
+                kingElectionMinMembers = (int)list.Slider(kingElectionMinMembers, 3, 30);
+
+                //Time before auto-cancellation of animal grouping mode
+                list.Label("KFM_SettingsHoursBeforeAutoDisableGroupMode".Translate(Utils.TranslateTicksToTextIRLSeconds(hoursBeforeAutoDisableGroupMode * 2500)));
+                hoursBeforeAutoDisableGroupMode = (int)list.Slider(hoursBeforeAutoDisableGroupMode, 2, 24);
+
+                //Kings attack bonus
+                list.Label("KFM_SettingsBonusAttackOfKings".Translate((int)(kingAttackBonus * 100)));
+                kingAttackBonus = list.Slider(kingAttackBonus, 0.01f, 1.5f);
+
+                //Warrior attack bonus
+                list.Label("KFM_SettingsBonusAttackOfWarriors".Translate((int)(warriorAttackBonus * 100)));
+                warriorAttackBonus = list.Slider(warriorAttackBonus, 0.01f, 1.0f);
             }
 
-            //Kings maximum delay before new election
-            list.Label("KFM_SettingsBonusKingElectionMaxHour".Translate(Utils.TranslateTicksToTextIRLSeconds(kingElectionMaxHour * 2500)));
-            kingElectionMaxHour = (int) list.Slider(kingElectionMaxHour, kingElectionMinHour, 740);
-
-            //Additional time in the event of a new election following the death of the current kings
-            list.Label("KFM_SettingsBonusKingElectionPenalityCausedByKingDeath".Translate(Utils.TranslateTicksToTextIRLSeconds(kingElectionHourPenalityCausedByKingDeath * 2500)));
-            kingElectionHourPenalityCausedByKingDeath = (int)list.Slider(kingElectionHourPenalityCausedByKingDeath, 12, 740);
-
-            //Condition of definition of a pack leader
-            list.Label("KFM_SettingsBonusKingElectionMinMembers".Translate(kingElectionMinMembers));
-            kingElectionMinMembers = (int)list.Slider(kingElectionMinMembers, 3, 30);
-
-            //Time before auto-cancellation of animal grouping mode
-            list.Label("KFM_SettingsHoursBeforeAutoDisableGroupMode".Translate(Utils.TranslateTicksToTextIRLSeconds(hoursBeforeAutoDisableGroupMode * 2500)));
-            hoursBeforeAutoDisableGroupMode = (int) list.Slider(hoursBeforeAutoDisableGroupMode, 2, 24);
-
-            //Kings attack bonus
-            list.Label("KFM_SettingsBonusAttackOfKings".Translate((int)( kingAttackBonus * 100)));
-            kingAttackBonus = list.Slider(kingAttackBonus, 0.01f, 1.5f);
-
-            //Warrior attack bonus
-            list.Label("KFM_SettingsBonusAttackOfWarriors".Translate((int)(warriorAttackBonus * 100)));
-            warriorAttackBonus = list.Slider(warriorAttackBonus, 0.01f, 1.0f);
-
-            list.Gap(10f);
             //*********************************************  List of parameters by pack *************************************
-            list.GapLine();
+
             //Black
-            GUI.color = Color.green;
-            list.Label("KFM_PackColorblack".Translate().CapitalizeFirst() + " :");
+            if (!sectionBlackExpanded)
+                GUI.color = Color.green;
+            else
+                GUI.color = Color.gray;
+            if (list.ButtonText("KFM_PackColorblack".Translate().CapitalizeFirst()))
+                sectionBlackExpanded = !sectionBlackExpanded;
             GUI.color = Color.white;
-            list.GapLine();
-            list.CheckboxLabeled("KFM_SettingsSupMode".Translate(), ref blackSupMode);
-            list.CheckboxLabeled("KFM_SettingsManualMode".Translate(), ref blackManualMode);
-            list.CheckboxLabeled("KFM_SettingsAllowPackToAttackStrongerTarget".Translate(), ref blackAttackStrongerTarget);
-            list.CheckboxLabeled("KFM_SettingsAttackUntilDeath".Translate(), ref blackAttackUntilDeath);
-
-            list.GapLine();
-            //Blue
-            GUI.color = Color.green;
-            list.Label("KFM_PackColorblue".Translate().CapitalizeFirst() + " :");
-            GUI.color = Color.white;
-            list.GapLine();
-            list.CheckboxLabeled("KFM_SettingsSupMode".Translate(), ref blueSupMode);
-            list.CheckboxLabeled("KFM_SettingsManualMode".Translate(), ref blueManualMode);
-            list.CheckboxLabeled("KFM_SettingsAllowPackToAttackStrongerTarget".Translate(), ref blueAttackStrongerTarget);
-            list.CheckboxLabeled("KFM_SettingsAttackUntilDeath".Translate(), ref blueAttackUntilDeath);
-
-            list.GapLine();
-            //Gray
-            GUI.color = Color.green;
-            list.Label("KFM_PackColorgray".Translate().CapitalizeFirst() + " :");
-            GUI.color = Color.white;
-            list.GapLine();
-            list.CheckboxLabeled("KFM_SettingsSupMode".Translate(), ref graySupMode);
-            list.CheckboxLabeled("KFM_SettingsManualMode".Translate(), ref grayManualMode);
-            list.CheckboxLabeled("KFM_SettingsAllowPackToAttackStrongerTarget".Translate(), ref grayAttackStrongerTarget);
-            list.CheckboxLabeled("KFM_SettingsAttackUntilDeath".Translate(), ref grayAttackUntilDeath);
-
-            list.GapLine();
-            //Green
-            GUI.color = Color.green;
-            list.Label("KFM_PackColorgreen".Translate().CapitalizeFirst() + " :");
-            GUI.color = Color.white;
-            list.GapLine();
-            list.CheckboxLabeled("KFM_SettingsSupMode".Translate(), ref greenSupMode);
-            list.CheckboxLabeled("KFM_SettingsManualMode".Translate(), ref greenManualMode);
-            list.CheckboxLabeled("KFM_SettingsAllowPackToAttackStrongerTarget".Translate(), ref greenAttackStrongerTarget);
-            list.CheckboxLabeled("KFM_SettingsAttackUntilDeath".Translate(), ref greenAttackUntilDeath);
-
-            list.GapLine();
-            //Orange
-            GUI.color = Color.green;
-            list.Label("KFM_PackColororange".Translate().CapitalizeFirst() + " :");
-            GUI.color = Color.white;
-            list.GapLine();
-            list.CheckboxLabeled("KFM_SettingsSupMode".Translate(), ref orangeSupMode);
-            list.CheckboxLabeled("KFM_SettingsManualMode".Translate(), ref orangeManualMode);
-            list.CheckboxLabeled("KFM_SettingsAllowPackToAttackStrongerTarget".Translate(), ref orangeAttackStrongerTarget);
-            list.CheckboxLabeled("KFM_SettingsAttackUntilDeath".Translate(), ref orangeAttackUntilDeath);
-
-            list.GapLine();
-            //pink
-            GUI.color = Color.green;
-            list.Label("KFM_PackColorpink".Translate().CapitalizeFirst() + " :");
-            GUI.color = Color.white;
-            list.GapLine();
-            list.CheckboxLabeled("KFM_SettingsSupMode".Translate(), ref pinkSupMode);
-            list.CheckboxLabeled("KFM_SettingsManualMode".Translate(), ref pinkManualMode);
-            list.CheckboxLabeled("KFM_SettingsAllowPackToAttackStrongerTarget".Translate(), ref pinkAttackStrongerTarget);
-            list.CheckboxLabeled("KFM_SettingsAttackUntilDeath".Translate(), ref pinkAttackUntilDeath);
-
-            list.GapLine();
-            //purple
-            GUI.color = Color.green;
-            list.Label("KFM_PackColorpurple".Translate().CapitalizeFirst() + " :");
-            GUI.color = Color.white;
-            list.GapLine();
-            list.CheckboxLabeled("KFM_SettingsSupMode".Translate(), ref purpleSupMode);
-            list.CheckboxLabeled("KFM_SettingsManualMode".Translate(), ref purpleManualMode);
-            list.CheckboxLabeled("KFM_SettingsAllowPackToAttackStrongerTarget".Translate(), ref purpleAttackStrongerTarget);
-            list.CheckboxLabeled("KFM_SettingsAttackUntilDeath".Translate(), ref purpleAttackUntilDeath);
-
-            list.GapLine();
-            //red
-            GUI.color = Color.green;
-            list.Label("KFM_PackColorred".Translate().CapitalizeFirst() + " :");
-            GUI.color = Color.white;
-            list.GapLine();
-            list.CheckboxLabeled("KFM_SettingsSupMode".Translate(), ref redSupMode);
-            list.CheckboxLabeled("KFM_SettingsManualMode".Translate(), ref redManualMode);
-            list.CheckboxLabeled("KFM_SettingsAllowPackToAttackStrongerTarget".Translate(), ref redAttackStrongerTarget);
-            list.CheckboxLabeled("KFM_SettingsAttackUntilDeath".Translate(), ref redAttackUntilDeath);
-
-            list.GapLine();
-            //white
-            GUI.color = Color.green;
-            list.Label("KFM_PackColorwhite".Translate().CapitalizeFirst() + " :");
-            GUI.color = Color.white;
-            list.GapLine();
-            list.CheckboxLabeled("KFM_SettingsSupMode".Translate(), ref whiteSupMode);
-            list.CheckboxLabeled("KFM_SettingsManualMode".Translate(), ref whiteManualMode);
-            list.CheckboxLabeled("KFM_SettingsAllowPackToAttackStrongerTarget".Translate(), ref whiteAttackStrongerTarget);
-            list.CheckboxLabeled("KFM_SettingsAttackUntilDeath".Translate(), ref whiteAttackUntilDeath);
-
-            list.GapLine();
-            //yellow
-            GUI.color = Color.green;
-            list.Label("KFM_PackColoryellow".Translate().CapitalizeFirst() + " :");
-            GUI.color = Color.white;
-            list.GapLine();
-            list.CheckboxLabeled("KFM_SettingsSupMode".Translate(), ref yellowSupMode);
-            list.CheckboxLabeled("KFM_SettingsManualMode".Translate(), ref yellowManualMode);
-            list.CheckboxLabeled("KFM_SettingsAllowPackToAttackStrongerTarget".Translate(), ref yellowAttackStrongerTarget);
-            list.CheckboxLabeled("KFM_SettingsAttackUntilDeath".Translate(), ref yellowAttackUntilDeath);
-
-            list.GapLine();
-            list.Gap(10f);
-
-            GUI.color = Color.green;
-            list.Label("KFM_SettingsIgnoredTargets".Translate() + " :");
-            GUI.color = Color.white;
-            list.Gap(10f);
-
-            if (list.ButtonText("+"))
-                ignoredTargets.Add("");
-
-            if (list.ButtonText("-"))
+            if (sectionBlackExpanded)
             {
-                if(ignoredTargets.Count != 0)
-                    ignoredTargets.RemoveLast();
+                list.CheckboxLabeled("KFM_SettingsSupMode".Translate(), ref blackSupMode);
+                list.CheckboxLabeled("KFM_SettingsManualMode".Translate(), ref blackManualMode);
+                list.CheckboxLabeled("KFM_SettingsAllowPackToAttackStrongerTarget".Translate(), ref blackAttackStrongerTarget);
+                list.CheckboxLabeled("KFM_SettingsAttackUntilDeath".Translate(), ref blackAttackUntilDeath);
             }
 
-            //nbField = (int)list.Slider(nbField, 1, 100);
-
-
-            for (var i = 0; i != ignoredTargets.Count; i++)
+            if (!sectionBlueExpanded)
+                GUI.color = Color.green;
+            else
+                GUI.color = Color.gray;
+            if (list.ButtonText("KFM_PackColorblue".Translate().CapitalizeFirst()))
+                sectionBlueExpanded = !sectionBlueExpanded;
+            GUI.color = Color.white;
+            if (sectionBlueExpanded)
             {
-                list.Label("KFM_SettingsIgnoredPreyListNumber".Translate(i));
-                ignoredTargets[i] = list.TextEntry(ignoredTargets[i]);
-                list.Gap(4f);
+                list.CheckboxLabeled("KFM_SettingsSupMode".Translate(), ref blueSupMode);
+                list.CheckboxLabeled("KFM_SettingsManualMode".Translate(), ref blueManualMode);
+                list.CheckboxLabeled("KFM_SettingsAllowPackToAttackStrongerTarget".Translate(), ref blueAttackStrongerTarget);
+                list.CheckboxLabeled("KFM_SettingsAttackUntilDeath".Translate(), ref blueAttackUntilDeath);
             }
 
-            list.Gap(10f);
-            if (list.ButtonText("KFM_SettingsResetignoredTargets".Translate()))
-                resetDefaultIgnoredTargets();
+            if (!sectionGrayExpanded)
+                GUI.color = Color.green;
+            else
+                GUI.color = Color.gray;
+            if (list.ButtonText("KFM_PackColorgray".Translate().CapitalizeFirst()))
+                sectionGrayExpanded = !sectionGrayExpanded;
+            GUI.color = Color.white;
+            if (sectionGrayExpanded)
+            {
+                list.CheckboxLabeled("KFM_SettingsSupMode".Translate(), ref graySupMode);
+                list.CheckboxLabeled("KFM_SettingsManualMode".Translate(), ref grayManualMode);
+                list.CheckboxLabeled("KFM_SettingsAllowPackToAttackStrongerTarget".Translate(), ref grayAttackStrongerTarget);
+                list.CheckboxLabeled("KFM_SettingsAttackUntilDeath".Translate(), ref grayAttackUntilDeath);
+            }
 
+            if (!sectionGreenExpanded)
+                GUI.color = Color.green;
+            else
+                GUI.color = Color.gray;
+            if (list.ButtonText("KFM_PackColorgreen".Translate().CapitalizeFirst()))
+                sectionGreenExpanded = !sectionGreenExpanded;
+            GUI.color = Color.white;
+            if (sectionGreenExpanded)
+            {
+                list.CheckboxLabeled("KFM_SettingsSupMode".Translate(), ref greenSupMode);
+                list.CheckboxLabeled("KFM_SettingsManualMode".Translate(), ref greenManualMode);
+                list.CheckboxLabeled("KFM_SettingsAllowPackToAttackStrongerTarget".Translate(), ref greenAttackStrongerTarget);
+                list.CheckboxLabeled("KFM_SettingsAttackUntilDeath".Translate(), ref greenAttackUntilDeath);
+            }
+
+            if (!sectionOrangeExpanded)
+                GUI.color = Color.green;
+            else
+                GUI.color = Color.gray;
+            if (list.ButtonText("KFM_PackColororange".Translate().CapitalizeFirst()))
+                sectionOrangeExpanded = !sectionOrangeExpanded;
+            GUI.color = Color.white;
+            if (sectionOrangeExpanded)
+            {
+                list.CheckboxLabeled("KFM_SettingsSupMode".Translate(), ref orangeSupMode);
+                list.CheckboxLabeled("KFM_SettingsManualMode".Translate(), ref orangeManualMode);
+                list.CheckboxLabeled("KFM_SettingsAllowPackToAttackStrongerTarget".Translate(), ref orangeAttackStrongerTarget);
+                list.CheckboxLabeled("KFM_SettingsAttackUntilDeath".Translate(), ref orangeAttackUntilDeath);
+            }
+
+            if (!sectionPinkExpanded)
+                GUI.color = Color.green;
+            else
+                GUI.color = Color.gray;
+            if (list.ButtonText("KFM_PackColorpink".Translate().CapitalizeFirst()))
+                sectionPinkExpanded = !sectionPinkExpanded;
+            GUI.color = Color.white;
+            if (sectionPinkExpanded)
+            {
+                list.CheckboxLabeled("KFM_SettingsSupMode".Translate(), ref pinkSupMode);
+                list.CheckboxLabeled("KFM_SettingsManualMode".Translate(), ref pinkManualMode);
+                list.CheckboxLabeled("KFM_SettingsAllowPackToAttackStrongerTarget".Translate(), ref pinkAttackStrongerTarget);
+                list.CheckboxLabeled("KFM_SettingsAttackUntilDeath".Translate(), ref pinkAttackUntilDeath);
+            }
+
+            if (!sectionPurpleExpanded)
+                GUI.color = Color.green;
+            else
+                GUI.color = Color.gray;
+            if (list.ButtonText("KFM_PackColorpurple".Translate().CapitalizeFirst()))
+                sectionPurpleExpanded = !sectionPurpleExpanded;
+            GUI.color = Color.white;
+            if (sectionPurpleExpanded)
+            {
+                list.CheckboxLabeled("KFM_SettingsSupMode".Translate(), ref purpleSupMode);
+                list.CheckboxLabeled("KFM_SettingsManualMode".Translate(), ref purpleManualMode);
+                list.CheckboxLabeled("KFM_SettingsAllowPackToAttackStrongerTarget".Translate(), ref purpleAttackStrongerTarget);
+                list.CheckboxLabeled("KFM_SettingsAttackUntilDeath".Translate(), ref purpleAttackUntilDeath);
+            }
+
+            if (!sectionRedExpanded)
+                GUI.color = Color.green;
+            else
+                GUI.color = Color.gray;
+            if (list.ButtonText("KFM_PackColorred".Translate().CapitalizeFirst()))
+                sectionRedExpanded = !sectionRedExpanded;
+            GUI.color = Color.white;
+            if (sectionRedExpanded)
+            {
+                list.CheckboxLabeled("KFM_SettingsSupMode".Translate(), ref redSupMode);
+                list.CheckboxLabeled("KFM_SettingsManualMode".Translate(), ref redManualMode);
+                list.CheckboxLabeled("KFM_SettingsAllowPackToAttackStrongerTarget".Translate(), ref redAttackStrongerTarget);
+                list.CheckboxLabeled("KFM_SettingsAttackUntilDeath".Translate(), ref redAttackUntilDeath);
+            }
+
+            if (!sectionWhiteExpanded)
+                GUI.color = Color.green;
+            else
+                GUI.color = Color.gray;
+            if (list.ButtonText("KFM_PackColorwhite".Translate().CapitalizeFirst()))
+                sectionWhiteExpanded = !sectionWhiteExpanded;
+            GUI.color = Color.white;
+            if (sectionWhiteExpanded)
+            {
+                list.CheckboxLabeled("KFM_SettingsSupMode".Translate(), ref whiteSupMode);
+                list.CheckboxLabeled("KFM_SettingsManualMode".Translate(), ref whiteManualMode);
+                list.CheckboxLabeled("KFM_SettingsAllowPackToAttackStrongerTarget".Translate(), ref whiteAttackStrongerTarget);
+                list.CheckboxLabeled("KFM_SettingsAttackUntilDeath".Translate(), ref whiteAttackUntilDeath);
+            }
+
+            if (!sectionYellowExpanded)
+                GUI.color = Color.green;
+            else
+                GUI.color = Color.gray;
+            if (list.ButtonText("KFM_PackColoryellow".Translate().CapitalizeFirst()))
+                sectionYellowExpanded = !sectionYellowExpanded;
+            GUI.color = Color.white;
+            if (sectionYellowExpanded)
+            {
+                list.CheckboxLabeled("KFM_SettingsSupMode".Translate(), ref yellowSupMode);
+                list.CheckboxLabeled("KFM_SettingsManualMode".Translate(), ref yellowManualMode);
+                list.CheckboxLabeled("KFM_SettingsAllowPackToAttackStrongerTarget".Translate(), ref yellowAttackStrongerTarget);
+                list.CheckboxLabeled("KFM_SettingsAttackUntilDeath".Translate(), ref yellowAttackUntilDeath);
+            }
+
+            if (!sectionTargetToIgnoreExpanded)
+                GUI.color = Color.green;
+            else
+                GUI.color = Color.gray;
+            if (list.ButtonText("KFM_SettingsIgnoredTargets".Translate()))
+                sectionTargetToIgnoreExpanded = !sectionTargetToIgnoreExpanded;
+            GUI.color = Color.white;
+
+            if (sectionTargetToIgnoreExpanded)
+            {
+                list.Gap(10f);
+
+                if (list.ButtonText("+"))
+                    ignoredTargets.Add("");
+
+                if (list.ButtonText("-"))
+                {
+                    if (ignoredTargets.Count != 0)
+                        ignoredTargets.RemoveLast();
+                }
+
+                //nbField = (int)list.Slider(nbField, 1, 100);
+                for (var i = 0; i != ignoredTargets.Count; i++)
+                {
+                    list.Label("KFM_SettingsIgnoredPreyListNumber".Translate(i));
+                    ignoredTargets[i] = list.TextEntry(ignoredTargets[i]);
+                    list.Gap(4f);
+                }
+
+                list.Gap(10f);
+                if (list.ButtonText("KFM_SettingsResetignoredTargets".Translate()))
+                    resetDefaultIgnoredTargets();
+            }
 
             // Ranged attacking creature exception list
-            list.Gap(25f);
-            GUI.color = Color.green;
-            list.Label("KFM_SettingsIgnoredRangedAttack".Translate());
+            if (!sectionForcedMeleeExpanded)
+                GUI.color = Color.green;
+            else
+                GUI.color = Color.gray;
+            if (list.ButtonText("KFM_SettingsIgnoredRangedAttack".Translate()))
+                sectionForcedMeleeExpanded = !sectionForcedMeleeExpanded;
             GUI.color = Color.white;
-            list.Gap(10f);
 
-            if (list.ButtonText("+"))
-                ignoredRangedAttack.Add("");
-
-            if (list.ButtonText("-"))
+            if (sectionForcedMeleeExpanded)
             {
-                if (ignoredRangedAttack.Count != 0)
-                    ignoredRangedAttack.RemoveLast();
+                list.Gap(10f);
+
+                if (list.ButtonText("+"))
+                    ignoredRangedAttack.Add("");
+
+                if (list.ButtonText("-"))
+                {
+                    if (ignoredRangedAttack.Count != 0)
+                        ignoredRangedAttack.RemoveLast();
+                }
+
+                for (var i = 0; i != ignoredRangedAttack.Count; i++)
+                {
+                    list.Label("#" + i.ToString());
+                    ignoredRangedAttack[i] = list.TextEntry(ignoredRangedAttack[i]);
+                    list.Gap(4f);
+                }
+                list.Gap(10f);
+                if (list.ButtonText("KFM_SettingsResetIgnoredRangedAttack".Translate()))
+                    resetDefaultIgnoredRangedAttack();
             }
-
-            for (var i = 0; i != ignoredRangedAttack.Count; i++)
-            {
-                list.Label("#"+i.ToString());
-                ignoredRangedAttack[i] = list.TextEntry(ignoredRangedAttack[i]);
-                list.Gap(4f);
-            }
-
-            list.Gap(10f);
-            if (list.ButtonText("KFM_SettingsResetIgnoredRangedAttack".Translate()))
-                resetDefaultIgnoredRangedAttack();
-
-
-
-
 
 
             // List of default buildings to attack
-            list.Gap(25f);
-            GUI.color = Color.green;
-            list.Label("KFM_SettingsDefaultBuildingToAttack".Translate());
+            if (!sectionBuildingAttackExpanded)
+                GUI.color = Color.green;
+            else
+                GUI.color = Color.gray;
+            if (list.ButtonText("KFM_SettingsDefaultBuildingToAttack".Translate()))
+                sectionBuildingAttackExpanded = !sectionBuildingAttackExpanded;
             GUI.color = Color.white;
-            list.Gap(10f);
-
-            if (list.ButtonText("+"))
-                defaultBuildingToAttack.Add("");
-
-            if (list.ButtonText("-"))
+            if (sectionBuildingAttackExpanded)
             {
-                if (defaultBuildingToAttack.Count != 0)
-                    defaultBuildingToAttack.RemoveLast();
+                list.Gap(10f);
+
+                if (list.ButtonText("+"))
+                    defaultBuildingToAttack.Add("");
+
+                if (list.ButtonText("-"))
+                {
+                    if (defaultBuildingToAttack.Count != 0)
+                        defaultBuildingToAttack.RemoveLast();
+                }
+
+                for (var i = 0; i != defaultBuildingToAttack.Count; i++)
+                {
+                    list.Label("#" + i.ToString());
+                    defaultBuildingToAttack[i] = list.TextEntry(defaultBuildingToAttack[i]);
+                    list.Gap(4f);
+                }
+
+                list.Gap(10f);
+                if (list.ButtonText("KFM_SettingsResetDefaultBuildingToAttack".Translate()))
+                    resetDefaultBuildingToAttack();
             }
-
-            for (var i = 0; i != defaultBuildingToAttack.Count; i++)
-            {
-                list.Label("#" + i.ToString());
-                defaultBuildingToAttack[i] = list.TextEntry(defaultBuildingToAttack[i]);
-                list.Gap(4f);
-            }
-
-            list.Gap(10f);
-            if (list.ButtonText("KFM_SettingsResetDefaultBuildingToAttack".Translate()))
-                resetDefaultBuildingToAttack();
-
 
             list.End();
             Widgets.EndScrollView();
@@ -538,13 +616,14 @@ namespace aRandomKiwi.KFM
         {
             string PID = "";
 
-            if (APID == "" && (pawn == null || pawn.TryGetComp<Comp_Killing>() == null))
+            Comp_Killing ck = Utils.getCachedCKilling(pawn);
+            if (APID == "" && (pawn == null || ck == null))
                 return false;
 
             if (APID != "")
                 PID = APID;
             else
-                PID = pawn.TryGetComp<Comp_Killing>().KFM_PID;
+                PID = ck.KFM_PID;
 
             bool ret = false;
             if (PID == Utils.PACK_BLACK && blackAttackUntilDeath)

@@ -34,7 +34,7 @@ namespace aRandomKiwi.KFM
             {
                 return;
             }
-            Comp_Killing ck = pawn.TryGetComp<Comp_Killing>();
+            Comp_Killing ck = Utils.getCachedCKilling(pawn);
             if (ck == null)
                 return;
 
@@ -52,7 +52,7 @@ namespace aRandomKiwi.KFM
                 else if (ck.KFM_isWarrior)
                     part = " (" + ("KFM_WarriorText").Translate() + ")";
             }
-            string buttonLabel = ("KFM_"+pawn.TryGetComp<Comp_Killing>().KFM_PID+"ColorLib").Translate().Truncate(rect.width, null)+part;
+            string buttonLabel = ("KFM_"+ck.KFM_PID+"ColorLib").Translate().Truncate(rect.width, null)+part;
 			Widgets.Dropdown<Pawn, string>(rect2, pawn, getPayload, menuGenerator, buttonLabel, null, buttonLabel, null, null, false);
         }
 
@@ -78,7 +78,8 @@ namespace aRandomKiwi.KFM
             {
                 return 0;
             }
-            if (pawn.TryGetComp<Comp_Killing>() == null)
+            Comp_Killing ck = Utils.getCachedCKilling(pawn);
+            if (ck == null)
             {
                 return 1;
             }
@@ -87,9 +88,10 @@ namespace aRandomKiwi.KFM
 
         private string GetValueToCompare2(Pawn pawn)
         {
-            if (pawn.TryGetComp<Comp_Killing>() != null)
+            Comp_Killing ck = Utils.getCachedCKilling(pawn);
+            if (ck != null)
             {
-                return ("KFM_" + pawn.TryGetComp<Comp_Killing>().KFM_PID + "ColorLib").Translate();
+                return ("KFM_" + ck.KFM_PID + "ColorLib").Translate();
             }
             return string.Empty;
         }
@@ -98,8 +100,12 @@ namespace aRandomKiwi.KFM
          * Obtaining pack of running animal
          */
         private static string PackSelectButton_GetPackName(Pawn pet)
-        {   
-            return ("KFM_" + pet.TryGetComp<Comp_Killing>().KFM_PID+ "ColorLib").Translate();
+        {
+            Comp_Killing ck = Utils.getCachedCKilling(pet);
+            if (ck != null)
+                return ("KFM_" + ck.KFM_PID + "ColorLib").Translate();
+            else
+                return "";
         }
 
         /*
@@ -107,7 +113,7 @@ namespace aRandomKiwi.KFM
          */
         private static IEnumerable<Widgets.DropdownMenuElement<string>> PackSelectButton_GenerateMenu(Pawn p)
         {
-            Comp_Killing ck = p.TryGetComp<Comp_Killing>();
+            Comp_Killing ck = Utils.getCachedCKilling(p);
 
             if (ck == null)
                 yield break;
@@ -123,17 +129,18 @@ namespace aRandomKiwi.KFM
                 {
                     option = new FloatMenuOption(("KFM_"+PID+"ColorLib").Translate(), delegate
                     {
-                        if (p.TryGetComp<Comp_Killing>() == null)
+                        Comp_Killing ck2 = Utils.getCachedCKilling(p);
+                        if (ck2 == null)
                             return;
 
                         //If animal is a kings we refuse
-                        if (p.TryGetComp<Comp_Killing>().KFM_isKing)
+                        if (ck2.KFM_isKing)
                         {
                             Messages.Message("KFM_cannotChangeKingPack".Translate(p.LabelCap),MessageTypeDefOf.NeutralEvent);
                             return;
                         }
                         //If warrior we remove the status
-                        if (p.TryGetComp<Comp_Killing>().KFM_isWarrior)
+                        if (ck2.KFM_isWarrior)
                         {
                             Find.WindowStack.Add(new Dialog_Msg("KFM_ConfirmWarriorChangePackTitle".Translate(), "KFM_ConfirmWarriorChangePackDetail".Translate(p.LabelCap), delegate
                             {
@@ -154,7 +161,8 @@ namespace aRandomKiwi.KFM
 
         static private void changePack(Pawn p, string PID)
         {
-            if (p.TryGetComp<Comp_Killing>() == null)
+            Comp_Killing ck = Utils.getCachedCKilling(p);
+            if (ck == null)
                 return;
             //If an animal is currently mobilized (via its pack), it is made to stop its work
             Utils.GCKFM.cancelCurrentPackMemberJob(p);
@@ -162,10 +170,10 @@ namespace aRandomKiwi.KFM
             Utils.GCKFM.cancelCurrentPackMemberGroupJob(p);
 
             //We remove the pawn from its current pack
-            Utils.GCKFM.removePackMember(p.TryGetComp<Comp_Killing>().KFM_PID, p);
+            Utils.GCKFM.removePackMember(ck.KFM_PID, p);
             //Addition to the news
             Utils.GCKFM.addPackMember(PID, p);
-            p.TryGetComp<Comp_Killing>().KFM_PID = PID;
+            ck.KFM_PID = PID;
         }
 
     }

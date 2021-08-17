@@ -17,7 +17,7 @@ namespace aRandomKiwi.KFM
             [HarmonyPostfix]
             public static void Listener(Pawn_TrainingTracker __instance, Pawn ___pawn)
             {
-                Comp_Killing ck = ___pawn.TryGetComp<Comp_Killing>();
+                Comp_Killing ck = Utils.getCachedCKilling(___pawn);
                 if (ck == null || ___pawn.training == null)
                     return;
                 bool hasLearnedKilling = ___pawn.training.HasLearned(Utils.killingTrainingDef);
@@ -27,7 +27,7 @@ namespace aRandomKiwi.KFM
                     //If not learned killing and have a PID, we take it out to use it
                     if (!hasLearnedKilling && ck.KFM_PID != "")
                     {
-                        Utils.GCKFM.removePackMember(___pawn.TryGetComp<Comp_Killing>().KFM_PID, ___pawn);
+                        Utils.GCKFM.removePackMember(ck.KFM_PID, ___pawn);
                         ck.KFM_PID = "";
                     }
 

@@ -271,9 +271,30 @@ namespace aRandomKiwi.KFM
             return new IntVec3((int)(x / positions.Count), (int)(y / positions.Count), (int)(z / positions.Count));
         }
 
+        public static Comp_Killing getCachedCKilling(Pawn pawn)
+        {
+            if (pawn == null)
+                return null;
+
+            Comp_Killing cpt;
+            cachedCK.TryGetValue(pawn, out cpt);
+            if (cpt == null)
+            {
+                cpt = pawn.TryGetComp<Comp_Killing>();
+                cachedCK[pawn] = cpt;
+            }
+            return cpt;
+        }
+
+        public static void resetCachedComps()
+        {
+            cachedCK.Clear();
+        }
+
         public static int maxTimeToKill = 20000;
 
         //cache
+        private static Dictionary<Thing, Comp_Killing> cachedCK = new Dictionary<Thing, Comp_Killing>();
         public static CellRect cachedRallyRect = new CellRect(-1,-1,0,0);
         public static CellRect cachedExtendedRallyRect = new CellRect(-1, -1, 0, 0);
 

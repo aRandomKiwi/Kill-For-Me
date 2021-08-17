@@ -23,7 +23,7 @@ namespace aRandomKiwi.KFM
                 if (___launcher is Pawn)
                 {
                     pawn = (Pawn)___launcher;
-                    ck = pawn.TryGetComp<Comp_Killing>();
+                    ck = Utils.getCachedCKilling(pawn);
                 }
 
 

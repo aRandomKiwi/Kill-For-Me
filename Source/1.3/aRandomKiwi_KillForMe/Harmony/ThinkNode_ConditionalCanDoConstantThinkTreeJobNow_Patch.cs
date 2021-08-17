@@ -16,9 +16,10 @@ namespace aRandomKiwi.KFM
             {
                 //If creature and in a "KFM_KillTarget" job
                 //or he has recently left the pack so we force non-flight at the expense of his life in front of enemies (the creature will flee anyway if it is physically injured)
+                Comp_Killing ck = Utils.getCachedCKilling(pawn);
                 if ((pawn.CurJob != null && pawn.CurJob.def.defName == Utils.killJob)
-                    || (pawn.TryGetComp<Comp_Killing>() != null
-                        && Find.TickManager.TicksGame - Utils.GCKFM.getLastAffectedEndedGT(pawn.Map, pawn.TryGetComp<Comp_Killing>().KFM_PID) <= Utils.gtBeforeReturnToRallyPoint))
+                    || (ck != null
+                        && Find.TickManager.TicksGame - Utils.GCKFM.getLastAffectedEndedGT(pawn.Map, ck.KFM_PID) <= Utils.gtBeforeReturnToRallyPoint))
                 {
                     ////Log.Message("KPC" + pawn.LabelCap);
                     __result = false;

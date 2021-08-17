@@ -149,11 +149,12 @@ namespace aRandomKiwi.KFM
                 //Check the validity of pack members
                 foreach (var entry in packs)
                 {
-                    foreach (var member in entry.Value.ToList())
+                    for (int i = entry.Value.Count-1; i >= 0;i--)
                     {
+                        Pawn member = entry.Value[i];
                         if (member.Faction != Faction.OfPlayer || member.Dead)
                         {
-                            Comp_Killing ck = member.TryGetComp<Comp_Killing>();
+                            Comp_Killing ck = Utils.getCachedCKilling(member);
                             if (ck != null)
                             {
                                 removePackMember(ck.KFM_PID, member);
@@ -226,8 +227,7 @@ namespace aRandomKiwi.KFM
         public override void LoadedGame()
         {
             base.LoadedGame();
-
-            
+            Utils.resetCachedComps();
         }
 
         public override void StartedNewGame()
@@ -321,9 +321,9 @@ namespace aRandomKiwi.KFM
                 return;
 
             //Search if pawn not already referenced in the pack
-            foreach (var p in pack.ToList())
+            for (int i = pack.Count -1; i >= 0; i--)
             {
-                if (p == member)
+                if (pack[i] == member)
                     return;
             }
             pack.Add(member);
@@ -341,9 +341,9 @@ namespace aRandomKiwi.KFM
                 return;
 
             //RSearch if pawn not already referenced in the pack
-            foreach (var p in pack.ToList())
+            for (int i = pack.Count - 1; i >= 0; i--)
             {
-                if (p == member)
+                if (pack[i] == member)
                 {
                     pack.Remove(member);
                     return;
@@ -420,11 +420,11 @@ namespace aRandomKiwi.KFM
             string PMID = getPackMapID(map, PID);
             if (packNbAffected.ContainsKey(PMID)) {
                 //Check if packNbAffected contains the job ID
-                foreach (var jid in packNbAffected[PMID].ToList())
+                for ( int i = packNbAffected[PMID].Count -1; i >= 0;i--)
                 {
-                    if (jid == JID)
+                    if (packNbAffected[PMID][i] == JID)
                     {
-                        packNbAffected[PMID].Remove(jid);
+                        packNbAffected[PMID].Remove(packNbAffected[PMID][i]);
                         //If for the given pack more affected members ==> delete entry to avoid empty entries that could bug the parser in ExposeData
                         if (packNbAffected.Count == 0)
                             packNbAffected.Remove(PMID);
@@ -488,11 +488,12 @@ namespace aRandomKiwi.KFM
                 {
                     foreach (var member in packs[PID])
                     {
+                        Comp_Killing ck = Utils.getCachedCKilling(member);
                         if (member != null && member.Spawned
                             && !member.Dead && member.Map != null
-                            && member.TryGetComp<Comp_Killing>() != null
-                            && member.TryGetComp<Comp_Killing>().KFM_PID == PID
-                            && member.TryGetComp<Comp_Killing>().KFM_affected
+                            && ck != null
+                            && ck.KFM_PID == PID
+                            && ck.KFM_affected
                             && member.Map.GetUniqueLoadID() == MID)
                         {
                             MoteMaker.ThrowText(member.TrueCenter() + new Vector3(0.5f, 0f, 0.5f), member.Map, "+" + ((int)(Settings.bonusAttackByEnemyKilled * 100)) + "%", Color.green, -1f);
@@ -530,7 +531,7 @@ namespace aRandomKiwi.KFM
             Comp_Killing ck=null;
             
             if(attacker != null)
-                ck = attacker.TryGetComp<Comp_Killing>();
+                ck = Utils.getCachedCKilling(attacker);
 
             if (!packAttackBonus.ContainsKey(PMID))
             {
@@ -571,9 +572,9 @@ namespace aRandomKiwi.KFM
             if (king == null)
                 return;
 
-            ck = king.TryGetComp<Comp_Killing>();
+            ck = Utils.getCachedCKilling(king);
             if(destKing != null)
-                dck = destKing.TryGetComp<Comp_Killing>();
+                dck = Utils.getCachedCKilling(destKing);
 
             if (ck == null)
                 return;
@@ -641,7 +642,7 @@ namespace aRandomKiwi.KFM
          */
         public void kingPackDeath(Pawn king)
         {
-            Comp_Killing kck = king.TryGetComp<Comp_Killing>();
+            Comp_Killing kck = Utils.getCachedCKilling(king);
 
             if (kck == null)
                 return;
@@ -701,8 +702,9 @@ namespace aRandomKiwi.KFM
             string PMID = getPackMapID(map, PID);
             packOrderSource[PMID] = 0;
 
-            foreach (var member in packs[PID].ToList())
+            for (int i =packs[PID].Count - 1 ; i >= 0; i--)
             {
+                Pawn member = packs[PID][i];
                 if (member != null && member.Spawned && !member.Dead && member.Map == map
                     &&  member.CurJob != null && member.CurJob.def.defName == Utils.killJob)
                 {
@@ -753,13 +755,15 @@ namespace aRandomKiwi.KFM
         public void launchCurrentFormingPack(Map map, string PID)
         {
             //Log.Message("Forcing attacking without wait waiting point");
-            foreach (var member in packs[PID].ToList())
+            for (int i = packs[PID].Count - 1 ; i >= 0; i--)
             {
+                Pawn member = packs[PID][i];
                 if (member != null && member.Spawned && !member.Dead && member.Map == map
                     && member.CurJob != null && member.CurJob.def.defName == Utils.killJob)
                 {
-                    if(member.TryGetComp<Comp_Killing>() != null)
-                        member.TryGetComp<Comp_Killing>().KFM_waitingPoint.x = -1;
+                    Comp_Killing ck = Utils.getCachedCKilling(member);
+                    if (ck != null)
+                        ck.KFM_waitingPoint.x = -1;
                 }
             }
         }
@@ -876,7 +880,8 @@ namespace aRandomKiwi.KFM
 
             foreach (var member in members)
             {
-                if (member != null && member.Spawned && !member.Dead && isValidPackMember(member, member.TryGetComp<Comp_Killing>())
+                Comp_Killing ck = Utils.getCachedCKilling(member);
+                if (member != null && member.Spawned && !member.Dead && isValidPackMember(member, ck)
                     && member.Map == map)
                 {
                     selected.Add(member);
@@ -923,8 +928,9 @@ namespace aRandomKiwi.KFM
 
             if (map == null)
                 return;
-            foreach (var member in packs[PID].ToList())
+            for (int i = packs[PID].Count - 1; i >= 0; i--)
             {
+                Pawn member = packs[PID][i];
                 if (member != null && member.Spawned && !member.Dead && member.Map == map
                     && member.CurJob != null && member.CurJob.def.defName == "KFM_GroupToPoint")
                 {
@@ -940,21 +946,21 @@ namespace aRandomKiwi.KFM
 
 
         /*
-         * Check if all the members of a pack can access a coordinate
+         * Check if at least one member of a pack can access a coordinate
          */
         public bool canPackMembersReach(Map map, string PID, IntVec3 pos)
         {
             if (!packs.ContainsKey(PID))
                 return false;
-            bool ret = true;
+            bool ret = false;
             LocalTargetInfo target = new LocalTargetInfo(pos);
             List<Pawn> members = packs[PID];
 
             foreach (var member in members)
             {
-                if(member != null && member.Map == map && !member.CanReach(target, PathEndMode.Touch, Danger.Deadly))
+                if(member != null && member.Map == map && member.CanReach(target, PathEndMode.Touch, Danger.Deadly))
                 {
-                    ret = false;
+                    ret = true;
                     break;
                 }
 
@@ -983,12 +989,14 @@ namespace aRandomKiwi.KFM
             //Deduction number of pack members with "half" numbers of other members close
             foreach (var member in members)
             {
-                if (member != null && member.Map == map && isValidPackMember(member, member.TryGetComp<Comp_Killing>()))
+                Comp_Killing ck1 = Utils.getCachedCKilling(member);
+                if (member != null && member.Map == map && isValidPackMember(member, ck1))
                 {
                     nbm = 0;
                     foreach (var member2 in members)
                     {
-                        if (member2.Map == map &&  isValidPackMember(member2, member2.TryGetComp<Comp_Killing>()))
+                        Comp_Killing ck2 = Utils.getCachedCKilling(member2);
+                        if (member2.Map == map &&  isValidPackMember(member2, ck2))
                         {
                             if (member.Position.DistanceTo(member2.Position) <= 10f)
                             {
@@ -1023,7 +1031,8 @@ namespace aRandomKiwi.KFM
             //Deduction number of pack members with "half" numbers of other members close
             foreach (var member in members)
             {
-                if (member != null && member.Map == map && member.TryGetComp<Comp_Killing>() != null  && member.TryGetComp<Comp_Killing>().KFM_affected)
+                Comp_Killing ck = Utils.getCachedCKilling(member);
+                if (member != null && member.Map == map && ck != null  && ck.KFM_affected)
                     nb++;
             }
 
@@ -1044,7 +1053,8 @@ namespace aRandomKiwi.KFM
             //Deduction number of pack members with "half" numbers of other members close
             foreach (var member in members)
             {
-                if (member != null && member.Map == map && isValidPackMember(member, member.TryGetComp<Comp_Killing>()))
+                Comp_Killing ck = Utils.getCachedCKilling(member);
+                if (member != null && member.Map == map && isValidPackMember(member, ck))
                     nb++;
             }
 
@@ -1063,16 +1073,18 @@ namespace aRandomKiwi.KFM
             Vector3 tmp = packGroupPoint[PMID].ToVector3();
             int nbReal = 0;
 
-            foreach (var member in members.ToList())
+            for (int i = packs[PID].Count - 1; i >= 0; i--)
             {
+                Pawn member = packs[PID][i];
                 if (member != null)
                 {
-                    if (member.TryGetComp<Comp_Killing>() != null)
+                    Comp_Killing ck = Utils.getCachedCKilling(member);
+                    if (ck != null)
                     {
-                        member.TryGetComp<Comp_Killing>().KFM_groupWaitingPoint = packGroupPoint[PMID];
+                        ck.KFM_groupWaitingPoint = packGroupPoint[PMID];
                         dec = new IntVec3(tmp);
                         Utils.setRandomChangeToVector(ref dec, 0, 4);
-                        member.TryGetComp<Comp_Killing>().KFM_groupWaitingPointDec = CellFinder.RandomSpawnCellForPawnNear(packGroupPoint[PMID], map);
+                        ck.KFM_groupWaitingPointDec = CellFinder.RandomSpawnCellForPawnNear(packGroupPoint[PMID], map);
                         setPackMemberGroupMode(member, ref jobs);
                     }
                 }
@@ -1080,7 +1092,8 @@ namespace aRandomKiwi.KFM
 
 
             //Start of jobs if necessary
-            for (int i = 0; i != members.Count(); i++)
+            int count = members.Count();
+            for (int i = 0; i != count; i++)
             {
                 if (jobs[i] != null)
                 {
@@ -1148,7 +1161,8 @@ namespace aRandomKiwi.KFM
                 //Calculation of available members
                 foreach (var member in packs[pack.Key])
                 {
-                    if (member != null && member.Spawned && !member.Dead && isValidPackMember(member, member.TryGetComp<Comp_Killing>())
+                    Comp_Killing ck = Utils.getCachedCKilling(member);
+                    if (member != null && member.Spawned && !member.Dead && isValidPackMember(member, ck)
                         && member.Map == target.Map)
                     {
                         nbDispo++;
@@ -1443,12 +1457,14 @@ namespace aRandomKiwi.KFM
                 if (packs.ContainsKey(PID))
                 {
                     //Calculation of the number of members of the pack for the given map have the flag arrivedToWaitingPoint if this value is equal to or greater than the number of affected Member ==> we launch the assault
-                    foreach (var member in packs[PID].ToList())
+                    for (int i = packs[PID].Count - 1; i >= 0; i--)
                     {
+                        Pawn member = packs[PID][i];
+                        Comp_Killing ck = Utils.getCachedCKilling(member);
                         //We only deal with the part of the pack on the specified map
                         if (member != null && member.Spawned && !member.Dead && member.Map.GetUniqueLoadID() == MID
-                            && member.TryGetComp<Comp_Killing>() != null
-                            && member.TryGetComp<Comp_Killing>().KFM_arrivedToWaitingPoint)
+                            && ck != null
+                            && ck.KFM_arrivedToWaitingPoint)
                         {
                             nbArrived++;
                         }
@@ -1537,11 +1553,12 @@ namespace aRandomKiwi.KFM
             {
                 foreach (var cpack in packs)
                 {
-                    foreach (var member in cpack.Value.ToList())
+                    for (int i = cpack.Value.Count - 1; i >= 0; i--)
                     {
+                        Pawn member = cpack.Value[i];
                         if (member != null)
                         {
-                            ck = member.TryGetComp<Comp_Killing>();
+                            ck = Utils.getCachedCKilling(member);
 
                             if (member != null && member.Spawned && member.Map != null && member.Faction == Faction.OfPlayer && ck != null && !ck.KFM_affected)
                             {
@@ -1578,9 +1595,11 @@ namespace aRandomKiwi.KFM
                     PID = getPIDFromPMID(entry.Key);
                     MID = getMIDFromPMID(entry.Key);
                     //Display on the pack of the end of the attack bonus
-                    foreach (var member in packs[PID].ToList())
+                    for (int i = packs[PID].Count - 1; i >= 0; i--)
                     {
-                        if (member != null && member.Map != null && member.TryGetComp<Comp_Killing>() != null && member.TryGetComp<Comp_Killing>().KFM_PID == PID && member.Map.GetUniqueLoadID() == MID)
+                        Pawn member = packs[PID][i];
+                        Comp_Killing ck = Utils.getCachedCKilling(member);
+                        if (member != null && member.Map != null && ck != null && ck.KFM_PID == PID && member.Map.GetUniqueLoadID() == MID)
                         {
                             MoteMaker.ThrowText(member.TrueCenter() + new Vector3(0.5f, 0f, 0.5f), member.Map, "KFM_BonusAttackLost".Translate(), Color.red, -1f);
                         }
@@ -1642,9 +1661,10 @@ namespace aRandomKiwi.KFM
                     //Integration of free members
                     foreach (var cpack in packs)
                     {
-                        foreach (var member in cpack.Value.ToList())
+                        for (int i = cpack.Value.Count - 1; i >= 0; i--)
                         {
-                            ck = member.TryGetComp<Comp_Killing>();
+                            Pawn member = cpack.Value[i];
+                            ck = Utils.getCachedCKilling(member);
 
                             if (member != null && member.Faction == Faction.OfPlayer && ck != null && !ck.KFM_affected)
                             {
@@ -1701,7 +1721,7 @@ namespace aRandomKiwi.KFM
                         List<IntVec3> coordinates = new List<IntVec3>();
                         foreach (var m in members)
                         {
-                            if (m != null && isValidPackMember(m, m.TryGetComp<Comp_Killing>()))
+                            if (m != null && isValidPackMember(m, Utils.getCachedCKilling(m)))
                             {
                                 coordinates.Add(m.Position);
                             }
@@ -1868,6 +1888,7 @@ namespace aRandomKiwi.KFM
             else
                 pawn = null;
 
+            //Log.Message("=>" + Utils.isValidEnemy(thing)+ " "+ hasForcedAffectedPack(thing)+" "+ !Settings.ignoredTargets.Contains(thing.def.defName)+ " "+ thingNotAlreadyTargetedByPack(thing));
             // target has a forced pending OR Pawn assignment hostile to the player and not already targeted by a pack and is not part of the list of targets not to attack
             // And if attack until death mode not activated NOT DOWN
             // AND if enemie does not have a DontKILL designation !!!
@@ -1876,6 +1897,7 @@ namespace aRandomKiwi.KFM
                 || (!Settings.ignoredTargets.Contains(thing.def.defName)
                 && thingNotAlreadyTargetedByPack(thing))))
             {
+                //Log.Message("=>processEnemy " + thing.LabelCap);
                 // We try to make it targeted by an available pack with a score> = at the pawn
                 float enemyScore;
                 if (pawn != null)
@@ -2051,7 +2073,7 @@ namespace aRandomKiwi.KFM
             kingNbEnemyToKill[PID] = 5;
             kingAttackBonus[PID] = 0.05f;
 
-            ck = king.TryGetComp<Comp_Killing>();
+            ck = Utils.getCachedCKilling(king);
             if (ck != null)
             {
                 ck.KFM_isWarrior = false;
@@ -2071,7 +2093,7 @@ namespace aRandomKiwi.KFM
             if (king == null)
                 return;
 
-            ck = king.TryGetComp<Comp_Killing>();
+            ck = Utils.getCachedCKilling(king);
 
             if (ck == null)
                 return;
@@ -2091,7 +2113,7 @@ namespace aRandomKiwi.KFM
          */
         public void unsetPackWarrior(Pawn pet)
         {
-            Comp_Killing ck = pet.TryGetComp<Comp_Killing>();
+            Comp_Killing ck = Utils.getCachedCKilling(pet);
             if (ck != null)
             {
                 ck.KFM_isWarrior = false;
@@ -2120,7 +2142,8 @@ namespace aRandomKiwi.KFM
 
             foreach(var entry in packs[PID])
             {
-                if (entry.TryGetComp<Comp_Killing>() != null && entry.TryGetComp<Comp_Killing>().KFM_isKing)
+                Comp_Killing ck = Utils.getCachedCKilling(entry);
+                if (ck != null && ck.KFM_isKing)
                 {
                     return entry;
                 }
@@ -2173,7 +2196,7 @@ namespace aRandomKiwi.KFM
          */
         private void integrateFreeMemberToGroup(Pawn member)
         {
-            Comp_Killing ck = member.TryGetComp<Comp_Killing>();
+            Comp_Killing ck = Utils.getCachedCKilling(member);
             if (ck == null)
                 return;
             string PMID = getPackMapID(member.Map, ck.KFM_PID);
@@ -2268,8 +2291,9 @@ namespace aRandomKiwi.KFM
             }
 
             //Sending of the members of the pack present on the map in combat => JobGiver
-            foreach (var member in members.ToList())
+            for (int i = members.Count - 1; i >= 0; i--)
             {
+                Pawn member = members[i];
                 if(member != null)
                     setPackMember(member, target, alone, ref jobs);
             }
@@ -2287,7 +2311,8 @@ namespace aRandomKiwi.KFM
             }
 
             //Start of jobs if necessary
-            for (int i = 0; i != members.Count(); i++)
+            int count = members.Count();
+            for (int i = 0; i != count; i++)
             {
                 if(jobs[i] != null)
                 {
@@ -2335,8 +2360,9 @@ namespace aRandomKiwi.KFM
         {
             if (packs.ContainsKey(PID))
             {
-                foreach (var member in packs[PID].ToList())
+                for (int i = packs[PID].Count - 1; i >= 0; i--)
                 {
+                    Pawn member = packs[PID][i];
                     if (member != null && !member.Downed && !member.Dead)
                         return true;
                 }
@@ -2379,12 +2405,13 @@ namespace aRandomKiwi.KFM
             packMembers.Clear();
             if (packs.ContainsKey(PID))
             {
-                foreach (var member in packs[PID].ToList())
+                for (int i = packs[PID].Count - 1; i >= 0; i--)
                 {
+                    Pawn member = packs[PID][i];
                     if (member == null || !member.Spawned || member.Dead || !member.CanReach(target, PathEndMode.Touch, Danger.Deadly))
                         continue;
                     ////Log.Message(")))"+member.LabelCap);
-                    ck = member.TryGetComp<Comp_Killing>();
+                    ck = Utils.getCachedCKilling(member);
                     //Include pack member only if kill mode enabled and not dead and not downed and (safeMode not active or safeMode active and health> = 50%)
                     if (ck != null && isValidPackMember(member, ck)
                         && member.Map == map)
@@ -2462,6 +2489,7 @@ namespace aRandomKiwi.KFM
                     && (map.designationManager.DesignationOn(target) == null || map.designationManager.DesignationOn(target).def.defName != Utils.killDesignation) )
                     okSup = false;
 
+                //Log.Message("=>"+pack.Key+" "+ (pack.Value.Count() >= 0) + " "+ (packScore > 0f) + " "+ (enemyScore <= packScore || Settings.isAllowAttackStrongerTargetEnabled(pack.Key))+" "+ (requiredPMID == null || requiredPMID == PMID) + " "+ okSup);
                 //The pack has members and there is a non-null score greater than or equal to the enemy's score OR parameters allow attacks for the pack of stronger creatures
                 if (pack.Value.Count() >= 0 && packScore > 0f && ( enemyScore <= packScore || Settings.isAllowAttackStrongerTargetEnabled(pack.Key)) && (requiredPMID == null || requiredPMID == PMID) && okSup)
                 {

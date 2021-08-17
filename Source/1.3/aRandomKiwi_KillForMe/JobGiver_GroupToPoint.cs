@@ -18,9 +18,9 @@ namespace aRandomKiwi.KFM
         {
             string jobName = "KFM_GroupToPoint";
             Comp_Killing ch;
-            ch = pawn.TryGetComp<Comp_Killing>();
+            ch = Utils.getCachedCKilling(pawn);
 
-            if (pawn == null || !pawn.GetComp<Comp_Killing>().killEnabled() || !Utils.GCKFM.isPackInGroupMode(pawn.Map, ch.KFM_PID))
+            if (pawn == null || !ch.killEnabled() || !Utils.GCKFM.isPackInGroupMode(pawn.Map, ch.KFM_PID))
                 return null;
 
             return new Job(DefDatabase<JobDef>.GetNamed(jobName, true), ch.KFM_groupWaitingPointDec);

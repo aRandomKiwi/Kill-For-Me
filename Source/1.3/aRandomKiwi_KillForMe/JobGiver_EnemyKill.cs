@@ -21,7 +21,7 @@ namespace aRandomKiwi.KFM
             if (pawn == null || target == null || !pawn.GetComp<Comp_Killing>().killEnabled())
                 return null;
 
-            ch = pawn.TryGetComp<Comp_Killing>();
+            ch = Utils.getCachedCKilling(pawn);
             if (!alone)
             {
                 ch.KFM_waitingPoint = selectedWaitingPoint;

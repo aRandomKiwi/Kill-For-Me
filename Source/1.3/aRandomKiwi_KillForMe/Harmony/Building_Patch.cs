@@ -26,7 +26,7 @@ namespace aRandomKiwi.KFM
                     if (killer is Pawn)
                     {
                         pawnKiller = (Pawn)killer;
-                        ck = killer.TryGetComp<Comp_Killing>();
+                        ck = Utils.getCachedCKilling(pawnKiller);
                     }
 
                     //If the killer is a member of a pack and is assigned the pack attack point bonus increment

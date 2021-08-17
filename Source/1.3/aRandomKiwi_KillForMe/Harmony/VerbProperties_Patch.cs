@@ -17,7 +17,7 @@ namespace aRandomKiwi.KFM
             [HarmonyPostfix]
             public static void Listener(VerbProperties __instance, ref float __result, Tool tool, Pawn attacker, Thing equipment, HediffComp_VerbGiver hediffCompSource)
             {
-                Comp_Killing ck = attacker.TryGetComp<Comp_Killing>();
+                Comp_Killing ck = Utils.getCachedCKilling(attacker);
 
                 //Bonus application only if unit affected during attack
                 if (ck != null && ck.KFM_affected)

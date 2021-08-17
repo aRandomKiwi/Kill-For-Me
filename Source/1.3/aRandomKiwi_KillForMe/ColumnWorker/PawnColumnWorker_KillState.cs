@@ -16,15 +16,17 @@ namespace aRandomKiwi.KFM
 
         protected override bool GetValue(Pawn pawn)
         {
-            if (pawn.TryGetComp<Comp_Killing>() != null)
-                return pawn.TryGetComp<Comp_Killing>().KFM_killState;
+            Comp_Killing ck = Utils.getCachedCKilling(pawn);
+            if (ck != null)
+                return ck.KFM_killState;
             else
                 return false;
         }
 
         protected override void SetValue(Pawn pawn, bool value, PawnTable table)
         {
-            if (pawn.GetComp<Comp_Killing>() == null)
+            Comp_Killing ck = Utils.getCachedCKilling(pawn);
+            if (ck == null)
                 return;
 
             //If deactivation then we stop the jobs linked to the kill For Me to which the animal could be linked
@@ -35,7 +37,7 @@ namespace aRandomKiwi.KFM
                 //If the animal is currently in grouping mode, it is made to stop its work
                 Utils.GCKFM.cancelCurrentPackMemberGroupJob(pawn);
             }
-            pawn.GetComp<Comp_Killing>().KFM_killState = value;
+            ck.KFM_killState = value;
         }
     }
 }

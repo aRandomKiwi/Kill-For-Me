@@ -24,7 +24,7 @@ namespace aRandomKiwi.KFM
                     if (downer is Pawn)
                     {
                         pawnDowner = (Pawn)downer;
-                        ck = downer.TryGetComp<Comp_Killing>();
+                        ck = Utils.getCachedCKilling(pawnDowner);
                     }
 
                     //If the downer is a member of a pack and is affected AND settings in whose attack untail death mode bonus incrementation pack attack point

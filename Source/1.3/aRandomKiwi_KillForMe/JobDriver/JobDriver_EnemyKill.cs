@@ -70,8 +70,9 @@ namespace aRandomKiwi.KFM
             //Unique ID save of the map
             mapUID = this.pawn.Map.uniqueID;
             localAllowRangedAttack = Settings.allowRangedAttack;
+            Comp_Killing ck = Utils.getCachedCKilling(this.pawn);
             //Unit marking as assigned for killé
-            this.pawn.TryGetComp<Comp_Killing>().KFM_affected = true;
+            ck.KFM_affected = true;
 
             return true;
             //return ReservationUtility.Reserve(this.pawn, this.Target, this.job, 1, -1, null);
@@ -92,7 +93,7 @@ namespace aRandomKiwi.KFM
             //globalFinishActions.Add(OnEndKillingTarget);
 
             this.job.playerForced = true;
-
+            Comp_Killing ck = Utils.getCachedCKilling(this.pawn);
             //Map restoration universally
             Map cmap = null;
             foreach (var x in Find.Maps)
@@ -101,7 +102,7 @@ namespace aRandomKiwi.KFM
                 {
                     cmap = x;
                     //PMID definition
-                    PMID = Utils.GCKFM.getPackMapID(cmap, pawn.TryGetComp<Comp_Killing>().KFM_PID);
+                    PMID = Utils.GCKFM.getPackMapID(cmap, ck.KFM_PID);
                     break;
                 }
             }
@@ -123,7 +124,7 @@ namespace aRandomKiwi.KFM
                         cmap2 = x;
                 }
                 //Member registration at this time because otherwise the job can be queued and never execute an end code (JID perpetually assigned)
-                Utils.GCKFM.incAffectedMember(cmap2, this.pawn.TryGetComp<Comp_Killing>().KFM_PID, this.job.loadID);
+                Utils.GCKFM.incAffectedMember(cmap2, ck.KFM_PID, this.job.loadID);
             });
             yield return initToil;
 
@@ -133,11 +134,11 @@ namespace aRandomKiwi.KFM
             });
 
             //If the predator is already at the place of formation of the pack (selectedWaitingSite)
-            if (pawn.TryGetComp<Comp_Killing>().KFM_waitingPoint.x >= 0)
+            if (ck.KFM_waitingPoint.x >= 0)
             {
-                if (pawn.Position.DistanceToSquared(pawn.TryGetComp<Comp_Killing>().KFM_waitingPoint) <= 4)
+                if (pawn.Position.DistanceToSquared(ck.KFM_waitingPoint) <= 4)
                 {
-                    pawn.TryGetComp<Comp_Killing>().KFM_arrivedToWaitingPoint = true;
+                    ck.KFM_arrivedToWaitingPoint = true;
                 }
             }
 
@@ -156,26 +157,25 @@ namespace aRandomKiwi.KFM
                 //Move to coordinates
                 Toil idle = new Toil();
                 Toil gotoWaitingPoint = Toils_Goto.
-                    GotoCell(pawn.TryGetComp<Comp_Killing>().KFM_waitingPoint, PathEndMode.ClosestTouch).
+                    GotoCell(ck.KFM_waitingPoint, PathEndMode.ClosestTouch).
                     JumpIf((() => Find.TickManager.TicksGame % 60 == 0 && ( Utils.GCKFM.isPackArrivedToWaitingPoint(PMID) )), idle).EndOnDespawnedOrNull(TargetIndex.A, JobCondition.Succeeded);
                 yield return gotoWaitingPoint;
                 yield return Toils_General.Wait(15);
-                yield return Toils_Goto.GotoCell(pawn.TryGetComp<Comp_Killing>().KFM_waitingPoint2, PathEndMode.ClosestTouch).
+                yield return Toils_Goto.GotoCell(ck.KFM_waitingPoint2, PathEndMode.ClosestTouch).
                     JumpIf((() => Find.TickManager.TicksGame % 60 == 0 && Utils.GCKFM.isPackArrivedToWaitingPoint(PMID)), idle);
                 //Waiting for other members as long as they are not close
                 yield return idle;
                 yield return Toils_Jump.JumpIf(gotoWaitingPoint, delegate
                 {
                     this.job.playerForced = true;
-                    Comp_Killing ch = pawn.TryGetComp<Comp_Killing>();
                     //We notify that the pawn has arrived at the meeting point
-                    ch.KFM_arrivedToWaitingPoint = true;
+                    ck.KFM_arrivedToWaitingPoint = true;
                     //Check if waitingPoint still defined (All members arrived at the destination point)
                     bool allArrived = Utils.GCKFM.isPackArrivedToWaitingPoint(PMID);
                     if (allArrived)
                     {
                         //We reset the arrival flag at the waiting point for the next meeting
-                        ch.KFM_arrivedToWaitingPoint = false;
+                        ck.KFM_arrivedToWaitingPoint = false;
                     }
 
                     return !allArrived;
@@ -272,12 +272,12 @@ namespace aRandomKiwi.KFM
          */
         private void OnEndKillingTarget()
         {
+            Comp_Killing ck = Utils.getCachedCKilling(this.pawn);
             ////Log.Message("Arret du JOB KILL "+this.job.GetUniqueLoadID());
-            Comp_Killing ch = pawn.TryGetComp<Comp_Killing>();
             //Animal demobilization
-            ch.KFM_affected = false;
+            ck.KFM_affected = false;
             //Decrement number of members participating in the attack for the given pack (PID) on the given map
-            Utils.GCKFM.decAffectedMember(pawn.Map, ch.KFM_PID, this.job.loadID);
+            Utils.GCKFM.decAffectedMember(pawn.Map, ck.KFM_PID, this.job.loadID);
         }
 
         public int mapUID = 0;
