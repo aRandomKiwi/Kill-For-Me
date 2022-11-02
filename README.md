@@ -4,11 +4,11 @@
 
 <p align="center">
 	<a href="https://github.com/aRandomKiwi/Kill-For-Me/releases">
-		<img src="https://img.shields.io/badge/release-1.6.0-4BC51D.svg?style=flat" alt="1.6.0" />
+		<img src="https://img.shields.io/badge/release-1.6.2-4BC51D.svg?style=flat" alt="1.6.2" />
     </a>
 	<img src="https://img.shields.io/github/downloads-pre/aRandomKiwi/RimThemes/total.svg?style=popout-square&color=green" alt="Github Total Downloads" />
 	<a href="https://steamcommunity.com/sharedfiles/filedetails/?id=1629854111">
-		<img src="https://img.shields.io/badge/RimWorld-1.3-purple.svg?longCache=true&style=plastic)" alt="Compatible Rimworld 1.2" />
+		<img src="https://img.shields.io/badge/RimWorld-1.4-purple.svg?longCache=true&style=plastic)" alt="Compatible Rimworld 1.4" />
     </a>
 	<a href="https://steamcommunity.com/sharedfiles/filedetails/?id=1629854111">
 		<img src="https://img.shields.io/badge/documentation-%F0%9F%94%8D-blue?style=flat" />
