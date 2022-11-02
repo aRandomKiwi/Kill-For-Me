@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<DesignationDef>
+		<defName>KFM_Kill</defName>
+		<texturePath>UI/Designators/KillDesignation_2</texturePath>
+		<targetType>Thing</targetType>
+	</DesignationDef>
+	<DesignationDef>
+		<defName>KFM_DKill</defName>
+		<texturePath>UI/Designators/DKillDesignation_2</texturePath>
+		<targetType>Thing</targetType>
+	</DesignationDef>
+</Defs>
