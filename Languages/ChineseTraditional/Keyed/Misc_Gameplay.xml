@@ -1,38 +1,40 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
+  <KFM_TransfertKing>重新分配</KFM_TransfertKing>
+  <KFM_TransfertKingDesc>將此隊伍的領袖分配給另一隊（如果選擇隊伍已有領袖，則交換）</KFM_TransfertKingDesc>
   <KFM_HideRallyPointWarning>隱藏召集點警告</KFM_HideRallyPointWarning>
   <KFM_DesignatorRallyLabel>召集點區域</KFM_DesignatorRallyLabel>
-  <KFM_DesignatorRallyDesc>設置戰鬥或撤退時,殺戮動物集合的區域</KFM_DesignatorRallyDesc>
+  <KFM_DesignatorRallyDesc>設置一個戰鬥或撤退時，動物集合區域</KFM_DesignatorRallyDesc>
   <KFM_AlertNoRallyZoneTitle>缺少召集點!</KFM_AlertNoRallyZoneTitle>
   <KFM_AlertNoRallyZoneDesc>你的地圖缺少一個召集點,請設置一個!</KFM_AlertNoRallyZoneDesc>
-  <KFM_SettingsAttackUntilDeath>攻擊敵人致死</KFM_SettingsAttackUntilDeath>
+  <KFM_SettingsAttackUntilDeath>攻擊致死</KFM_SettingsAttackUntilDeath>
   <KFM_SettingsAllowRangedAttack>允許遠程攻擊</KFM_SettingsAllowRangedAttack>
-  <KFM_SettingsAllowAllToKill>允許隊伍殺死任何動物</KFM_SettingsAllowAllToKill>
+  <KFM_SettingsAllowAllToKill>允許殺死任何動物</KFM_SettingsAllowAllToKill>
   <KFM_SettingsIgnoredRangedAttack>強制近戰攻擊的動物列表(defName):</KFM_SettingsIgnoredRangedAttack>
-  <KFM_SettingsResetIgnoredRangedAttack>重置強制近戰攻擊的動物列表</KFM_SettingsResetIgnoredRangedAttack>
-  <KFM_SettingsIgnoredTargets>忽略目標(defName):</KFM_SettingsIgnoredTargets>
+  <KFM_SettingsResetIgnoredRangedAttack>重置</KFM_SettingsResetIgnoredRangedAttack>
+  <KFM_SettingsIgnoredTargets>忽略目標 (defName):</KFM_SettingsIgnoredTargets>
   <KFM_SettingsIgnoredPreyListNumber>目標 {0}</KFM_SettingsIgnoredPreyListNumber>
-  <KFM_SettingsResetignoredTargets>重置已忽略目標的列表</KFM_SettingsResetignoredTargets>
-  <KFM_SettingsSupMode>監督模式：僅限自訂的敵人</KFM_SettingsSupMode>
-  <KFM_SettingsAllowPackAttackBonus>允許隊伍有攻擊加成</KFM_SettingsAllowPackAttackBonus>
-  <KFM_SettingsBonusAttackDuration>攻擊加成持續時間 ({0})</KFM_SettingsBonusAttackDuration>
+  <KFM_SettingsResetignoredTargets>重置</KFM_SettingsResetignoredTargets>
+  <KFM_SettingsSupMode>監督模式：僅限自訂目標</KFM_SettingsSupMode>
+  <KFM_SettingsAllowPackAttackBonus>允許隊伍獲得攻擊加成</KFM_SettingsAllowPackAttackBonus>
+  <KFM_SettingsBonusAttackDuration>攻擊加成持續時間  ({0})</KFM_SettingsBonusAttackDuration>
   <KFM_SettingsBonusAttackByEnemyKilled>殺敵攻擊加成 ({0}%)</KFM_SettingsBonusAttackByEnemyKilled>
-  <KFM_SettingsDisableKillerBond>禁用殺手動物的綁定（追溯活動）</KFM_SettingsDisableKillerBond>
-  <KFM_SettingsManualMode>手動模式: 動物群只會攻擊手動選擇的敵人(按鍵"強制殺死")</KFM_SettingsManualMode>
+  <KFM_SettingsDisableKillerBond>禁用動物的羈絆（追溯活動）</KFM_SettingsDisableKillerBond>
+  <KFM_SettingsManualMode>手動模式: 隊伍只攻擊手動選擇的敵人("強制殺死")</KFM_SettingsManualMode>
 
   <KFM_ForceKillLabel>強制殺死</KFM_ForceKillLabel>
-  <KFM_ForceCancelKillLabel>取消強制殺死</KFM_ForceCancelKillLabel>
+  <KFM_ForceCancelKillLabel>取消任務</KFM_ForceCancelKillLabel>
   <KFM_ForceKillPackContextLabel>強制殺死(隊)</KFM_ForceKillPackContextLabel>
-  <KFM_ForceKillPackContextDesc>強制隊伍殺死這個目標</KFM_ForceKillPackContextDesc>
+  <KFM_ForceKillPackContextDesc>強制隊伍殺死此目標</KFM_ForceKillPackContextDesc>
 
-  <KFM_ForceCancelKillDesc>取消隊伍或成員的當前任務</KFM_ForceCancelKillDesc>
-  <KFM_ForceKillDesc>強制隊伍殺死這個敵人</KFM_ForceKillDesc>
+  <KFM_ForceCancelKillDesc>取消當前隊伍或成員的任務</KFM_ForceCancelKillDesc>
+  <KFM_ForceKillDesc>強制隊伍殺死此敵人</KFM_ForceKillDesc>
   <KFM_FloatMenuForceKillNoAvailablePack>沒有可用隊伍</KFM_FloatMenuForceKillNoAvailablePack>
   <KFM_FloatMenuForceKillAvailablePack>隊伍出發</KFM_FloatMenuForceKillAvailablePack>
   <KFM_PackAvailableAllocate>分配{0}（{1}個可用成員）</KFM_PackAvailableAllocate>
-  <KFM_PackAvailableDeallocate>取消分配 {0} ({1} 個可用成員)</KFM_PackAvailableDeallocate>
-  <KFM_ForceDeallocateOK>{0} 的目標終止 {1}</KFM_ForceDeallocateOK>
-  <KFM_ForceAllocateOK>{0} 的目標 {1}</KFM_ForceAllocateOK>
+  <KFM_PackAvailableDeallocate>取消分配{0}（{1}個可用成員）</KFM_PackAvailableDeallocate>
+  <KFM_ForceDeallocateOK>{0}停止定位{1}</KFM_ForceDeallocateOK>
+  <KFM_ForceAllocateOK>{0}的目標是{1}</KFM_ForceAllocateOK>
   <KFM_ForceAllocateAfterDeallocateOK>{0}終止當前目標{1}，現在將{2}作為目標</KFM_ForceAllocateAfterDeallocateOK>
   <KFM_ForceAllocateAfterDeallocateFAILED>{0} 以殺死 {1}</KFM_ForceAllocateAfterDeallocateFAILED>
   <KFM_ForceAllocateAfterDeallocateRegroupOK>{0} 停止集合模式,現在將{1}作為目標</KFM_ForceAllocateAfterDeallocateRegroupOK>
@@ -59,21 +61,21 @@
   <KFM_grayColorLib>灰</KFM_grayColorLib>
   <KFM_orangeColorLib>橘</KFM_orangeColorLib>
   <KFM_purpleColorLib>紫</KFM_purpleColorLib>
-
-  <KFM_DesignatorKillNeedSelectKillable>你不能指定這個目標!</KFM_DesignatorKillNeedSelectKillable>
+  
+  <KFM_DesignatorKillNeedSelectKillable>無法指定這個目標!</KFM_DesignatorKillNeedSelectKillable>
   <KFM_DesignatorKillLabel>殺死</KFM_DesignatorKillLabel>
-  <KFM_DesignatorKillDesc>指定敵人</KFM_DesignatorKillDesc>
-  <KFM_DesignatorDKillLabel>不殺死</KFM_DesignatorDKillLabel>
-  <KFM_DesignatorDKillDesc>強制隊伍不針對這個敵人</KFM_DesignatorDKillDesc>
+  <KFM_DesignatorKillDesc>指定目標</KFM_DesignatorKillDesc>
+  <KFM_DesignatorDKillLabel>忽略</KFM_DesignatorDKillLabel>
+  <KFM_DesignatorDKillDesc>忽略目標</KFM_DesignatorDKillDesc>
 
   <KFM_BonusAttackLost>加成損失</KFM_BonusAttackLost>
   <KFM_JoiningPackToKill>加入戰鬥殺死敵人......</KFM_JoiningPackToKill>
   <KFM_WaintingForOtherToKill>等待其他成員與敵人作戰......</KFM_WaintingForOtherToKill>
-  <KFM_PackBonusAttackInspectString>臨時加成: {0}% (到期 {1})</KFM_PackBonusAttackInspectString>
-  <KFM_PackBonusAttackInspectStringExpired>臨時加成: {0}% (到期)</KFM_PackBonusAttackInspectStringExpired>
+  <KFM_PackBonusAttackInspectString>臨時加成: {0}% (倒數: {1})</KFM_PackBonusAttackInspectString>
+  <KFM_PackBonusAttackInspectStringExpired>臨時加成: {0}% (倒數)</KFM_PackBonusAttackInspectStringExpired>
   <KFM_PackKingBonusAttackInspectString>永久加成(領袖): {0}%</KFM_PackKingBonusAttackInspectString>
   <KFM_PackBonusAttackTotalInspectString>總加成: {0}%</KFM_PackBonusAttackTotalInspectString>
-  <KFM_PackBonusAttackNbKilledEnemiesInspectString>殺死敵人數量: {0}</KFM_PackBonusAttackNbKilledEnemiesInspectString>
+  <KFM_PackBonusAttackNbKilledEnemiesInspectString>殺敵數量: {0}</KFM_PackBonusAttackNbKilledEnemiesInspectString>
 
   <KFM_HidePackIcon>隱藏隊伍圖標</KFM_HidePackIcon>
   <KFM_GroupPack>集合</KFM_GroupPack>
@@ -81,43 +83,43 @@
   <KFM_CancelRegroupLabel>解散</KFM_CancelRegroupLabel>
   <KFM_CancelRegroupDesc>解散隊伍</KFM_CancelRegroupDesc>
   <KFM_SettingsHoursBeforeAutoDisableGroupMode>解散後自動禁用集合模式的時間({0})</KFM_SettingsHoursBeforeAutoDisableGroupMode>
-  <KFM_ForceAllocateFAILEDSupMode>{0}在監督模式下無法攻擊目標, {1} 未設置殺戮目標.</KFM_ForceAllocateFAILEDSupMode>
+  <KFM_ForceAllocateFAILEDSupMode>{0}在監督模式下無法攻擊目標, {1} 未設置目標.</KFM_ForceAllocateFAILEDSupMode>
 
   <KFM_PackKingOf>領袖是{0}</KFM_PackKingOf>
   <KFM_KingElectionNewKingLabel>隊伍領袖</KFM_KingElectionNewKingLabel>
   <KFM_KingElectionNewKingDesc>{0}現在是{1}的領袖</KFM_KingElectionNewKingDesc>
-  <KFM_MessagePackKingBonusAttackInc>殺死{1}個敵人.{0}領袖加成+5%!</KFM_MessagePackKingBonusAttackInc>
+  <KFM_MessagePackKingBonusAttackInc>殺敵數:{1}。{0}的領袖加成+5%!</KFM_MessagePackKingBonusAttackInc>
 
-  <KFM_SettingsBonusKingElectionMinHour>最小生成隊伍新領袖的時間({0})</KFM_SettingsBonusKingElectionMinHour>
-  <KFM_SettingsBonusKingElectionMaxHour>最大生成隊伍新領袖的時間 ({0})</KFM_SettingsBonusKingElectionMaxHour>
-  <KFM_SettingsBonusKingElectionMinMembers>生成隊伍領袖前,隊伍最小數量 ({0}成員)</KFM_SettingsBonusKingElectionMinMembers>
-  <KFM_SettingsAllowGroupModeOnlyIfKing>允許集合模式有一個領袖(若無則無法使用【集合】</KFM_SettingsAllowGroupModeOnlyIfKing>
+  <KFM_SettingsBonusKingElectionMinHour>生成隊伍新領袖的最小時間:({0})</KFM_SettingsBonusKingElectionMinHour>
+  <KFM_SettingsBonusKingElectionMaxHour>生成隊伍新領袖的最大時間 :({0})</KFM_SettingsBonusKingElectionMaxHour>
+  <KFM_SettingsBonusKingElectionMinMembers>生成隊伍領袖前,隊伍最小數量 ({0}個成員)</KFM_SettingsBonusKingElectionMinMembers>
+  <KFM_SettingsAllowGroupModeOnlyIfKing>允許集合模式有一個領袖(若無則無法【集合】</KFM_SettingsAllowGroupModeOnlyIfKing>
   <KFM_SettingsDisallowPackGroupMode>禁用隊伍集合模式</KFM_SettingsDisallowPackGroupMode>
-  <KFM_SettingsBonusAttackSection>隊伍攻擊加成設置</KFM_SettingsBonusAttackSection>
+  <KFM_SettingsBonusAttackSection>攻擊加成設置</KFM_SettingsBonusAttackSection>
   <KFM_SettingsGroupModeSection>集合模式設置</KFM_SettingsGroupModeSection>
   <KFM_SettingsGeneralSection>全局設置</KFM_SettingsGeneralSection>
   <KFM_SettingsBonusKingElectionPenalityCausedByKingDeath>如前領袖死亡,生成隊伍新領袖的時間限制 ({0})</KFM_SettingsBonusKingElectionPenalityCausedByKingDeath>
-  <KFM_SettingsBonusAttackWarriorNbToKill>成員成為【戰士】前,殺死敵人數量({0} 敵人)</KFM_SettingsBonusAttackWarriorNbToKill>
-  <KFM_SettingsBonusAttackOfWarriors>戰士攻擊加成 ({0}%)</KFM_SettingsBonusAttackOfWarriors>
-  <KFM_SettingsBonusAttackOfKings>隊伍領袖攻擊加成 ({0}%)</KFM_SettingsBonusAttackOfKings>
-  <KFM_SettingsAllowKillSelfPawns>(危險)允許隊伍成員攻擊殖民者</KFM_SettingsAllowKillSelfPawns>
+  <KFM_SettingsBonusAttackWarriorNbToKill>成員成為【戰士】前,所需殺敵數({0} 個敵人)</KFM_SettingsBonusAttackWarriorNbToKill>
+  <KFM_SettingsBonusAttackOfWarriors>戰士-攻擊加成 ({0}%)</KFM_SettingsBonusAttackOfWarriors>
+  <KFM_SettingsBonusAttackOfKings>領袖-攻擊加成 ({0}%)</KFM_SettingsBonusAttackOfKings>
+  <KFM_SettingsAllowKillSelfPawns>(危險)允許攻擊殖民者</KFM_SettingsAllowKillSelfPawns>
   <KFM_SettingsPreventFromFleeWhenHit>啟用“終結者”模式</KFM_SettingsPreventFromFleeWhenHit>
-  <KFM_SettingsAllowTargetAllBuildings>允許隊伍攻擊所有建築物</KFM_SettingsAllowTargetAllBuildings>
-  <KFM_SettingsPercentageMemberNearToAvoidRallyPoint>隊伍成員的距離百分比,避免在召集點重組({0}%)</KFM_SettingsPercentageMemberNearToAvoidRallyPoint>
+  <KFM_SettingsAllowTargetAllBuildings>允許攻擊所有建築物</KFM_SettingsAllowTargetAllBuildings>
+  <KFM_SettingsPercentageMemberNearToAvoidRallyPoint>無須在召集點集合的距離百分比({0}%)</KFM_SettingsPercentageMemberNearToAvoidRallyPoint>
   <KFM_SettingsDefaultBuildingToAttack>可以默認攻擊的建築物列表</KFM_SettingsDefaultBuildingToAttack>
-  <KFM_SettingsResetDefaultBuildingToAttack>重置默認可攻擊建築物列表</KFM_SettingsResetDefaultBuildingToAttack>
-  <KFM_SettingsAllowPackToAttackStrongerTarget>(危險)允許隊伍攻擊比他們強的敵人</KFM_SettingsAllowPackToAttackStrongerTarget>
+  <KFM_SettingsResetDefaultBuildingToAttack>重置</KFM_SettingsResetDefaultBuildingToAttack>
+  <KFM_SettingsAllowPackToAttackStrongerTarget>(危險)允許隊伍攻擊比牠們強的敵人</KFM_SettingsAllowPackToAttackStrongerTarget>
   <KFM_SettingsAllowManualKingSet>手動選定隊伍的領袖</KFM_SettingsAllowManualKingSet>
 
   <KFM_ManualKingSetLabel>成為領袖</KFM_ManualKingSetLabel>
-  <KFM_ManualKingSetDesc>強制指定這隻動物成為隊伍的新領袖\n 注意：將會丟失前領袖的所有加成!</KFM_ManualKingSetDesc>
+  <KFM_ManualKingSetDesc>強制指定這隻動物成為隊伍的新領袖\n 注意：將會失去前領袖的所有加成!</KFM_ManualKingSetDesc>
   <KFM_PackKingDeadLabel>領袖死亡</KFM_PackKingDeadLabel>
-  <KFM_cannotChangeKingPack>{0}是隊伍領袖, 你不能變更他的所屬!</KFM_cannotChangeKingPack>
+  <KFM_cannotChangeKingPack>{0}是隊伍領袖, 你不能變更牠的所屬!</KFM_cannotChangeKingPack>
   <KFM_PackKingDeadDesc>{1}的領袖{0}已經被殺,失去永久加成 !</KFM_PackKingDeadDesc>
   <KFM_PackKingBonusAttackEnemyToKillBeforeNextReward>新加成：殺死{0}個敵人後</KFM_PackKingBonusAttackEnemyToKillBeforeNextReward>
 
   <KFM_ConfirmWarriorChangePackTitle>隊伍更改</KFM_ConfirmWarriorChangePackTitle>
-  <KFM_ConfirmWarriorChangePackDetail>警告!{0}是一個戰士,如果你更改他的隊伍,他將失去戰士身分和加成.</KFM_ConfirmWarriorChangePackDetail>
+  <KFM_ConfirmWarriorChangePackDetail>警告!{0}是一個【戰士】,如果強制更改隊伍,牠將失去身分和加成.</KFM_ConfirmWarriorChangePackDetail>
   <KFM_KingText>領袖</KFM_KingText>
   <KFM_WarriorText>戰士</KFM_WarriorText>
   <KFM_CannotTargetStrongerEnemie>你無法指定! 隊伍攻擊力 ({0}) 小於目標 ({1})</KFM_CannotTargetStrongerEnemie>
