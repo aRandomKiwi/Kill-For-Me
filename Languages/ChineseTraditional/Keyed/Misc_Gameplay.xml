@@ -83,7 +83,7 @@
   <KFM_CancelRegroupLabel>解散</KFM_CancelRegroupLabel>
   <KFM_CancelRegroupDesc>解散隊伍</KFM_CancelRegroupDesc>
   <KFM_SettingsHoursBeforeAutoDisableGroupMode>解散後自動禁用集合模式的時間({0})</KFM_SettingsHoursBeforeAutoDisableGroupMode>
-  <KFM_ForceAllocateFAILEDSupMode>{0} cant attack target in supervised mode and {1} isnt set as a target to kill.</KFM_ForceAllocateFAILEDSupMode>
+  <KFM_ForceAllocateFAILEDSupMode>{0}在監督模式下無法攻擊目標, {1} 未設置目標.</KFM_ForceAllocateFAILEDSupMode>
 
   <KFM_PackKingOf>領袖是{0}</KFM_PackKingOf>
   <KFM_KingElectionNewKingLabel>隊伍領袖</KFM_KingElectionNewKingLabel>
