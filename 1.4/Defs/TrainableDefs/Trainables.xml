@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <TrainableDef>
+    <defName>KFM_KillingTraining</defName>
+    <label>killing</label>
+    <description>The animal will randomly kill enemies for the colony.</description>
+    <icon>UI/Icons/KillingBase</icon>
+    <listPriority>360</listPriority>
+    <difficulty>650</difficulty>
+    <requiredTrainability>Intermediate</requiredTrainability>
+    <steps>9</steps>
+    <prerequisites>
+        <li>Obedience</li>
+    </prerequisites>
+    <defaultTrainable>true</defaultTrainable>
+    <tags>
+      <li>Work</li>
+	  <li>Combat</li>
+    </tags>
+  </TrainableDef>
+</Defs>
