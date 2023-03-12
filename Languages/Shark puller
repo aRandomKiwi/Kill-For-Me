@@ -1,0 +1,21 @@
+
+
+ -m venv .
+
+source bin/activate
+
+pip install -r requi
+
+rements.txt
+
+python -m unittes//
+
+cd plugin_packaging
+
+./build_plugin.sh
+
+python smart 
+
+shark_plugin.py -U $DBUSER -P $DBPASS -p $DBPORT -DB $DBNAME -a $AUTHENTICATION_DB -pn $PROJECT_NAME -i $PULL_REQUEST_SYSTEM_URL -b $BACKEND -t $TOKEN
+
+Demon-Arisen-Immortal-/Shark pull request at main · Ashkenazic/Demon-Arisen-Immortal- · GitHub 
