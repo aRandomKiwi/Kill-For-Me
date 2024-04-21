@@ -361,7 +361,7 @@ namespace aRandomKiwi.KFM
         public static string killJob = "KFM_KillTarget";
         public static string groupToPointJob = "KFM_GroupToPoint";
 
-        public static readonly Texture2D SettingsHeader = ContentFinder<Texture2D>.Get("UI/Settings/SettingsHeader", true);
+        public static readonly Texture2D SettingsHeader = ContentFinder<Texture2D>.Get("UI/Settings/TexSettings", true);
 
         public static GC_KFM GCKFM;
     }
