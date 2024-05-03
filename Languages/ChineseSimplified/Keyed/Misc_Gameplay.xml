@@ -17,7 +17,7 @@
 	<KFM_SettingsAllowPackAttackBonus>允许击杀目标获得攻击加成</KFM_SettingsAllowPackAttackBonus>
 	<KFM_SettingsBonusAttackDuration>攻击加强持续时间（{0}）</KFM_SettingsBonusAttackDuration>
 	<KFM_SettingsBonusAttackByEnemyKilled>击杀/摧毁目标的战斗加成（{0}％）</KFM_SettingsBonusAttackByEnemyKilled>
-	<KFM_SettingsDisableKillerBond>禁用动物作战（包括已下令）</KFM_SettingsDisableKillerBond>
+	<KFM_SettingsDisableKillerBond>动物攻击训练完成后移除牵绊</KFM_SettingsDisableKillerBond>
 	<KFM_SettingsManualMode>手动模式，编队只会攻击手动选择的目标（选择攻击目标）</KFM_SettingsManualMode>
 
 	<KFM_ForceKillLabel>强制攻击</KFM_ForceKillLabel>
