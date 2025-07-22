@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+	<PawnColumnDef>
+		<defName>KFM_KillState</defName>
+		<workerClass>aRandomKiwi.KFM.PawnColumnWorker_KillState</workerClass>
+		<sortable>true</sortable>
+		<headerIcon>UI/Icons/KillingMode</headerIcon>
+		<headerTip>KillState</headerTip>
+		<paintable>true</paintable>
+	</PawnColumnDef>
+	<PawnColumnDef>
+		<defName>KFM_PC_Kill</defName>
+		<workerClass>aRandomKiwi.KFM.PawnColumnWorker_Kill</workerClass>
+		<sortable>true</sortable>
+		<headerIcon>UI/Icons/Kill</headerIcon>
+		<headerTip>Mark animals to be killed by pack.</headerTip>
+		<paintable>true</paintable>
+    </PawnColumnDef>
+	<PawnColumnDef>
+		<defName>KFM_PC_DKill</defName>
+		<workerClass>aRandomKiwi.KFM.PawnColumnWorker_DKill</workerClass>
+		<sortable>true</sortable>
+		<headerIcon>UI/Icons/DKill</headerIcon>
+		<headerTip>Mark animals to not be killed by pack.</headerTip>
+		<paintable>true</paintable>
+    </PawnColumnDef>
+</Defs>
